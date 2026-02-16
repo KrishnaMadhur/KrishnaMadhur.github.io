@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SRAM Array Design — Krishna Madhur Akella</title>
+    <meta name="description" content="Low-power 16×4 SRAM array design in Cadence Virtuoso at 45nm." />
+    <link rel="stylesheet" href="../css/style.css" />
+</head>
+
+<body class="project-detail">
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">Krishna Madhur</a>
+            <div class="nav-tabs">
+                <a href="../index.html#home" class="nav-tab">Home</a>
+                <a href="../index.html#projects" class="nav-tab active">Projects</a>
+                <a href="../index.html#writing" class="nav-tab">Writing</a>
+                <a href="../index.html#photography" class="nav-tab">Photography</a>
+                <a href="../index.html#cv" class="nav-tab">CV</a>
+            </div>
+            <button class="nav-hamburger" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <main class="detail-page">
+        <a href="../index.html#projects" class="detail-back">← Back to Projects</a>
+
+        <h1 class="detail-title">Low-Power 16×4 SRAM Array Design</h1>
+        <p class="detail-meta">Cadence Virtuoso · 45nm CMOS · Fall 2025</p>
+
+        <div class="detail-body">
+            <p>
+                Designed a synchronous SRAM macro with a focus on minimizing power-delay product while
+                maintaining read stability and write performance.
+            </p>
+
+            <h2>Performance</h2>
+            <ul>
+                <li><strong>249 ps (~4 GHz)</strong> worst-case write access time</li>
+                <li>Robust 6T bitcell with <strong>Cell Ratio of 1.5</strong>, eliminating read-disturb failures</li>
+                <li>Optimized Area-Power-Delay FOM improvement by <strong>46%</strong></li>
+                <li>Compact layout: <strong>2.42 µm²</strong>, 356 µW active power at 1.2V</li>
+            </ul>
+
+            <h2>Design Details</h2>
+            <p>
+                The 6T SRAM bitcell was sized to maximize the static noise margin (SNM) during read operations
+                while meeting the write margin requirements. Peripheral circuits including sense amplifiers,
+                row decoders, and precharge logic were co-optimized for the 16×4 array topology.
+            </p>
+
+            <!-- Add layout screenshots, simulation waveforms here -->
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 Krishna Madhur Akella</p>
+    </footer>
+
+    <script>
+        const hamburger = document.querySelector('.nav-hamburger');
+        const navTabs = document.querySelector('.nav-tabs');
+        if (hamburger) { hamburger.addEventListener('click', () => { hamburger.classList.toggle('open'); navTabs.classList.toggle('open'); }); }
+    </script>
+</body>
+
+</html>

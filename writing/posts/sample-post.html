@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Coming Soon — Krishna Madhur Akella</title>
+    <meta name="description" content="Articles, reviews, and musings — coming soon." />
+    <link rel="stylesheet" href="../../css/style.css" />
+</head>
+
+<body class="writing-detail">
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="nav-logo">Krishna Madhur</a>
+            <div class="nav-tabs">
+                <a href="../../index.html#home" class="nav-tab">Home</a>
+                <a href="../../index.html#projects" class="nav-tab">Projects</a>
+                <a href="../../index.html#writing" class="nav-tab active">Writing</a>
+                <a href="../../index.html#photography" class="nav-tab">Photography</a>
+                <a href="../../index.html#cv" class="nav-tab">CV</a>
+            </div>
+            <button class="nav-hamburger" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <main class="detail-page">
+        <a href="../../index.html#writing" class="detail-back">← Back to Writing</a>
+
+        <span class="detail-tag">Technical</span>
+        <h1 class="detail-title">Coming Soon</h1>
+        <p class="detail-meta">2026</p>
+
+        <div class="detail-body">
+            <p>
+                This space is being set up for technical notes, book reviews, and personal reflections.
+                Check back soon for the first post.
+            </p>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 Krishna Madhur Akella</p>
+    </footer>
+
+    <script>
+        const hamburger = document.querySelector('.nav-hamburger');
+        const navTabs = document.querySelector('.nav-tabs');
+        if (hamburger) { hamburger.addEventListener('click', () => { hamburger.classList.toggle('open'); navTabs.classList.toggle('open'); }); }
+    </script>
+</body>
+
+</html>

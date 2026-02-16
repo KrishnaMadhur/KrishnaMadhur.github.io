@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MEMS Cantilever &amp; Comb Drives — Krishna Madhur Akella</title>
+    <meta name="description"
+        content="MEMS cantilever beams and comb drive arrays fabricated at the Singh Center for Nanotechnology." />
+    <link rel="stylesheet" href="../css/style.css" />
+</head>
+
+<body class="project-detail">
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">Krishna Madhur</a>
+            <div class="nav-tabs">
+                <a href="../index.html#home" class="nav-tab">Home</a>
+                <a href="../index.html#projects" class="nav-tab active">Projects</a>
+                <a href="../index.html#writing" class="nav-tab">Writing</a>
+                <a href="../index.html#photography" class="nav-tab">Photography</a>
+                <a href="../index.html#cv" class="nav-tab">CV</a>
+            </div>
+            <button class="nav-hamburger" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <main class="detail-page">
+        <a href="../index.html#projects" class="detail-back">← Back to Projects</a>
+
+        <h1 class="detail-title">MEMS Cantilever Beams &amp; Comb Drive Arrays</h1>
+        <p class="detail-meta">Singh Center for Nanotechnology · Photolithography · DRIE · Spring 2026</p>
+
+        <div class="detail-body">
+            <p>
+                Fabricated MEMS cantilever beams and comb drive actuators at the
+                <strong>Singh Center for Nanotechnology</strong> at the University of Pennsylvania.
+                This project explores micromechanical structures used in sensors and actuators.
+            </p>
+
+            <h2>Fabrication</h2>
+            <p>
+                Devices were fabricated using photolithography, deep reactive-ion etching (DRIE),
+                and selective wet etching on silicon substrates. Process optimization focused on
+                sidewall profiles and etch uniformity.
+            </p>
+
+            <h2>Characterization</h2>
+            <ul>
+                <li><strong>SEM</strong> — imaging device geometry and etch profiles</li>
+                <li><strong>AFM</strong> — surface roughness and step-height measurements</li>
+                <li><strong>TEM</strong> — cross-sectional analysis</li>
+                <li><strong>Profilometry</strong> — film thickness and etch depth verification</li>
+            </ul>
+
+            <h2>Future Work</h2>
+            <p>
+                Developing process flows for <strong>GFET fabrication</strong> and
+                <strong>CdSe Quantum Dot synthesis</strong> as extensions of the nanofabrication platform.
+            </p>
+
+            <h2>Report</h2>
+            <p><em>Draft — final version expected in 2 weeks.</em></p>
+            <p>
+                <a href="../reports/ESE5360_MEMS Draft Report.pdf" class="detail-report-link"
+                    data-report="../reports/ESE5360_MEMS Draft Report.pdf">
+                    📄 View Draft Report (PDF)
+                </a>
+            </p>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 Krishna Madhur Akella</p>
+    </footer>
+
+    <div id="pdf-modal" class="pdf-modal" style="display:none;">
+        <div class="pdf-modal-overlay"></div>
+        <div class="pdf-modal-content">
+            <button class="pdf-modal-close" aria-label="Close">&times;</button>
+            <iframe id="pdf-viewer" src="" title="Report Preview"></iframe>
+        </div>
+    </div>
+
+    <script>
+        const hamburger = document.querySelector('.nav-hamburger');
+        const navTabs = document.querySelector('.nav-tabs');
+        if (hamburger) { hamburger.addEventListener('click', () => { hamburger.classList.toggle('open'); navTabs.classList.toggle('open'); }); }
+        const pdfModal = document.getElementById('pdf-modal');
+        const pdfViewer = document.getElementById('pdf-viewer');
+        document.querySelectorAll('[data-report]').forEach(link => {
+            link.addEventListener('click', e => { e.preventDefault(); pdfViewer.src = link.getAttribute('data-report') + '#toolbar=0&navpanes=0'; pdfModal.style.display = 'flex'; document.body.style.overflow = 'hidden'; });
+        });
+        document.querySelector('.pdf-modal-close').addEventListener('click', () => { pdfModal.style.display = 'none'; pdfViewer.src = ''; document.body.style.overflow = ''; });
+        document.querySelector('.pdf-modal-overlay').addEventListener('click', () => { pdfModal.style.display = 'none'; pdfViewer.src = ''; document.body.style.overflow = ''; });
+    </script>
+</body>
+
+</html>

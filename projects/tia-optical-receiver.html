@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wideband TIA — Krishna Madhur Akella</title>
+    <meta name="description"
+        content="Wideband transimpedance amplifier for optical receivers designed in Cadence Virtuoso at 45nm." />
+    <link rel="stylesheet" href="../css/style.css" />
+</head>
+
+<body class="project-detail">
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">Krishna Madhur</a>
+            <div class="nav-tabs">
+                <a href="../index.html#home" class="nav-tab">Home</a>
+                <a href="../index.html#projects" class="nav-tab active">Projects</a>
+                <a href="../index.html#writing" class="nav-tab">Writing</a>
+                <a href="../index.html#photography" class="nav-tab">Photography</a>
+                <a href="../index.html#cv" class="nav-tab">CV</a>
+            </div>
+            <button class="nav-hamburger" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <main class="detail-page">
+        <a href="../index.html#projects" class="detail-back">← Back to Projects</a>
+
+        <h1 class="detail-title">Wideband Transimpedance Amplifier for Optical Receivers</h1>
+        <p class="detail-meta">Cadence Virtuoso · 45nm CMOS · Fall 2025</p>
+
+        <div class="detail-body">
+            <p>
+                Designed an 8-stage cascaded transimpedance amplifier (TIA) for optical receiver front-ends,
+                targeting high transimpedance gain with wide bandwidth for photodiode interfacing.
+            </p>
+
+            <h2>Performance Highlights</h2>
+            <ul>
+                <li><strong>519 kΩ (114 dBΩ)</strong> transimpedance gain — exceeding specification by 3.5×</li>
+                <li><strong>311 MHz</strong> bandwidth maintained with a 600Ω differential load</li>
+                <li><strong>3.5 mW</strong> power consumption — well below the 10 mW budget</li>
+            </ul>
+
+            <h2>Design Approach</h2>
+            <p>
+                The "Direct Coupling" strategy uses tapered loading across stages to eliminate AC coupling
+                capacitors, improving both area efficiency and low-frequency response. Each stage was
+                optimized for gain-bandwidth product with careful sizing of the feedback resistor.
+            </p>
+
+            <h2>Report</h2>
+            <p>
+                <a href="../reports/TIA-Report_AKM.pdf" class="detail-report-link"
+                    data-report="../reports/TIA-Report_AKM.pdf">
+                    📄 View Full Report (PDF)
+                </a>
+            </p>
+
+            <!-- Add schematics, simulation plots here -->
+            <!-- <img src="../assets/projects/tia-schematic.png" alt="TIA Schematic" /> -->
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 Krishna Madhur Akella</p>
+    </footer>
+
+    <!-- PDF Modal -->
+    <div id="pdf-modal" class="pdf-modal" style="display:none;">
+        <div class="pdf-modal-overlay"></div>
+        <div class="pdf-modal-content">
+            <button class="pdf-modal-close" aria-label="Close">&times;</button>
+            <iframe id="pdf-viewer" src="" title="Report Preview"></iframe>
+        </div>
+    </div>
+
+    <script>
+        const hamburger = document.querySelector('.nav-hamburger');
+        const navTabs = document.querySelector('.nav-tabs');
+        if (hamburger) {
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('open');
+                navTabs.classList.toggle('open');
+            });
+        }
+
+        // PDF Modal
+        const pdfModal = document.getElementById('pdf-modal');
+        const pdfViewer = document.getElementById('pdf-viewer');
+        document.querySelectorAll('[data-report]').forEach(link => {
+            link.addEventListener('click', e => {
+                e.preventDefault();
+                pdfViewer.src = link.getAttribute('data-report') + '#toolbar=0&navpanes=0';
+                pdfModal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            });
+        });
+        document.querySelector('.pdf-modal-close').addEventListener('click', () => { pdfModal.style.display = 'none'; pdfViewer.src = ''; document.body.style.overflow = ''; });
+        document.querySelector('.pdf-modal-overlay').addEventListener('click', () => { pdfModal.style.display = 'none'; pdfViewer.src = ''; document.body.style.overflow = ''; });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Universal Sensor Board — Krishna Madhur Akella</title>
+    <meta name="description" content="Modular 3-PCB universal sensor board system designed in Altium NEXUS." />
+    <link rel="stylesheet" href="../css/style.css" />
+</head>
+
+<body class="project-detail">
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">Krishna Madhur</a>
+            <div class="nav-tabs">
+                <a href="../index.html#home" class="nav-tab">Home</a>
+                <a href="../index.html#projects" class="nav-tab active">Projects</a>
+                <a href="../index.html#writing" class="nav-tab">Writing</a>
+                <a href="../index.html#photography" class="nav-tab">Photography</a>
+                <a href="../index.html#cv" class="nav-tab">CV</a>
+            </div>
+            <button class="nav-hamburger" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <main class="detail-page">
+        <a href="../index.html#projects" class="detail-back">← Back to Projects</a>
+
+        <h1 class="detail-title">Universal Sensor Board Design</h1>
+        <p class="detail-meta">Altium NEXUS · Spring 2023</p>
+
+        <div class="detail-body">
+            <p>
+                Designed a modular 3-PCB sensor system for rapid prototyping and educational use.
+                The system architecture separates the MCU, power management, and sensor/peripheral subsystems
+                onto independent boards connected via standardized headers.
+            </p>
+
+            <h2>System Architecture</h2>
+            <ul>
+                <li>Schematics for <strong>4 memory elements</strong>, <strong>7 sensors</strong>, and <strong>5 GPIO
+                        headers</strong></li>
+                <li>Modular design enables independent testing of each subsystem</li>
+                <li>Layout optimized for signal integrity across high-speed traces</li>
+            </ul>
+
+            <h2>Design Considerations</h2>
+            <p>
+                Power distribution was carefully routed with dedicated ground planes and decoupling
+                strategies. Sensor interfaces include I²C, SPI, and analog front-ends with proper
+                filtering and ESD protection.
+            </p>
+
+            <!-- Add PCB layout screenshots, 3D renders here -->
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 Krishna Madhur Akella</p>
+    </footer>
+
+    <script>
+        const hamburger = document.querySelector('.nav-hamburger');
+        const navTabs = document.querySelector('.nav-tabs');
+        if (hamburger) { hamburger.addEventListener('click', () => { hamburger.classList.toggle('open'); navTabs.classList.toggle('open'); }); }
+    </script>
+</body>
+
+</html>
