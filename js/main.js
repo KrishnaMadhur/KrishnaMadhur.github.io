@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ---------- Mobile nav toggle ---------- */
   const hamburger = document.querySelector('.nav-hamburger');
-  const navLinks  = document.querySelector('.nav-links');
+  const navLinks = document.querySelector('.nav-links');
 
   if (hamburger) {
     hamburger.addEventListener('click', () => {
@@ -51,9 +51,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const scrollY = window.scrollY + 100;
 
     sections.forEach(section => {
-      const top    = section.offsetTop;
+      const top = section.offsetTop;
       const height = section.offsetHeight;
-      const id     = section.getAttribute('id');
+      const id = section.getAttribute('id');
 
       if (scrollY >= top && scrollY < top + height) {
         navAnchors.forEach(a => a.classList.remove('active'));
@@ -75,6 +75,44 @@ document.addEventListener('DOMContentLoaded', () => {
         target.scrollIntoView({ behavior: 'smooth' });
       }
     });
+  });
+
+  /* ---------- PDF Preview Modal ---------- */
+  const pdfModal = document.getElementById('pdf-modal');
+  const pdfViewer = document.getElementById('pdf-viewer');
+  const pdfClose = document.querySelector('.pdf-modal-close');
+  const pdfOverlay = document.querySelector('.pdf-modal-overlay');
+
+  function openPdfModal(src) {
+    // #toolbar=0 hides the browser PDF toolbar (download, print buttons)
+    pdfViewer.src = src + '#toolbar=0&navpanes=0';
+    pdfModal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closePdfModal() {
+    pdfModal.style.display = 'none';
+    pdfViewer.src = '';
+    document.body.style.overflow = '';
+  }
+
+  // Attach to project title links
+  document.querySelectorAll('.project-title-link').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const report = link.getAttribute('data-report');
+      if (report) openPdfModal(report);
+    });
+  });
+
+  if (pdfClose) pdfClose.addEventListener('click', closePdfModal);
+  if (pdfOverlay) pdfOverlay.addEventListener('click', closePdfModal);
+
+  // Close on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && pdfModal.style.display === 'flex') {
+      closePdfModal();
+    }
   });
 
 });

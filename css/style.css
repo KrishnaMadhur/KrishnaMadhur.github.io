@@ -645,6 +645,79 @@ section:nth-child(even) {
   color: var(--black);
 }
 
+/* Project title links */
+.project-title-link {
+  color: var(--gray-900);
+  text-decoration: none;
+  border-bottom: 1px solid var(--gray-300);
+  padding-bottom: 1px;
+  transition: all var(--transition);
+  font-family: var(--font-serif);
+}
+
+.project-title-link:hover {
+  color: var(--black);
+  border-bottom-color: var(--black);
+}
+
+/* ---------- PDF MODAL ---------- */
+.pdf-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pdf-modal-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(4px);
+}
+
+.pdf-modal-content {
+  position: relative;
+  width: 90%;
+  max-width: 900px;
+  height: 85vh;
+  background: var(--white);
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+
+.pdf-modal-close {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  background: var(--black);
+  color: var(--white);
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-size: 1.3rem;
+  cursor: pointer;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--transition);
+}
+
+.pdf-modal-close:hover {
+  background: var(--gray-700);
+}
+
+#pdf-viewer {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
 /* ---------- SKILLS ---------- */
 .skills-grid {
   display: grid;
