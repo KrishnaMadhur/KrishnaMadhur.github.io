@@ -573,18 +573,19 @@ body[data-view="cv"] {
   color: rgba(255, 255, 255, 0.6);
 }
 
-/* Writing margin line */
-.writing-margin {
+/* Journal container — gold margin as structural divider */
+.journal-container {
   position: relative;
+  padding-left: 120px;
 }
 
-.writing-margin::before {
+.journal-container::before {
   content: '';
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 90px;
   width: 2px;
-  height: 100vh;
+  height: 100%;
   background: rgba(197, 160, 89, 0.25);
   z-index: 0;
   pointer-events: none;
@@ -690,103 +691,89 @@ body[data-view="writing"] .view-subtitle {
 }
 
 /* ===========================================
-   WRITING VIEW — "The Notebook"
+   JOURNAL VIEW — "The Lab Notebook"
    =========================================== */
-.tag-filters {
-  display: flex;
-  gap: 0.5rem;
-  margin-bottom: 2.5rem;
-  flex-wrap: wrap;
+.journal-section {
+  margin-bottom: 3rem;
 }
 
-/* Writing tag buttons — dark mode */
-.tag-btn {
-  font-size: 0.78rem;
-  font-weight: 500;
-  padding: 6px 16px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 100px;
-  background: none;
-  color: rgba(255, 255, 255, 0.4);
-  cursor: pointer;
-  transition: all var(--transition);
-  font-family: var(--font-sans);
+.journal-section-title {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--writing-accent);
+  margin-bottom: 1.2rem;
+  letter-spacing: 0.02em;
 }
 
-.tag-btn:hover {
-  border-color: rgba(255, 255, 255, 0.4);
-  color: var(--white);
-}
-
-.tag-btn.active {
-  background: var(--white);
-  color: var(--black);
-  border-color: var(--white);
-}
-
-.writing-list {
-  display: flex;
-  flex-direction: column;
-  max-width: 680px;
-  margin: 0 auto;
-}
-
-.writing-card {
-  display: block;
-  padding: 2rem 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  transition: all var(--transition);
-  text-decoration: none;
-  color: inherit;
-}
-
-.writing-card:first-child {
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.writing-card:hover {
-  padding-left: 12px;
-}
-
-.writing-card-tag {
+.journal-category {
   font-size: 0.7rem;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: rgba(255, 255, 255, 0.35);
+  letter-spacing: 0.15em;
+  color: var(--gold);
   font-weight: 600;
-  margin-bottom: 0.4rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.6rem;
 }
 
-.writing-card-title {
-  font-family: var(--font-serif);
-  font-size: 1.25rem;
-  font-weight: 600;
-  margin-bottom: 0.4rem;
-  color: var(--writing-accent);
+.journal-category:first-of-type {
+  margin-top: 0;
 }
 
-.writing-card-excerpt {
-  font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.5);
-  line-height: 1.6;
-  margin-bottom: 0.5rem;
+.journal-entry {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 0;
+  align-items: baseline;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  text-decoration: none;
+  color: inherit;
+  transition: padding-left var(--transition);
+  position: relative;
 }
 
-.writing-card-date {
-  font-size: 0.75rem;
+a.journal-entry:hover {
+  padding-left: 6px;
+}
+
+.journal-entry:last-of-type {
+  border-bottom: none;
+}
+
+.journal-meta {
+  font-size: 0.72rem;
   color: rgba(255, 255, 255, 0.3);
+  font-style: italic;
+  text-align: right;
+  padding-right: 1.2rem;
+  position: relative;
+  left: -30px;
+  white-space: nowrap;
 }
 
-/* Drop Cap for blog posts */
-.detail-body.writing-body>p:first-of-type::first-letter {
-  font-family: var(--font-serif);
-  float: left;
-  font-size: 4.2rem;
-  line-height: 0.8;
-  padding-right: 10px;
-  padding-top: 6px;
-  font-weight: 700;
-  color: var(--writing-accent);
+.journal-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.journal-entry-title {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 500;
+}
+
+.journal-entry-desc {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.4);
+  line-height: 1.5;
+}
+
+.journal-entry-author {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.3);
+  font-style: italic;
 }
 
 /* ===========================================
@@ -1408,78 +1395,30 @@ body.writing-detail .detail-tag {
   color: #1DB954;
 }
 
-/* ===========================================
-   BOOKSHELF — "The Bookshelf"
-   =========================================== */
-.bookshelf {
-  margin-top: 3rem;
-  padding-top: 2rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
-}
 
-.bookshelf-title {
-  font-family: var(--font-serif);
-  font-size: 1.4rem;
-  font-weight: 600;
-  color: var(--white);
-  margin-bottom: 0.4rem;
-}
 
-.bookshelf-subtitle {
-  font-size: 0.82rem;
-  color: rgba(255, 255, 255, 0.35);
-  margin-bottom: 1.8rem;
-}
-
-.bookshelf-category {
-  font-size: 0.72rem;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  color: var(--gold);
-  margin-bottom: 0.8rem;
-  margin-top: 1.5rem;
-  font-weight: 600;
-}
-
-.bookshelf-category:first-of-type {
-  margin-top: 0;
-}
-
-.bookshelf-list {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 1rem;
-}
-
-.bookshelf-item {
-  padding: 0.65rem 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 1rem;
-}
-
-.bookshelf-item:last-child {
-  border-bottom: none;
-}
-
-.bookshelf-item-title {
-  font-size: 0.92rem;
-  color: rgba(255, 255, 255, 0.8);
-  font-weight: 500;
-}
-
-.bookshelf-item-author {
-  font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.35);
-  white-space: nowrap;
-}
 
 /* ===========================================
    RESPONSIVE
    =========================================== */
 @media (max-width: 768px) {
+  .journal-container {
+    padding-left: 80px;
+  }
+
+  .journal-container::before {
+    left: 60px;
+  }
+
+  .journal-meta {
+    left: -20px;
+    font-size: 0.65rem;
+  }
+
+  .journal-entry {
+    grid-template-columns: 60px 1fr;
+  }
+
   .nav-hamburger {
     display: flex;
   }

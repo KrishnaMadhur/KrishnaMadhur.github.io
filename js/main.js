@@ -112,28 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  /* ---------- Tag Filtering (Writing) ---------- */
-  const tagBtns = document.querySelectorAll('.tag-btn');
-  const writingCards = document.querySelectorAll('.writing-card');
-
-  tagBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const tag = btn.getAttribute('data-tag');
-
-      // Activate button
-      tagBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-
-      // Filter cards
-      writingCards.forEach(card => {
-        if (tag === 'all' || card.getAttribute('data-tag') === tag) {
-          card.style.display = 'block';
-        } else {
-          card.style.display = 'none';
-        }
-      });
-    });
-  });
+  /* ---------- (Tag filters removed — Journal uses vertical scroll) ---------- */
 
   /* ---------- PDF Preview Modal ---------- */
   const pdfModal = document.getElementById('pdf-modal');

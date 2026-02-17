@@ -37,29 +37,27 @@ Open index.html and search for:  <div id="home"
 
 
 ================================================================================
-2. ADDING A NEW BLOG POST
+2. ADDING A NEW BLOG POST ("Field Notes" in the Journal tab)
 ================================================================================
 
 Step 1: Copy the template
     cp writing/posts/_template.html writing/posts/your-post-name.html
 
 Step 2: Open your-post-name.html and replace all <!-- TEMPLATE: ... --> placeholders
-    • Title, date, tag (technical / books / personal), and body content
+    • Title, date, and body content
     • The body class is already set to "writing-detail"
 
-Step 3: Add a card in index.html
-    Search for: <div class="writing-list">
-    Add this inside it (before or after existing cards):
+Step 3: Add an entry in index.html
+    Search for: journal-section-title">Field Notes
+    Add this inside the Field Notes section (before or after existing entries):
 
-    <a href="writing/posts/your-post-name.html" class="writing-card float-up"
-       data-tag="technical">
-      <p class="writing-card-tag">Technical</p>
-      <h3 class="writing-card-title">Your Post Title</h3>
-      <p class="writing-card-excerpt">One-line summary.</p>
-      <p class="writing-card-date">Month Year</p>
+    <a href="writing/posts/your-post-name.html" class="journal-entry">
+      <span class="journal-meta">Month Year</span>
+      <span class="journal-content">
+        <span class="journal-entry-title">Your Post Title</span>
+        <span class="journal-entry-desc">One-line summary.</span>
+      </span>
     </a>
-
-    Valid data-tag values: technical, books, personal
 
 
 ================================================================================
@@ -140,33 +138,40 @@ To add a new experience entry, copy any existing cv-exp-item block and edit.
 
 
 ================================================================================
-5b. EDITING "THE BOOKSHELF" (inside the Writing tab)
+5b. EDITING "THE BOOKSHELF" (inside the Journal tab)
 ================================================================================
 
-In index.html, search for: <div class="bookshelf
+In index.html, search for: journal-section-title">The Bookshelf
 
 The bookshelf has 3 categories:
   • Textbooks
   • Research Papers
   • Engineering & Beyond
 
-To add a new book to any category, copy this template inside the matching
-<ul class="bookshelf-list"> block:
+To add a new book to any category, copy this template below the
+matching <p class="journal-category"> heading:
 
-    <li class="bookshelf-item">
-      <span class="bookshelf-item-title">Book Title</span>
-      <span class="bookshelf-item-author">Author Name</span>
-    </li>
+    <div class="journal-entry">
+      <span class="journal-meta">Status</span>
+      <span class="journal-content">
+        <span class="journal-entry-title">Book Title</span>
+        <span class="journal-entry-author">Author Name</span>
+      </span>
+    </div>
 
-To add a new category, add a new heading + list block:
+  Valid status values: In Progress, Read, Queued
+  For papers, use the journal name (e.g., IEEE TED) as the meta.
 
-    <p class="bookshelf-category">New Category</p>
-    <ul class="bookshelf-list">
-      <li class="bookshelf-item">
-        <span class="bookshelf-item-title">Title</span>
-        <span class="bookshelf-item-author">Author</span>
-      </li>
-    </ul>
+To add a new category, add:
+
+    <p class="journal-category">New Category</p>
+    <div class="journal-entry">
+      <span class="journal-meta">Status</span>
+      <span class="journal-content">
+        <span class="journal-entry-title">Title</span>
+        <span class="journal-entry-author">Author</span>
+      </span>
+    </div>
 
 
 ================================================================================
@@ -232,11 +237,11 @@ DESIGN NOTES (for reference)
   • Projects:   ENIG Gold dot-grid (20px spacing, Champagne Gold #d4af37 at 10%)
                 Flashlight hover effect: dots glow ~30% near cursor via
                 CSS custom properties (--mouse-x, --mouse-y) driven by JS.
-  • Writing:    Dark slate (#1a1a1a) + ruled lines (7% opacity)
-                Vertical margin line: 2px wide, Muted Gold rgba(197,160,89,0.25),
-                positioned 90px from left edge.
-                "The Bookshelf" section: Textbooks, Research Papers,
-                Engineering & Beyond — categorised reading list.
+  • Journal:    Dark slate (#1a1a1a) + ruled lines (7% opacity)
+                Gold margin line: 2px, rgba(197,160,89,0.25), at 90px
+                  (structural divider: metadata LEFT, content RIGHT)
+                Two sections: "Field Notes" + "The Bookshelf"
+                Authors: italic + dimmed for visual hierarchy
   • Photography: Pure black (#000000)
   • CV:         Deep space gradient (matches Home)
                 Body text brightened for readability:

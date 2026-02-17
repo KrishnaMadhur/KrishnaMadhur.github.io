@@ -20,7 +20,7 @@
       <div class="nav-tabs">
         <button class="nav-tab active" data-view="home">Home</button>
         <button class="nav-tab" data-view="projects">Projects</button>
-        <button class="nav-tab" data-view="writing">Writing</button>
+        <button class="nav-tab" data-view="writing">Journal</button>
         <button class="nav-tab" data-view="photography">Photography</button>
         <button class="nav-tab" data-view="cv">CV</button>
       </div>
@@ -189,75 +189,86 @@
   </div>
 
   <!-- ============================================================
-       WRITING — "The Lab Notebook" · Matte Slate + Ruled Lines
+       JOURNAL — "The Lab Notebook" · Matte Slate + Gold Margin
        ============================================================ -->
   <div id="writing" class="view">
-    <div class="container writing-margin">
+    <div class="container journal-container">
       <div class="view-header float-up">
-        <h1 class="view-title">Writing</h1>
-        <p class="view-subtitle">Technical notes, reviews, and musings</p>
+        <h1 class="view-title">Journal</h1>
+        <p class="view-subtitle">A living record of engineering problems, research papers, and literary consumption.</p>
       </div>
 
-      <div class="tag-filters float-up">
-        <button class="tag-btn active" data-tag="all">All</button>
-        <button class="tag-btn" data-tag="technical">Technical</button>
-        <button class="tag-btn" data-tag="books">Books</button>
-        <button class="tag-btn" data-tag="personal">Personal</button>
-      </div>
+      <!-- ── Field Notes ── -->
+      <div class="journal-section float-up">
+        <h2 class="journal-section-title">Field Notes</h2>
 
-      <div class="writing-list stagger-children">
-        <a href="writing/posts/sample-post.html" class="writing-card float-up" data-tag="technical">
-          <p class="writing-card-tag">Technical</p>
-          <h3 class="writing-card-title">Coming Soon</h3>
-          <p class="writing-card-excerpt">Articles, reviews, and musings are on their way. Stay tuned.</p>
-          <p class="writing-card-date">2026</p>
+        <a href="writing/posts/sample-post.html" class="journal-entry">
+          <span class="journal-meta">2026</span>
+          <span class="journal-content">
+            <span class="journal-entry-title">Coming Soon</span>
+            <span class="journal-entry-desc">Articles, reviews, and musings are on their way. Stay tuned.</span>
+          </span>
         </a>
       </div>
 
-      <!-- The Bookshelf -->
-      <div class="bookshelf float-up">
-        <h2 class="bookshelf-title">The Bookshelf</h2>
-        <p class="bookshelf-subtitle">What I'm reading, dissecting, and drawing from.</p>
+      <!-- ── The Bookshelf ── -->
+      <div class="journal-section float-up">
+        <h2 class="journal-section-title">The Bookshelf</h2>
 
-        <p class="bookshelf-category">Textbooks</p>
-        <ul class="bookshelf-list">
-          <li class="bookshelf-item">
-            <span class="bookshelf-item-title">Semiconductor Physics and Devices</span>
-            <span class="bookshelf-item-author">Donald A. Neamen</span>
-          </li>
-          <li class="bookshelf-item">
-            <span class="bookshelf-item-title">CMOS VLSI Design: A Circuits and Systems Perspective</span>
-            <span class="bookshelf-item-author">Weste & Harris</span>
-          </li>
-          <li class="bookshelf-item">
-            <span class="bookshelf-item-title">Fundamentals of Microelectronics</span>
-            <span class="bookshelf-item-author">Behzad Razavi</span>
-          </li>
-        </ul>
+        <p class="journal-category">Textbooks</p>
+        <div class="journal-entry">
+          <span class="journal-meta">In Progress</span>
+          <span class="journal-content">
+            <span class="journal-entry-title">Semiconductor Physics and Devices</span>
+            <span class="journal-entry-author">Donald A. Neamen</span>
+          </span>
+        </div>
+        <div class="journal-entry">
+          <span class="journal-meta">In Progress</span>
+          <span class="journal-content">
+            <span class="journal-entry-title">CMOS VLSI Design: A Circuits and Systems Perspective</span>
+            <span class="journal-entry-author">Weste &amp; Harris</span>
+          </span>
+        </div>
+        <div class="journal-entry">
+          <span class="journal-meta">In Progress</span>
+          <span class="journal-content">
+            <span class="journal-entry-title">Fundamentals of Microelectronics</span>
+            <span class="journal-entry-author">Behzad Razavi</span>
+          </span>
+        </div>
 
-        <p class="bookshelf-category">Research Papers</p>
-        <ul class="bookshelf-list">
-          <li class="bookshelf-item">
-            <span class="bookshelf-item-title">Ferroelectric Al₁₋ₓScₓN for Future Nanoelectronics</span>
-            <span class="bookshelf-item-author">IEEE TED, 2023</span>
-          </li>
-          <li class="bookshelf-item">
-            <span class="bookshelf-item-title">MEMS Resonators: A Review</span>
-            <span class="bookshelf-item-author">J. MEMS, 2022</span>
-          </li>
-        </ul>
+        <p class="journal-category">Research Papers</p>
+        <div class="journal-entry">
+          <span class="journal-meta">IEEE TED</span>
+          <span class="journal-content">
+            <span class="journal-entry-title">Ferroelectric Al₁₋ₓScₓN for Future Nanoelectronics</span>
+            <span class="journal-entry-author">2023</span>
+          </span>
+        </div>
+        <div class="journal-entry">
+          <span class="journal-meta">J. MEMS</span>
+          <span class="journal-content">
+            <span class="journal-entry-title">MEMS Resonators: A Review</span>
+            <span class="journal-entry-author">2022</span>
+          </span>
+        </div>
 
-        <p class="bookshelf-category">Engineering & Beyond</p>
-        <ul class="bookshelf-list">
-          <li class="bookshelf-item">
-            <span class="bookshelf-item-title">How to Build a Car</span>
-            <span class="bookshelf-item-author">Adrian Newey</span>
-          </li>
-          <li class="bookshelf-item">
-            <span class="bookshelf-item-title">The Design of Everyday Things</span>
-            <span class="bookshelf-item-author">Don Norman</span>
-          </li>
-        </ul>
+        <p class="journal-category">Engineering &amp; Beyond</p>
+        <div class="journal-entry">
+          <span class="journal-meta">Read</span>
+          <span class="journal-content">
+            <span class="journal-entry-title">How to Build a Car</span>
+            <span class="journal-entry-author">Adrian Newey</span>
+          </span>
+        </div>
+        <div class="journal-entry">
+          <span class="journal-meta">Read</span>
+          <span class="journal-content">
+            <span class="journal-entry-title">The Design of Everyday Things</span>
+            <span class="journal-entry-author">Don Norman</span>
+          </span>
+        </div>
       </div>
     </div>
   </div>
