@@ -181,6 +181,10 @@ body[data-view="photography"] {
 body[data-view="cv"] {
   background-color: var(--mood-cv);
   color: #E2E8F0;
+  /* Equipotential lines — organic topographic curves */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='800' viewBox='0 0 800 800'%3E%3Cg fill='none' stroke='%23E2E8F0' stroke-width='0.6' opacity='0.03'%3E%3Cpath d='M0 200 Q200 150 400 220 T800 180'/%3E%3Cpath d='M0 350 Q250 300 500 370 T800 330'/%3E%3Cpath d='M0 500 Q180 460 400 520 T800 480'/%3E%3Cpath d='M0 650 Q300 600 600 670 T800 630'/%3E%3Cpath d='M0 100 Q150 60 350 110 T800 80'/%3E%3Cpath d='M0 420 Q200 380 450 440 T800 400'/%3E%3Cpath d='M0 570 Q250 530 500 590 T800 560'/%3E%3Cpath d='M0 720 Q200 690 400 740 T800 710'/%3E%3Cpath d='M0 50 Q100 20 300 60 T800 40'/%3E%3Cpath d='M0 270 Q180 240 380 280 T800 260'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 800px 800px;
+  background-attachment: fixed;
 }
 
 /* ===========================================
@@ -1016,7 +1020,7 @@ body[data-view="photography"] .tag-btn.active {
   margin-top: 2rem;
 }
 
-/* Dotted vertical line — circuit trace */
+/* Continuous dotted vertical line — circuit trace */
 .cv-timeline::before {
   content: '';
   position: absolute;
@@ -1031,17 +1035,17 @@ body[data-view="photography"] .tag-btn.active {
       transparent 12px);
 }
 
-/* Timeline entry */
+/* Timeline entry (org node) */
 .tl-entry {
   position: relative;
-  margin-bottom: 3rem;
+  margin-bottom: 3.5rem;
 }
 
 .tl-entry:last-child {
   margin-bottom: 0;
 }
 
-/* Hollow node with inner glow */
+/* Default hollow node */
 .tl-dot {
   position: absolute;
   left: -36px;
@@ -1051,50 +1055,88 @@ body[data-view="photography"] .tag-btn.active {
   border-radius: 50%;
   border: 2px solid #334155;
   background: transparent;
-  box-shadow: inset 0 0 4px rgba(226, 232, 240, 0.4);
+  box-shadow: inset 0 0 4px rgba(226, 232, 240, 0.3);
+  transition: all 0.3s ease;
 }
 
-/* Glow pulse on the first (current) entry */
-.tl-entry:first-child .tl-dot {
-  border-color: #E2E8F0;
-  box-shadow: inset 0 0 4px rgba(226, 232, 240, 0.6),
-    0 0 8px rgba(226, 232, 240, 0.2);
-  animation: node-pulse 2.5s ease-in-out infinite;
+/* Active node — Gold glow for "current" stop */
+.tl-active .tl-dot {
+  border-color: #FCD34D;
+  box-shadow: inset 0 0 4px rgba(252, 211, 77, 0.5),
+    0 0 10px rgba(252, 211, 77, 0.2);
+  animation: node-pulse-gold 2.5s ease-in-out infinite;
 }
 
-@keyframes node-pulse {
+@keyframes node-pulse-gold {
 
   0%,
   100% {
-    box-shadow: inset 0 0 4px rgba(226, 232, 240, 0.6), 0 0 8px rgba(226, 232, 240, 0.2);
+    box-shadow: inset 0 0 4px rgba(252, 211, 77, 0.5), 0 0 10px rgba(252, 211, 77, 0.2);
   }
 
   50% {
-    box-shadow: inset 0 0 6px rgba(226, 232, 240, 0.8), 0 0 14px rgba(226, 232, 240, 0.35);
+    box-shadow: inset 0 0 6px rgba(252, 211, 77, 0.7), 0 0 18px rgba(252, 211, 77, 0.35);
   }
 }
 
-/* Organisation name — Muted Champagne */
+/* Organisation name — Champagne */
 .tl-org {
   font-family: var(--font-serif);
   font-size: 1.3rem;
   font-weight: 700;
   color: #FCD34D;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.15rem;
 }
 
-/* Role + date — Silver */
-.tl-role {
+/* Date range — faint silver */
+.tl-dates {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: #64748B;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.75rem;
+}
+
+/* Branch container — nested roles */
+.tl-branches {
+  padding-left: 16px;
+  border-left: 1px solid rgba(51, 65, 85, 0.5);
+  margin-left: 0;
+}
+
+/* Sub-entry (a role within the org) */
+.tl-sub {
+  padding: 0.5rem 0 0.5rem 12px;
+  position: relative;
+}
+
+.tl-sub+.tl-sub {
+  border-top: 1px solid rgba(51, 65, 85, 0.25);
+}
+
+/* Branch connector dash */
+.tl-sub::before {
+  content: '';
+  position: absolute;
+  left: -16px;
+  top: 1.1rem;
+  width: 12px;
+  height: 1px;
+  background: rgba(51, 65, 85, 0.5);
+}
+
+/* Sub-role title */
+.tl-sub-role {
   font-family: var(--font-mono);
   font-size: 0.82rem;
   color: #94A3B8;
   letter-spacing: 0.02em;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.3rem;
 }
 
 /* One-liner description — Starlight */
 .tl-oneliner {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   color: #CBD5E1;
   font-style: italic;
   line-height: 1.6;
