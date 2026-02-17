@@ -171,8 +171,9 @@ DESIGN NOTES (for reference)
                 Click triggers "Grounding Pulse": cyan→gold spark on ⏚,
                 ripple shockwave across navbar, smooth scroll to Home.
   • Home bg:    Radial gradient (#1e293b center → #0f172a edges)
-                + Botanical wallpaper overlay (assets/botanical-bg.png)
-                  tiled at 450px, 12% opacity — dark academia aesthetic
+                + Krishna-themed "Flute & Vines" (बांसुरी) wallpaper overlay
+                  (assets/botanical-bg.png) — gold line-art flutes, lotuses,
+                  peacock feathers, and vines. Tiled at 450px, 12% opacity.
   • Projects:   ENIG Gold dot-grid (20px spacing, Champagne Gold #d4af37 at 10%)
                 Flashlight hover effect: dots glow ~30% near cursor via
                 CSS custom properties (--mouse-x, --mouse-y) driven by JS.
