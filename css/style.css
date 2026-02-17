@@ -106,6 +106,20 @@ h4 {
 body[data-view="home"] {
   background: radial-gradient(circle at center, var(--mood-home-center) 0%, var(--mood-home) 100%);
   color: var(--white);
+  position: relative;
+}
+
+/* Botanical wallpaper overlay for Home */
+body[data-view="home"]::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url('../assets/botanical-bg.png');
+  background-repeat: repeat;
+  background-size: 450px 450px;
+  opacity: 0.12;
+  pointer-events: none;
+  z-index: 0;
 }
 
 body[data-view="projects"] {
@@ -334,6 +348,8 @@ body[data-view="cv"] {
   min-height: 100vh;
   padding-top: calc(var(--nav-height) + 48px);
   padding-bottom: 80px;
+  position: relative;
+  z-index: 1;
 }
 
 .view.active {
@@ -566,7 +582,7 @@ body[data-view="cv"] {
   content: '';
   position: fixed;
   top: 0;
-  left: 60px;
+  left: 90px;
   width: 2px;
   height: 100vh;
   background: rgba(197, 160, 89, 0.25);

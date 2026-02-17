@@ -171,12 +171,14 @@ DESIGN NOTES (for reference)
                 Click triggers "Grounding Pulse": cyan→gold spark on ⏚,
                 ripple shockwave across navbar, smooth scroll to Home.
   • Home bg:    Radial gradient (#1e293b center → #0f172a edges)
+                + Botanical wallpaper overlay (assets/botanical-bg.png)
+                  tiled at 450px, 12% opacity — dark academia aesthetic
   • Projects:   ENIG Gold dot-grid (20px spacing, Champagne Gold #d4af37 at 10%)
                 Flashlight hover effect: dots glow ~30% near cursor via
                 CSS custom properties (--mouse-x, --mouse-y) driven by JS.
   • Writing:    Dark slate (#1a1a1a) + ruled lines (7% opacity)
                 Vertical margin line: 2px wide, Muted Gold rgba(197,160,89,0.25),
-                positioned 60px from left edge.
+                positioned 90px from left edge.
   • Photography: Pure black (#000000)
   • CV:         Deep space gradient (matches Home)
                 Body text brightened for readability:
