@@ -1,0 +1,179 @@
+================================================================================
+  WEBSITE MAINTENANCE GUIDE — krishnamadhur.github.io
+  Last Updated: Feb 16, 2026
+================================================================================
+
+FILE STRUCTURE
+──────────────
+  index.html                  ← Main site (all 5 tabs live here)
+  css/style.css               ← All styles
+  js/main.js                  ← All behavior (tab switching, tilt, animations)
+  projects/                   ← Project detail pages
+      alscn-ferroelectrics.html
+      tia-optical-receiver.html
+      mems-cantilever.html
+      sram-array.html
+      sensor-board.html
+      device-modelling.html
+  writing/posts/              ← Blog posts
+      _template.html           ← Copy this for new posts
+      sample-post.html
+  assets/gallery/             ← Photo folders (drop images here)
+      architecture/  campus/  macro/  nature/  street/  travel/
+  reports/                    ← PDF reports (TIA, MEMS Draft)
+  AKM_Industry_Resume.pdf     ← Your resume
+
+
+================================================================================
+1. EDITING HOME PAGE TEXT
+================================================================================
+
+Open index.html and search for:  <div id="home"
+
+  • Bio text         → edit the <p class="home-bio"> paragraph
+  • Tagline          → edit the <p class="home-tagline"> paragraph
+  • Status LED text  → edit <span class="status-text"> inside .status-indicator
+  • Selected Work    → edit the <div class="selected-work-item"> blocks
+
+
+================================================================================
+2. ADDING A NEW BLOG POST
+================================================================================
+
+Step 1: Copy the template
+    cp writing/posts/_template.html writing/posts/your-post-name.html
+
+Step 2: Open your-post-name.html and replace all <!-- TEMPLATE: ... --> placeholders
+    • Title, date, tag (technical / books / personal), and body content
+    • The body class is already set to "writing-detail"
+
+Step 3: Add a card in index.html
+    Search for: <div class="writing-list">
+    Add this inside it (before or after existing cards):
+
+    <a href="writing/posts/your-post-name.html" class="writing-card float-up"
+       data-tag="technical">
+      <p class="writing-card-tag">Technical</p>
+      <h3 class="writing-card-title">Your Post Title</h3>
+      <p class="writing-card-excerpt">One-line summary.</p>
+      <p class="writing-card-date">Month Year</p>
+    </a>
+
+    Valid data-tag values: technical, books, personal
+
+
+================================================================================
+3. ADDING A NEW PROJECT
+================================================================================
+
+Step 1: Create the detail page
+    Copy any existing project page, e.g.:
+    cp projects/sensor-board.html projects/your-project.html
+
+    Edit these parts:
+    • <title> tag
+    • <span class="detail-tag">   → tools/platform used
+    • <h1 class="detail-title">   → project name
+    • <p class="detail-meta">     → date range
+    • <div class="detail-body">   → all content (use <h2>, <p>, <ul>)
+    • Make sure <body class="project-detail"> is set
+
+Step 2: Add a card in index.html
+    Search for: <div class="projects-list">
+    Add this inside it:
+
+    <a href="projects/your-project.html" class="project-row float-up">
+      <div>
+        <h3 class="project-row-title">Project Title</h3>
+        <p class="project-row-desc">One or two sentence description.</p>
+      </div>
+      <div class="project-row-meta">
+        <p class="project-row-tools">Tool / Platform</p>
+        <p class="project-row-date">Season Year</p>
+        <p class="project-row-arrow">→</p>
+      </div>
+    </a>
+
+
+================================================================================
+4. ADDING PHOTOS TO THE GALLERY
+================================================================================
+
+Step 1: Drop image files into the appropriate category folder
+    cp your-photo.jpg assets/gallery/architecture/
+
+    Available categories: architecture, campus, macro, nature, street, travel
+    To add a new category: create a new folder inside assets/gallery/
+
+Step 2: Add gallery items in index.html
+    Search for: <div id="photography"
+    Replace the placeholder with actual gallery items:
+
+    <div class="gallery-grid">
+      <div class="gallery-item" data-category="architecture">
+        <img src="assets/gallery/architecture/your-photo.jpg" alt="Description" />
+      </div>
+      <!-- repeat for more photos -->
+    </div>
+
+    The lightbox (click-to-zoom) works automatically.
+
+
+================================================================================
+5. UPDATING THE CV
+================================================================================
+
+In index.html, search for: <div id="cv">
+
+The CV has these sections (edit the text directly):
+
+  • Education      → <div class="cv-edu-item">
+  • Experience     → <div class="cv-exp-item">
+  • Skills         → <div class="cv-skill-group"> with <span class="cv-skill-tag">
+  • Projects       → same cv-exp-item structure
+  • Leadership     → <div class="cv-leadership-item">
+
+To add a new skill tag:
+    <span class="cv-skill-tag">New Skill</span>
+
+To add a new experience entry, copy any existing cv-exp-item block and edit.
+
+
+================================================================================
+6. DEPLOYING CHANGES
+================================================================================
+
+From the repo folder, run:
+
+    git add -A
+    git commit -m "update: brief description of what changed"
+    git push origin main
+
+Changes go live on GitHub Pages within ~2 minutes.
+
+
+================================================================================
+7. TESTING LOCALLY
+================================================================================
+
+    cd /Users/krishnamadhurakella/Developer/KrishnaMadhur.github.io
+    python3 -m http.server 8000
+
+Then open http://localhost:8000 in your browser.
+
+
+================================================================================
+DESIGN NOTES (for reference)
+================================================================================
+
+  • Logo:       कृष्ण ⏚  (Sanskrit Krishna + Ground symbol)
+  • Home bg:    Radial gradient (#1e293b center → #0f172a edges)
+  • Projects:   BGA dot-grid (20px spacing, 5% opacity white dots)
+  • Writing:    Dark slate (#1a1a1a) + faint ruled lines + gold margin
+  • Photography: Pure black (#000000)
+  • CV:         Deep space gradient (matches Home)
+  • Nav:        Glassmorphism pill, backdrop-filter: blur(20px)
+  • Fonts:      Playfair Display (headers), Inter (body), JetBrains Mono (code)
+  • Colors:     Gold #d4af37, Writing text #e0e0e0
+
+================================================================================
