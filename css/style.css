@@ -196,7 +196,7 @@ body[data-view="cv"] {
   font-family: 'Noto Sans Devanagari', var(--font-serif);
   font-size: 1.15rem;
   font-weight: 700;
-  color: var(--white);
+  color: var(--gold);
   letter-spacing: 0.02em;
   transition: opacity var(--transition);
   cursor: pointer;
@@ -411,7 +411,7 @@ body[data-view="cv"] {
 
 .home-greeting {
   font-size: 0.78rem;
-  color: rgba(255, 255, 255, 0.35);
+  color: var(--gold);
   text-transform: uppercase;
   letter-spacing: 0.2em;
   margin-bottom: 1.5rem;
@@ -1373,7 +1373,7 @@ body.writing-detail .detail-tag {
 .footer {
   text-align: center;
   padding: 3rem 2rem;
-  color: rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.35);
   font-size: 0.78rem;
   position: relative;
 }
@@ -1383,18 +1383,97 @@ body.writing-detail .detail-tag {
   display: block;
   width: 50px;
   height: 1px;
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.2);
   margin: 0 auto 1.5rem;
 }
 
 .footer-credit {
-  color: rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.35);
   text-decoration: none;
   transition: color var(--transition);
 }
 
 .footer-credit:hover {
   color: var(--gold);
+}
+
+.footer-spotify {
+  color: rgba(255, 255, 255, 0.35);
+  text-decoration: none;
+  transition: color var(--transition);
+  margin-left: 0.15em;
+}
+
+.footer-spotify:hover {
+  color: #1DB954;
+}
+
+/* ===========================================
+   BOOKSHELF — "The Bookshelf"
+   =========================================== */
+.bookshelf {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.bookshelf-title {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 0.4rem;
+}
+
+.bookshelf-subtitle {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.35);
+  margin-bottom: 1.8rem;
+}
+
+.bookshelf-category {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--gold);
+  margin-bottom: 0.8rem;
+  margin-top: 1.5rem;
+  font-weight: 600;
+}
+
+.bookshelf-category:first-of-type {
+  margin-top: 0;
+}
+
+.bookshelf-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem;
+}
+
+.bookshelf-item {
+  padding: 0.65rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+}
+
+.bookshelf-item:last-child {
+  border-bottom: none;
+}
+
+.bookshelf-item-title {
+  font-size: 0.92rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 500;
+}
+
+.bookshelf-item-author {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.35);
+  white-space: nowrap;
 }
 
 /* ===========================================

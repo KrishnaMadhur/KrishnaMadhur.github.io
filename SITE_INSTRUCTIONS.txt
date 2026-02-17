@@ -140,6 +140,48 @@ To add a new experience entry, copy any existing cv-exp-item block and edit.
 
 
 ================================================================================
+5b. EDITING "THE BOOKSHELF" (inside the Writing tab)
+================================================================================
+
+In index.html, search for: <div class="bookshelf
+
+The bookshelf has 3 categories:
+  • Textbooks
+  • Research Papers
+  • Engineering & Beyond
+
+To add a new book to any category, copy this template inside the matching
+<ul class="bookshelf-list"> block:
+
+    <li class="bookshelf-item">
+      <span class="bookshelf-item-title">Book Title</span>
+      <span class="bookshelf-item-author">Author Name</span>
+    </li>
+
+To add a new category, add a new heading + list block:
+
+    <p class="bookshelf-category">New Category</p>
+    <ul class="bookshelf-list">
+      <li class="bookshelf-item">
+        <span class="bookshelf-item-title">Title</span>
+        <span class="bookshelf-item-author">Author</span>
+      </li>
+    </ul>
+
+
+================================================================================
+5c. FOOTER
+================================================================================
+
+The footer lives in index.html, search for: <footer class="footer">
+
+Structure: © 2026 Name · Philadelphia, PA · Built with Sasank · ♫
+  • "Sasank" links to gssasank.com (turns Gold on hover)
+  • "♫" links to Spotify Deep Focus playlist (turns Spotify Green on hover)
+  • To change the playlist URL, edit the href in the <a class="footer-spotify">
+
+
+================================================================================
 6. DEPLOYING CHANGES (QUICK PUSH)
 ================================================================================
 
@@ -179,9 +221,10 @@ DESIGN NOTES (for reference)
 ================================================================================
 
   • Logo:       कृष्ण <span class="logo-ground">⏚</span>
-                (Sanskrit Krishna + Ground symbol)
+                Color: Champagne Gold (#d4af37)
                 Click triggers "Grounding Pulse": cyan→gold spark on ⏚,
                 ripple shockwave across navbar, smooth scroll to Home.
+  • Greeting:   "HELLO, I AM" — Champagne Gold (#d4af37)
   • Home bg:    Radial gradient (#1e293b center → #0f172a edges)
                 + Krishna-themed "Flute & Vines" (बांसुरी) wallpaper overlay
                   (assets/botanical-bg.png) — gold line-art flutes, lotuses,
@@ -192,12 +235,19 @@ DESIGN NOTES (for reference)
   • Writing:    Dark slate (#1a1a1a) + ruled lines (7% opacity)
                 Vertical margin line: 2px wide, Muted Gold rgba(197,160,89,0.25),
                 positioned 90px from left edge.
+                "The Bookshelf" section: Textbooks, Research Papers,
+                Engineering & Beyond — categorised reading list.
   • Photography: Pure black (#000000)
   • CV:         Deep space gradient (matches Home)
                 Body text brightened for readability:
                   edu-details 0.58, exp-bullets 0.65, edu-degree 0.6
+  • Footer:     © 2026 Name · Philadelphia, PA · Built with Sasank · ♫
+                Sasank → Gold hover, ♫ (Spotify) → #1DB954 hover
+                Short 50px divider line above footer text
+                Text: rgba(255,255,255,0.35)
   • Nav:        Glassmorphism pill, backdrop-filter: blur(20px)
   • Fonts:      Playfair Display (headers), Inter (body), JetBrains Mono (code)
-  • Colors:     Gold #d4af37, Muted Gold #C5A059, Writing text #e0e0e0
+  • Colors:     Champagne Gold #d4af37, Muted Gold #C5A059, Writing text #e0e0e0
+                Spotify Green #1DB954
 
 ================================================================================
