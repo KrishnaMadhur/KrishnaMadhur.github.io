@@ -32,7 +32,7 @@
   /* Matte Slate */
   --mood-photography: #000000;
   /* Pure Black */
-  --mood-cv: #0f172a;
+  --mood-cv: #0B1120;
   /* Deep Space */
 
   --gold: #d4af37;
@@ -180,7 +180,7 @@ body[data-view="photography"] {
 
 body[data-view="cv"] {
   background-color: var(--mood-cv);
-  color: var(--white);
+  color: #E2E8F0;
 }
 
 /* ===========================================
@@ -1016,7 +1016,7 @@ body[data-view="photography"] .tag-btn.active {
   margin-top: 2rem;
 }
 
-/* Vertical line */
+/* Dotted vertical line — circuit trace */
 .cv-timeline::before {
   content: '';
   position: absolute;
@@ -1024,7 +1024,11 @@ body[data-view="photography"] .tag-btn.active {
   top: 0;
   bottom: 0;
   width: 2px;
-  background: rgba(212, 175, 55, 0.2);
+  background: repeating-linear-gradient(to bottom,
+      #334155 0px,
+      #334155 6px,
+      transparent 6px,
+      transparent 12px);
 }
 
 /* Timeline entry */
@@ -1037,40 +1041,61 @@ body[data-view="photography"] .tag-btn.active {
   margin-bottom: 0;
 }
 
-/* Timeline dot */
+/* Hollow node with inner glow */
 .tl-dot {
   position: absolute;
   left: -36px;
   top: 6px;
-  width: 10px;
-  height: 10px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
-  border: 2px solid #D4AF37;
-  background: #0d0d0d;
+  border: 2px solid #334155;
+  background: transparent;
+  box-shadow: inset 0 0 4px rgba(226, 232, 240, 0.4);
 }
 
-/* Organisation name */
+/* Glow pulse on the first (current) entry */
+.tl-entry:first-child .tl-dot {
+  border-color: #E2E8F0;
+  box-shadow: inset 0 0 4px rgba(226, 232, 240, 0.6),
+    0 0 8px rgba(226, 232, 240, 0.2);
+  animation: node-pulse 2.5s ease-in-out infinite;
+}
+
+@keyframes node-pulse {
+
+  0%,
+  100% {
+    box-shadow: inset 0 0 4px rgba(226, 232, 240, 0.6), 0 0 8px rgba(226, 232, 240, 0.2);
+  }
+
+  50% {
+    box-shadow: inset 0 0 6px rgba(226, 232, 240, 0.8), 0 0 14px rgba(226, 232, 240, 0.35);
+  }
+}
+
+/* Organisation name — Muted Champagne */
 .tl-org {
   font-family: var(--font-serif);
   font-size: 1.3rem;
   font-weight: 700;
-  color: #EAEAEA;
+  color: #FCD34D;
   margin-bottom: 0.25rem;
 }
 
-/* Role + date */
+/* Role + date — Silver */
 .tl-role {
   font-family: var(--font-mono);
   font-size: 0.82rem;
-  color: #9CA3AF;
+  color: #94A3B8;
   letter-spacing: 0.02em;
   margin-bottom: 0.5rem;
 }
 
-/* One-liner description */
+/* One-liner description — Starlight */
 .tl-oneliner {
   font-size: 0.95rem;
-  color: rgba(255, 255, 255, 0.55);
+  color: #CBD5E1;
   font-style: italic;
   line-height: 1.6;
 }
@@ -1314,10 +1339,12 @@ body.writing-detail .detail-tag {
 .footer::before {
   content: '';
   display: block;
-  width: 50px;
-  height: 1px;
-  background: rgba(255, 255, 255, 0.2);
+  width: 60%;
+  max-width: 400px;
+  height: 20px;
   margin: 0 auto 1.5rem;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 20' fill='none'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='400' y2='0' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0%25' stop-color='%23CBD5E1'/%3E%3Cstop offset='70%25' stop-color='%23CBD5E1'/%3E%3Cstop offset='100%25' stop-color='%232DD4BF'/%3E%3C/linearGradient%3E%3C/defs%3E%3C!-- Flute body --starthorn --%3E%3Cline x1='40' y1='10' x2='300' y2='10' stroke='url(%23g)' stroke-width='1' stroke-linecap='round'/%3E%3C!-- Flute holes --%3E%3Ccircle cx='120' cy='10' r='1.5' fill='none' stroke='url(%23g)' stroke-width='0.8'/%3E%3Ccircle cx='150' cy='10' r='1.5' fill='none' stroke='url(%23g)' stroke-width='0.8'/%3E%3Ccircle cx='180' cy='10' r='1.5' fill='none' stroke='url(%23g)' stroke-width='0.8'/%3E%3Ccircle cx='210' cy='10' r='1.5' fill='none' stroke='url(%23g)' stroke-width='0.8'/%3E%3Ccircle cx='240' cy='10' r='1.5' fill='none' stroke='url(%23g)' stroke-width='0.8'/%3E%3Ccircle cx='270' cy='10' r='1.5' fill='none' stroke='url(%23g)' stroke-width='0.8'/%3E%3C!-- Flute mouthpiece --%3E%3Cellipse cx='50' cy='10' rx='12' ry='3' fill='none' stroke='%23CBD5E1' stroke-width='0.8'/%3E%3C!-- Peacock feather teardrop --%3E%3Cpath d='M310 10 Q325 2 340 10 Q325 18 310 10 Z' fill='none' stroke='%232DD4BF' stroke-width='1'/%3E%3C!-- Feather eye --%3E%3Ccircle cx='328' cy='10' r='2' fill='%232DD4BF' opacity='0.6'/%3E%3C!-- Feather spine --%3E%3Cline x1='340' y1='10' x2='370' y2='4' stroke='%232DD4BF' stroke-width='0.6' stroke-linecap='round'/%3E%3C/svg%3E") center / contain no-repeat;
+  opacity: 0.5;
 }
 
 .footer-credit {
