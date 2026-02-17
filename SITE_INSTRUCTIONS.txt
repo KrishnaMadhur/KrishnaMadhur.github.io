@@ -220,7 +220,7 @@ Then open http://localhost:8000 in your browser.
 DESIGN NOTES (for reference)
 ================================================================================
 
-  • Logo:       कृष्ण <span class="logo-ground">⏚</span>
+  • Logo:       कृष्णा <span class="logo-ground">⏚</span>
                 Color: Champagne Gold (#d4af37)
                 Click triggers "Grounding Pulse": cyan→gold spark on ⏚,
                 ripple shockwave across navbar, smooth scroll to Home.
