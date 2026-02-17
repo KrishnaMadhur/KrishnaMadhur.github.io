@@ -140,16 +140,28 @@ To add a new experience entry, copy any existing cv-exp-item block and edit.
 
 
 ================================================================================
-6. DEPLOYING CHANGES
+6. DEPLOYING CHANGES (QUICK PUSH)
 ================================================================================
 
-From the repo folder, run:
+After editing any file (index.html, css/style.css, js/main.js, etc.),
+open Terminal and run these 3 commands:
 
-    git add -A
-    git commit -m "update: brief description of what changed"
+    cd /Users/krishnamadhurakella/Developer/KrishnaMadhur.github.io
+    git add -A && git commit -m "update: brief description"
     git push origin main
 
 Changes go live on GitHub Pages within ~2 minutes.
+After pushing, do Cmd+Shift+R in your browser to hard-refresh and bust cache.
+
+TROUBLESHOOTING:
+  • "Your branch is ahead of origin/main"
+      → Just run:  git push origin main
+  • "Changes not staged for commit"
+      → Run:  git add -A   (stages all modified files)
+  • Merge conflicts or errors
+      → Run:  git pull origin main   first, resolve any conflicts, then push
+  • Still not seeing changes on the live site?
+      → Wait 2-3 minutes, then Cmd+Shift+R. GitHub Pages caches aggressively.
 
 
 ================================================================================
