@@ -166,14 +166,23 @@ Then open http://localhost:8000 in your browser.
 DESIGN NOTES (for reference)
 ================================================================================
 
-  • Logo:       कृष्ण ⏚  (Sanskrit Krishna + Ground symbol)
+  • Logo:       कृष्ण <span class="logo-ground">⏚</span>
+                (Sanskrit Krishna + Ground symbol)
+                Click triggers "Grounding Pulse": cyan→gold spark on ⏚,
+                ripple shockwave across navbar, smooth scroll to Home.
   • Home bg:    Radial gradient (#1e293b center → #0f172a edges)
-  • Projects:   BGA dot-grid (20px spacing, 5% opacity white dots)
-  • Writing:    Dark slate (#1a1a1a) + faint ruled lines + gold margin
+  • Projects:   ENIG Gold dot-grid (20px spacing, Champagne Gold #d4af37 at 10%)
+                Flashlight hover effect: dots glow ~30% near cursor via
+                CSS custom properties (--mouse-x, --mouse-y) driven by JS.
+  • Writing:    Dark slate (#1a1a1a) + ruled lines (7% opacity)
+                Vertical margin line: 2px wide, Muted Gold rgba(197,160,89,0.25),
+                positioned 60px from left edge.
   • Photography: Pure black (#000000)
   • CV:         Deep space gradient (matches Home)
+                Body text brightened for readability:
+                  edu-details 0.58, exp-bullets 0.65, edu-degree 0.6
   • Nav:        Glassmorphism pill, backdrop-filter: blur(20px)
   • Fonts:      Playfair Display (headers), Inter (body), JetBrains Mono (code)
-  • Colors:     Gold #d4af37, Writing text #e0e0e0
+  • Colors:     Gold #d4af37, Muted Gold #C5A059, Writing text #e0e0e0
 
 ================================================================================

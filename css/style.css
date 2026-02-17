@@ -110,16 +110,29 @@ body[data-view="home"] {
 
 body[data-view="projects"] {
   background-color: var(--mood-projects);
-  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(212, 175, 55, 0.10) 1px, transparent 1px);
   background-size: 20px 20px;
   color: var(--white);
+}
+
+/* Flashlight hover glow — brighter gold dots near the cursor */
+body[data-view="projects"]::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: radial-gradient(circle 220px at var(--mouse-x, -9999px) var(--mouse-y, -9999px),
+      rgba(212, 175, 55, 0.18) 0%,
+      transparent 100%);
+  transition: opacity 0.3s ease;
 }
 
 body[data-view="writing"] {
   background-color: var(--mood-writing);
   color: var(--writing-text);
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    linear-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
   background-size: 100% 32px;
   background-position: 0 0;
 }
@@ -172,10 +185,71 @@ body[data-view="cv"] {
   color: var(--white);
   letter-spacing: 0.02em;
   transition: opacity var(--transition);
+  cursor: pointer;
+  position: relative;
 }
 
 .nav-logo:hover {
   opacity: 0.6;
+}
+
+/* Logo ground symbol — spark animation */
+.logo-ground {
+  display: inline-block;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.logo-ground.spark {
+  animation: groundSpark 0.6s ease forwards;
+}
+
+@keyframes groundSpark {
+  0% {
+    color: var(--white);
+    text-shadow: none;
+  }
+
+  20% {
+    color: #00e5ff;
+    text-shadow: 0 0 12px rgba(0, 229, 255, 0.9), 0 0 30px rgba(0, 229, 255, 0.5);
+  }
+
+  50% {
+    color: var(--gold);
+    text-shadow: 0 0 10px var(--gold-glow), 0 0 24px rgba(212, 175, 55, 0.3);
+  }
+
+  100% {
+    color: var(--white);
+    text-shadow: none;
+  }
+}
+
+/* Navbar ripple / shockwave on logo click */
+.navbar.ripple::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 36px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(0, 229, 255, 0.6);
+  transform: translate(-50%, -50%) scale(1);
+  animation: navRipple 0.7s ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes navRipple {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.8;
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(35);
+    opacity: 0;
+  }
 }
 
 .nav-tabs {
@@ -492,10 +566,10 @@ body[data-view="cv"] {
   content: '';
   position: fixed;
   top: 0;
-  left: 50px;
-  width: 1px;
+  left: 60px;
+  width: 2px;
   height: 100vh;
-  background: rgba(212, 175, 55, 0.15);
+  background: rgba(197, 160, 89, 0.25);
   z-index: 0;
   pointer-events: none;
 }
@@ -566,7 +640,7 @@ body[data-view="writing"] .view-subtitle {
 
 .project-row-desc {
   font-size: 0.87rem;
-  color: rgba(255, 255, 255, 0.45);
+  color: rgba(255, 255, 255, 0.62);
   line-height: 1.6;
 }
 
@@ -895,19 +969,19 @@ body[data-view="photography"] .tag-btn.active {
 
 .cv-edu-degree {
   font-size: 0.92rem;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.6);
   margin-bottom: 0.3rem;
 }
 
 .cv-edu-date {
   font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.38);
   margin-bottom: 0.4rem;
 }
 
 .cv-edu-details {
   font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.58);
   line-height: 1.7;
 }
 
@@ -965,7 +1039,7 @@ body[data-view="photography"] .tag-btn.active {
 
 .cv-exp-bullets {
   font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.65);
   line-height: 1.8;
 }
 

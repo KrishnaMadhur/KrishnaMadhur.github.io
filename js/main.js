@@ -196,4 +196,57 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  /* ---------- Projects Flashlight Effect ---------- */
+  const projectsView = document.getElementById('projects');
+  if (projectsView) {
+    document.addEventListener('mousemove', (e) => {
+      if (body.getAttribute('data-view') === 'projects') {
+        document.documentElement.style.setProperty('--mouse-x', e.clientX + 'px');
+        document.documentElement.style.setProperty('--mouse-y', e.clientY + 'px');
+      }
+    });
+
+    // Reset glow position when leaving projects
+    document.addEventListener('mouseleave', () => {
+      document.documentElement.style.setProperty('--mouse-x', '-9999px');
+      document.documentElement.style.setProperty('--mouse-y', '-9999px');
+    });
+  }
+
+  /* ---------- Logo "Grounding Pulse" ---------- */
+  const navLogo = document.getElementById('nav-logo');
+  const navbar = document.querySelector('.navbar');
+
+  if (navLogo) {
+    navLogo.addEventListener('click', (e) => {
+      e.preventDefault();
+
+      // Spark on the ground symbol
+      const ground = navLogo.querySelector('.logo-ground');
+      if (ground) {
+        ground.classList.remove('spark');
+        // Force reflow to restart animation
+        void ground.offsetWidth;
+        ground.classList.add('spark');
+        ground.addEventListener('animationend', () => {
+          ground.classList.remove('spark');
+        }, { once: true });
+      }
+
+      // Ripple on the navbar
+      if (navbar) {
+        navbar.classList.remove('ripple');
+        void navbar.offsetWidth;
+        navbar.classList.add('ripple');
+        navbar.addEventListener('animationend', () => {
+          navbar.classList.remove('ripple');
+        }, { once: true });
+      }
+
+      // Navigate home + scroll to top
+      switchView('home');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
 });
