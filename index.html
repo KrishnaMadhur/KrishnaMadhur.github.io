@@ -16,7 +16,7 @@
   <!-- ====== GLASSMORPHISM NAVIGATION ====== -->
   <nav class="navbar">
     <div class="nav-container">
-      <a href="#home" class="nav-logo" onclick="event.preventDefault();">Krishna.</a>
+      <a href="#home" class="nav-logo" onclick="event.preventDefault();">कृष्ण ⏚</a>
       <div class="nav-tabs">
         <button class="nav-tab active" data-view="home">Home</button>
         <button class="nav-tab" data-view="projects">Projects</button>
@@ -33,7 +33,7 @@
   </nav>
 
   <!-- ============================================================
-       HOME — "The Executive Summary" · Midnight Blue
+       HOME — "The Executive Summary" · Deep Space Gradient
        ============================================================ -->
   <div id="home" class="view active">
     <div class="container">
@@ -42,7 +42,7 @@
         <p class="home-greeting float-up">Hello, I am</p>
         <h1 class="home-name float-up">Krishna Madhur Akella</h1>
         <p class="home-tagline float-up">
-          Nanotechnology · Semiconductors · Analog &amp; Mixed-Signal IC Design<br />
+          Nanotechnology &amp; Semiconductors · Mixed Signal &amp; RFIC Design<br />
           MSE Electrical Engineering · University of Pennsylvania
         </p>
 
@@ -56,6 +56,12 @@
           at <strong>Silicon Laboratories</strong> and worked on 3nm device modelling at <strong>Cadence Design
             Systems</strong>.
         </p>
+
+        <!-- Pulsing green LED status -->
+        <div class="status-indicator float-up">
+          <span class="status-led"></span>
+          <span class="status-text">Currently: Characterizing AlScN devices <strong>@ Singh Center</strong></span>
+        </div>
 
         <p class="home-section-label float-up">Selected Work</p>
         <div class="selected-work stagger-children">
@@ -71,17 +77,10 @@
           </div>
           <div class="selected-work-item float-up">
             <span class="sw-title">Instructional Hardware at UPenn</span>
-            <span class="sw-desc">BRD2605A &amp; BRD2708A — standard platforms for ESE 5160 IoT Edge Scaling</span>
+            <span class="sw-desc">Two development boards for ESE 5160 IoT Edge Scaling</span>
             <span class="sw-arrow">→</span>
           </div>
         </div>
-
-        <p class="home-section-label float-up">Current Focus</p>
-        <p class="home-bio float-up" style="margin-bottom: 3.5rem;">
-          Currently characterizing AlScN ferroelectric devices at the <strong>Singh Center for Nanotechnology</strong>
-          and developing process flows for GFET fabrication. Reading <em>The Art of Electronics</em> by Horowitz &amp;
-          Hill.
-        </p>
 
         <p class="home-section-label float-up">Contact</p>
         <div class="home-links float-up">
@@ -95,7 +94,7 @@
   </div>
 
   <!-- ============================================================
-       PROJECTS — "The Evidence Locker" · Charcoal + Grid
+       PROJECTS — "The Silicon Canvas" · Charcoal + BGA Dot Grid
        ============================================================ -->
   <div id="projects" class="view">
     <div class="container">
@@ -109,38 +108,39 @@
         <a href="projects/alscn-ferroelectrics.html" class="project-row float-up">
           <div>
             <h3 class="project-row-title">Modelling &amp; Characterization of AlScN Ferroelectric Devices</h3>
-            <p class="project-row-desc">Modelling FE-FETs in Synopsys TCAD, characterizing ferroelectric memory arrays
-              with Keithley SCS-4200. Analyzing polarization dynamics and scaling for cleanroom fabrication.</p>
+            <p class="project-row-desc">Modelling AlScN-based FE-FETs in Synopsys Sentaurus TCAD, replacing standard
+              gate oxides with ferroelectric stacks to match real-life wafer configurations. Characterizing cylindrical
+              AlScN ferroelectric memory arrays using Keithley SCS-4200.</p>
           </div>
           <div class="project-row-meta">
-            <p class="project-row-tools">Synopsys TCAD · Keithley</p>
+            <p class="project-row-tools">Synopsys TCAD</p>
             <p class="project-row-date">Aug 2025 – Present</p>
-            <p class="project-row-arrow">→</p>
-          </div>
-        </a>
-
-        <a href="projects/tia-optical-receiver.html" class="project-row float-up">
-          <div>
-            <h3 class="project-row-title">Wideband Transimpedance Amplifier for Optical Receivers</h3>
-            <p class="project-row-desc">8-stage cascaded TIA achieving 519 kΩ gain and 311 MHz bandwidth. Direct
-              coupling strategy with 3.5 mW power consumption.</p>
-          </div>
-          <div class="project-row-meta">
-            <p class="project-row-tools">Cadence Virtuoso · 45nm</p>
-            <p class="project-row-date">Fall 2025</p>
             <p class="project-row-arrow">→</p>
           </div>
         </a>
 
         <a href="projects/mems-cantilever.html" class="project-row float-up">
           <div>
-            <h3 class="project-row-title">MEMS Cantilever Beams &amp; Comb Drive Arrays</h3>
-            <p class="project-row-desc">Nanofabrication at Singh Center using photolithography, DRIE, and wet etching.
-              Device characterization via SEM, AFM, TEM.</p>
+            <h3 class="project-row-title">Nanofabrication of MEMS &amp; Quantum Devices</h3>
+            <p class="project-row-desc">Fabricated MEMS Cantilever Beams and Comb Drive Arrays using photolithography,
+              DRIE, and wet etching. Developing process flows for GFET fabrication and CdSe Quantum Dot synthesis.</p>
           </div>
           <div class="project-row-meta">
-            <p class="project-row-tools">Singh Center · DRIE</p>
+            <p class="project-row-tools">Singh Center for Nanotechnology</p>
             <p class="project-row-date">Spring 2026</p>
+            <p class="project-row-arrow">→</p>
+          </div>
+        </a>
+
+        <a href="projects/tia-optical-receiver.html" class="project-row float-up">
+          <div>
+            <h3 class="project-row-title">Wideband Transimpedance Amplifier (TIA) for Optical Receivers</h3>
+            <p class="project-row-desc">Designed an 8-stage cascaded TIA achieving 519 kΩ (114 dBΩ) gain, exceeding spec
+              by 3.5×. Maintained 311 MHz bandwidth while driving a heavy 600Ω differential load.</p>
+          </div>
+          <div class="project-row-meta">
+            <p class="project-row-tools">Cadence Virtuoso · 45nm</p>
+            <p class="project-row-date">Fall 2025</p>
             <p class="project-row-arrow">→</p>
           </div>
         </a>
@@ -148,12 +148,25 @@
         <a href="projects/sram-array.html" class="project-row float-up">
           <div>
             <h3 class="project-row-title">Low-Power 16×4 SRAM Array Design</h3>
-            <p class="project-row-desc">Synchronous SRAM macro with 249 ps write access time. Robust 6T bitcell design
-              with 46% FOM improvement.</p>
+            <p class="project-row-desc">Designed a synchronous SRAM macro achieving 249 ps (~4 GHz) worst-case write
+              access time. Engineered a robust 6T bitcell with Cell Ratio of 1.5, eliminating read-disturb failures.</p>
           </div>
           <div class="project-row-meta">
-            <p class="project-row-tools">Cadence Virtuoso · 45nm</p>
+            <p class="project-row-tools">Cadence Virtuoso · 45nm CMOS</p>
             <p class="project-row-date">Fall 2025</p>
+            <p class="project-row-arrow">→</p>
+          </div>
+        </a>
+
+        <a href="projects/device-modelling.html" class="project-row float-up">
+          <div>
+            <h3 class="project-row-title">Device Modelling &amp; Simulation</h3>
+            <p class="project-row-desc">Modelled planar 2D SOI-FET and 3D 14nm FinFET, achieving 3% performance
+              improvement over baseline. Awarded "Research Grade: Excellent" at OUR Conference.</p>
+          </div>
+          <div class="project-row-meta">
+            <p class="project-row-tools">Synopsys Sentaurus TCAD</p>
+            <p class="project-row-date">Aug 2021 – Aug 2022</p>
             <p class="project-row-arrow">→</p>
           </div>
         </a>
@@ -161,8 +174,8 @@
         <a href="projects/sensor-board.html" class="project-row float-up">
           <div>
             <h3 class="project-row-title">Universal Sensor Board Design</h3>
-            <p class="project-row-desc">Modular 3-PCB system with MCU, power management, 4 memory elements, 7 sensors,
-              and 5 GPIO headers.</p>
+            <p class="project-row-desc">Designed a modular 3-PCB system hosting an MCU, power management, and
+              peripherals. Created schematics for 4 memory elements, 7 sensors, and 5 GPIO headers.</p>
           </div>
           <div class="project-row-meta">
             <p class="project-row-tools">Altium NEXUS</p>
@@ -176,10 +189,10 @@
   </div>
 
   <!-- ============================================================
-       WRITING — "The Brain" · Warm Paper
+       WRITING — "The Lab Notebook" · Matte Slate + Ruled Lines
        ============================================================ -->
   <div id="writing" class="view">
-    <div class="container">
+    <div class="container writing-margin">
       <div class="view-header float-up">
         <h1 class="view-title">Writing</h1>
         <p class="view-subtitle">Technical notes, reviews, and musings</p>
@@ -229,7 +242,7 @@
   </div>
 
   <!-- ============================================================
-       CV — "The Resume" · Midnight Blue
+       CV — "The Resume" · Deep Space
        ============================================================ -->
   <div id="cv" class="view">
     <div class="container">
@@ -244,195 +257,298 @@
 
         <div class="cv-edu-item">
           <h3 class="cv-edu-school">University of Pennsylvania</h3>
-          <p class="cv-edu-degree">Master of Science in Engineering — Electrical Engineering</p>
-          <p class="cv-edu-date">Philadelphia, PA · Aug 2024 – May 2026</p>
+          <p class="cv-edu-degree">Master of Science in Engineering (MSE) in Electrical Engineering</p>
+          <p class="cv-edu-date">Philadelphia, PA · Expected May 2027</p>
           <ul class="cv-edu-details">
-            <li>Focus: Nanotechnology &amp; Semiconductors</li>
-            <li>Coursework: Integrated Circuits, Nanofabrication, MEMS, Semiconductor Physics</li>
+            <li>Concentration: Nanotechnology &amp; Semiconductors</li>
+            <li>Additional Focus: Mixed Signal &amp; RFIC Design</li>
+            <li>Relevant Coursework: Analog IC Design, Digital IC Design, Nanoscale Science &amp; Engineering,
+              Semiconductor Memory Devices, Nanofabrication &amp; Nanocharacterization, MEMS &amp; NEMS</li>
           </ul>
         </div>
 
         <div class="cv-edu-item">
-          <h3 class="cv-edu-school">Shiv Nadar Institution of Eminence</h3>
-          <p class="cv-edu-degree">Bachelor of Technology — Electronics &amp; Communication Engineering</p>
-          <p class="cv-edu-date">Greater Noida, India · Aug 2019 – May 2023</p>
+          <h3 class="cv-edu-school">Shiv Nadar University</h3>
+          <p class="cv-edu-degree">Bachelor of Technology in Electronics and Communication Engineering</p>
+          <p class="cv-edu-date">Delhi NCR, India · July 2019 – July 2023</p>
           <ul class="cv-edu-details">
-            <li>Formerly Shiv Nadar University</li>
             <li>Specialization: Microelectronics</li>
-            <li>Coursework: Analog CMOS Design, Electromagnetics, VLSI, Signal Processing</li>
           </ul>
         </div>
       </div>
 
-      <!-- Research -->
+      <!-- Professional Experience -->
       <div class="cv-section float-up">
-        <p class="cv-section-label">Research</p>
+        <p class="cv-section-label">Professional Experience</p>
 
         <div class="cv-exp-item">
           <div class="cv-exp-header">
-            <h3 class="cv-exp-company">Modelling &amp; Characterization of AlScN Ferroelectric Devices</h3>
-            <span class="cv-exp-date">Aug 2025 – Present</span>
-          </div>
-          <p class="cv-exp-role">Graduate Research Assistant — Prof. Deep Jariwala Group</p>
-          <p class="cv-exp-location">University of Pennsylvania</p>
-          <ul class="cv-exp-bullets">
-            <li>Modelling AlScN-based FE-FETs in Synopsys Sentaurus TCAD, replacing gate oxides with ferroelectric
-              stacks and matching it with real-life wafer configurations.</li>
-            <li>Characterizing ferroelectric memory arrays via Keithley SCS-4200 using pulsed I-V and PUND sequences.
-            </li>
-          </ul>
-        </div>
-
-        <div class="cv-exp-item">
-          <div class="cv-exp-header">
-            <h3 class="cv-exp-company">MEMS Cantilever &amp; Comb Drive Fabrication</h3>
-            <span class="cv-exp-date">Spring 2026</span>
-          </div>
-          <p class="cv-exp-role">Singh Center for Nanotechnology</p>
-          <p class="cv-exp-location">University of Pennsylvania</p>
-          <ul class="cv-exp-bullets">
-            <li>Fabricated cantilever beams and comb drive arrays using photolithography, DRIE, and wet etching.</li>
-            <li>Device characterization via SEM, AFM, TEM, and Profilometry to analyze etch profiles.</li>
-            <li>Developing process flows for GFET fabrication and CdSe Quantum Dot synthesis.</li>
-          </ul>
-        </div>
-
-        <div class="cv-exp-item">
-          <div class="cv-exp-header">
-            <h3 class="cv-exp-company">GaN HEMT &amp; MEMS Device Modelling</h3>
-            <span class="cv-exp-date">Aug 2022 – Jan 2023</span>
-          </div>
-          <p class="cv-exp-role">Undergraduate Research — Prof. Saurabh Lodha</p>
-          <p class="cv-exp-location">Shiv Nadar Institution of Eminence</p>
-          <ul class="cv-exp-bullets">
-            <li>Simulated GaN HEMT, PIN diodes, and MEMS resonators using COMSOL and MATLAB.</li>
-            <li>Analyzed breakdown voltage, carrier transport, and piezoelectric stress in microfabricated structures.
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Experience -->
-      <div class="cv-section float-up">
-        <p class="cv-section-label">Experience</p>
-
-        <div class="cv-exp-item">
-          <div class="cv-exp-header">
-            <h3 class="cv-exp-company">University of Pennsylvania — ESE Department</h3>
-            <span class="cv-exp-date">Dec 2025 – Present</span>
+            <h3 class="cv-exp-company">University of Pennsylvania (ESE Department)</h3>
+            <span class="cv-exp-date">Jan 2026 – Present</span>
           </div>
           <p class="cv-exp-role">ESE Laboratories Staff Member</p>
           <p class="cv-exp-location">Philadelphia, PA</p>
           <ul class="cv-exp-bullets">
-            <li>Designed two instructional PCBs, the BRD2605A (Thunderboard) and BRD2708A (xG24 Explorer Kit), by
-              Silicon Labs as official evaluation and teaching platforms for ESE 5160.</li>
-            <li>Developed lab experiments for the IoT Edge Scaling course, reaching 100+ students annually.</li>
+            <li>Manage and calibrate high-precision electronic instrumentation (Keithley, Agilent) for ESE research
+              labs.</li>
+            <li>Provide technical support for analog component selection and circuit debugging during active lab
+              sessions.</li>
+            <li>Maintain inventory and procure critical components for wide-bandgap and RF characterization setups.</li>
           </ul>
         </div>
 
         <div class="cv-exp-item">
           <div class="cv-exp-header">
             <h3 class="cv-exp-company">Silicon Laboratories</h3>
-            <span class="cv-exp-date">Mar 2023 – Aug 2024</span>
+            <span class="cv-exp-date">July 2023 – March 2025</span>
           </div>
-          <p class="cv-exp-role">Mixed-Signal Hardware Design Engineer</p>
+          <p class="cv-exp-role">Associate Hardware Engineer</p>
           <p class="cv-exp-location">Hyderabad, India</p>
           <ul class="cv-exp-bullets">
-            <li>Designed evaluation boards for the EFR32FG28 &amp; EFR32xG28 SoCs using Altium Designer.</li>
-            <li>Performed signal integrity analysis, EMC compliance testing per FCC/CE directives.</li>
-            <li>Validated Bluetooth LE, Zigbee, and Sub-GHz performance with direct-tie and antenna configurations.</li>
+            <li>Designed 21 mixed-signal evaluation boards featuring 32-bit &amp; 8-bit Silicon Labs MCUs, focusing on
+              RF layout optimization and minimizing switching noise in high-speed digital blocks.</li>
+            <li>Instructional Hardware at UPenn: Designed two development boards currently utilized as standard
+              coursework platforms for ESE 5160 IoT Edge Scaling at the University of Pennsylvania.</li>
+            <li>Led a team of 6 engineers to test and validate 115 units of production-build FPGA setups, including
+              proFPGA motherboards and custom RF-AFE breakout boards.</li>
+            <li>Instrumental in the first-time-right (FTR) design and validation of a USB-to-UART bridge converter board
+              hosting Silicon Labs flagship IC, ensuring robust Signal Integrity (SI).</li>
+            <li>Collaborated with firmware and validation teams to define board requirements and debugging interfaces,
+              streamlining the post-silicon validation flow.</li>
+            <li>Adhered strictly to IPC standards for PCB design, ensuring manufacturability and reliability across all
+              evaluation hardware.</li>
+          </ul>
+        </div>
+
+        <div class="cv-exp-item">
+          <div class="cv-exp-header">
+            <h3 class="cv-exp-company">Silicon Laboratories</h3>
+            <span class="cv-exp-date">January 2023 – July 2023</span>
+          </div>
+          <p class="cv-exp-role">Hardware Engineering Intern</p>
+          <p class="cv-exp-location">Hyderabad, India</p>
+          <ul class="cv-exp-bullets">
+            <li>Created schematics for a universal sensor board and aided in preliminary testing of customer-facing
+              evaluation boards using Altium NEXUS.</li>
+            <li>Performed rigorous component library management and layout reviews to ensure zero-defect fabrication
+              hand-offs.</li>
           </ul>
         </div>
 
         <div class="cv-exp-item">
           <div class="cv-exp-header">
             <h3 class="cv-exp-company">Cadence Design Systems</h3>
-            <span class="cv-exp-date">May 2022 – Sep 2022</span>
+            <span class="cv-exp-date">May 2022 – September 2022</span>
           </div>
           <p class="cv-exp-role">Hardware Engineering Intern</p>
           <p class="cv-exp-location">Bangalore, India</p>
           <ul class="cv-exp-bullets">
-            <li>Analyzed DDR SDRAM and SerDes schematics in the Memory Interface Group using Cadence SerDes PHY.</li>
-            <li>Performed chip layout, schematic design, device optimization, and simulation on Cadence Virtuoso.</li>
-            <li>Worked on 3nm technology node, characterizing Low Threshold Voltage (LVTH) MOSFET performance.</li>
+            <li>Analyzed DDR SDRAM and SerDes schematics in the Memory Interface Group (MIG) using Cadence SerDes PHY.
+            </li>
+            <li>Performed chip layout, schematic design, device optimization, and ran simulation techniques on Cadence
+              Virtuoso.</li>
+            <li>Focused on 3nm technology nodes, specifically characterizing LVTH (Low Threshold Voltage) MOSFET
+              performance.</li>
           </ul>
         </div>
       </div>
 
-      <!-- Skills -->
+      <!-- Technical Skills -->
       <div class="cv-section float-up">
-        <p class="cv-section-label">Skills</p>
+        <p class="cv-section-label">Technical Skills</p>
         <div class="cv-skills-grid">
           <div class="cv-skill-group">
-            <h4>Simulation &amp; Design</h4>
+            <h4>Simulation &amp; Modelling</h4>
             <div class="cv-skill-tags">
-              <span class="cv-skill-tag">Synopsys TCAD</span>
+              <span class="cv-skill-tag">Synopsys Sentaurus TCAD</span>
               <span class="cv-skill-tag">Cadence Virtuoso</span>
-              <span class="cv-skill-tag">COMSOL</span>
+              <span class="cv-skill-tag">Spectre</span>
+              <span class="cv-skill-tag">Device Physics</span>
               <span class="cv-skill-tag">MATLAB</span>
-              <span class="cv-skill-tag">LTSpice</span>
-              <span class="cv-skill-tag">Altium Designer</span>
             </div>
           </div>
           <div class="cv-skill-group">
-            <h4>Fabrication &amp; Characterization</h4>
+            <h4>Fabrication</h4>
             <div class="cv-skill-tags">
               <span class="cv-skill-tag">Photolithography</span>
-              <span class="cv-skill-tag">DRIE</span>
-              <span class="cv-skill-tag">Wet Etching</span>
-              <span class="cv-skill-tag">SEM</span>
-              <span class="cv-skill-tag">AFM</span>
-              <span class="cv-skill-tag">Profilometry</span>
+              <span class="cv-skill-tag">Wet/Dry Etching (RIE)</span>
+              <span class="cv-skill-tag">CVD/PVD</span>
+              <span class="cv-skill-tag">Spin Coating</span>
+              <span class="cv-skill-tag">Metrology (SEM, AFM, TEM)</span>
             </div>
           </div>
           <div class="cv-skill-group">
             <h4>Instruments</h4>
             <div class="cv-skill-tags">
               <span class="cv-skill-tag">Keithley SCS-4200</span>
-              <span class="cv-skill-tag">Oscilloscopes</span>
-              <span class="cv-skill-tag">Spectrum Analyzers</span>
-              <span class="cv-skill-tag">Network Analyzers</span>
+              <span class="cv-skill-tag">VNA</span>
+              <span class="cv-skill-tag">Signal Analyzers</span>
+              <span class="cv-skill-tag">Oscilloscopes (MDO/DSO)</span>
+              <span class="cv-skill-tag">Probe Stations</span>
+            </div>
+          </div>
+          <div class="cv-skill-group">
+            <h4>Hardware / EDA</h4>
+            <div class="cv-skill-tags">
+              <span class="cv-skill-tag">Altium NEXUS</span>
+              <span class="cv-skill-tag">OrCAD</span>
+              <span class="cv-skill-tag">Cadence SerDes PHY</span>
+              <span class="cv-skill-tag">Xilinx Vivado</span>
+              <span class="cv-skill-tag">LTSpice</span>
+              <span class="cv-skill-tag">ngSpice</span>
             </div>
           </div>
           <div class="cv-skill-group">
             <h4>Programming</h4>
             <div class="cv-skill-tags">
-              <span class="cv-skill-tag">Python</span>
               <span class="cv-skill-tag">Verilog</span>
+              <span class="cv-skill-tag">C</span>
+              <span class="cv-skill-tag">Embedded C</span>
+              <span class="cv-skill-tag">Python (NumPy, Pandas)</span>
               <span class="cv-skill-tag">MATLAB</span>
-              <span class="cv-skill-tag">C/C++</span>
               <span class="cv-skill-tag">LaTeX</span>
+            </div>
+          </div>
+          <div class="cv-skill-group">
+            <h4>Embedded Platforms</h4>
+            <div class="cv-skill-tags">
+              <span class="cv-skill-tag">Silicon Labs MCUs</span>
+              <span class="cv-skill-tag">STM32</span>
+              <span class="cv-skill-tag">FPGA</span>
+              <span class="cv-skill-tag">Raspberry Pi</span>
+              <span class="cv-skill-tag">Arduino</span>
+              <span class="cv-skill-tag">BeagleBone Black</span>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Leadership -->
+      <!-- Technical Projects (listed in CV) -->
+      <div class="cv-section float-up">
+        <p class="cv-section-label">Technical Projects</p>
+
+        <div class="cv-exp-item">
+          <div class="cv-exp-header">
+            <h3 class="cv-exp-company">Modelling &amp; Characterization of AlScN Ferroelectric Devices</h3>
+            <span class="cv-exp-date">Aug 2025 – Present</span>
+          </div>
+          <p class="cv-exp-role">Synopsys TCAD</p>
+          <ul class="cv-exp-bullets">
+            <li>Modelling AlScN-based FE-FETs in Synopsys Sentaurus TCAD, replacing standard gate oxides with
+              ferroelectric stacks to match real-life wafer configurations.</li>
+            <li>Analyzing Energy Band diagrams (Ec and Ev) and polarization dynamics to tune ON-OFF voltages and scale
+              channel lengths for cleanroom fabrication feasibility.</li>
+            <li>Characterizing cylindrical AlScN ferroelectric memory arrays using Keithley SCS-4200 Parameter Analyzer.
+            </li>
+            <li>Extracting PUND pulse measurements and DC-IV curves across varying device dimensions to evaluate
+              switching reliability and scalability.</li>
+          </ul>
+        </div>
+
+        <div class="cv-exp-item">
+          <div class="cv-exp-header">
+            <h3 class="cv-exp-company">Nanofabrication of MEMS &amp; Quantum Devices</h3>
+            <span class="cv-exp-date">Spring 2026</span>
+          </div>
+          <p class="cv-exp-role">Singh Center for Nanotechnology</p>
+          <ul class="cv-exp-bullets">
+            <li>Fabricated MEMS Cantilever Beams and Comb Drive Arrays using photolithography, DRIE, and wet etching.
+            </li>
+            <li>Performing device characterization utilizing SEM, AFM, TEM, and Profilometry to analyze etch profiles.
+            </li>
+            <li>Developing process flows for the fabrication of Graphene Field-Effect Transistors (GFETs) and synthesis
+              of CdSe Quantum Dots.</li>
+          </ul>
+        </div>
+
+        <div class="cv-exp-item">
+          <div class="cv-exp-header">
+            <h3 class="cv-exp-company">Wideband Transimpedance Amplifier (TIA) for Optical Receivers</h3>
+            <span class="cv-exp-date">Fall 2025</span>
+          </div>
+          <p class="cv-exp-role">Cadence Virtuoso, 45nm</p>
+          <ul class="cv-exp-bullets">
+            <li>Designed an 8-stage cascaded TIA achieving 519 kΩ (114 dBΩ) gain, exceeding spec by 3.5×.</li>
+            <li>Maintained 311 MHz bandwidth while driving a heavy 600Ω differential load.</li>
+            <li>Implemented a "Direct Coupling" strategy with tapered loading to eliminate area-intensive AC coupling.
+            </li>
+            <li>Reduced power consumption to 3.5 mW (well below 10 mW budget) through architecture optimization.</li>
+          </ul>
+        </div>
+
+        <div class="cv-exp-item">
+          <div class="cv-exp-header">
+            <h3 class="cv-exp-company">Low-Power 16×4 SRAM Array Design</h3>
+            <span class="cv-exp-date">Fall 2025</span>
+          </div>
+          <p class="cv-exp-role">Cadence Virtuoso, 45nm CMOS</p>
+          <ul class="cv-exp-bullets">
+            <li>Designed a synchronous SRAM macro achieving 249 ps (~4 GHz) worst-case write access time.</li>
+            <li>Engineered a robust 6T bitcell with a Cell Ratio of 1.5, eliminating read-disturb failures.</li>
+            <li>Optimized peripheral drive strength to improve Area-Power-Delay Figure of Merit (FOM) by 46%.</li>
+            <li>Delivered a compact layout (2.42 µm²) consuming only 356 µW active power at 1.2V.</li>
+          </ul>
+        </div>
+
+        <div class="cv-exp-item">
+          <div class="cv-exp-header">
+            <h3 class="cv-exp-company">Device Modelling &amp; Simulation</h3>
+            <span class="cv-exp-date">Aug 2021 – Aug 2022</span>
+          </div>
+          <p class="cv-exp-role">Synopsys Sentaurus TCAD</p>
+          <ul class="cv-exp-bullets">
+            <li>Modelled planar 2D SOI-FET and 3D 14nm FinFET, achieving 3% performance improvement over baseline.</li>
+            <li>Simulated tunneling effects and applied advanced mobility models to validate device physics.</li>
+            <li>Recognition: Awarded "Research Grade: Excellent" at the Opportunities for Undergraduate Research (OUR)
+              Conference.</li>
+          </ul>
+        </div>
+
+        <div class="cv-exp-item">
+          <div class="cv-exp-header">
+            <h3 class="cv-exp-company">Universal Sensor Board Design</h3>
+            <span class="cv-exp-date">Spring 2023</span>
+          </div>
+          <p class="cv-exp-role">Altium NEXUS</p>
+          <ul class="cv-exp-bullets">
+            <li>Designed a modular 3-PCB system hosting an MCU, power management, and peripherals.</li>
+            <li>Created schematics for 4 memory elements, 7 sensors, and 5 GPIO headers, optimizing layout for signal
+              integrity.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Leadership & Certifications -->
       <div class="cv-section float-up">
         <p class="cv-section-label">Leadership &amp; Certifications</p>
 
         <div class="cv-leadership-item">
           <div>
-            <h4 class="cv-leadership-title">Teaching Assistant</h4>
-            <p class="cv-leadership-org">ESE 5160: IoT Edge Scaling &amp; Embedded Systems — UPenn</p>
+            <h4 class="cv-leadership-title">Vice-Chairperson, IEEE Student Body</h4>
           </div>
-          <span class="cv-leadership-date">Fall 2025</span>
+          <span class="cv-leadership-date">Jan 2022 – Apr 2023</span>
         </div>
 
         <div class="cv-leadership-item">
           <div>
-            <h4 class="cv-leadership-title">Student Council President</h4>
-            <p class="cv-leadership-org">School of Engineering — Shiv Nadar Institution of Eminence</p>
+            <h4 class="cv-leadership-title">Secretary, Entrepreneurship Cell, SNU</h4>
           </div>
-          <span class="cv-leadership-date">2021 – 2022</span>
+          <span class="cv-leadership-date">Sep 2019 – Mar 2022</span>
         </div>
 
         <div class="cv-leadership-item">
           <div>
-            <h4 class="cv-leadership-title">IEEE Member</h4>
-            <p class="cv-leadership-org">IEEE Electron Devices Society</p>
+            <h4 class="cv-leadership-title">Certifications</h4>
+            <p class="cv-leadership-org">Introduction to Embedded System Design (NPTEL) · Advances in Freeform
+              Electronics (Yonsei University)</p>
           </div>
-          <span class="cv-leadership-date">2022 – Present</span>
+        </div>
+
+        <div class="cv-leadership-item">
+          <div>
+            <h4 class="cv-leadership-title">Scholarship Recipient, Oxford Royal Academy Summer School</h4>
+          </div>
+          <span class="cv-leadership-date">Jan 2021</span>
         </div>
       </div>
 
