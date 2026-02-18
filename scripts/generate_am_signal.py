@@ -79,10 +79,11 @@ def generate_am_signal():
   </path>
 </svg>'''
 
-    with open('../assets/am-signal.svg', 'w') as f:
+    # Write to assets/am-signal.svg relative to project root when running from root
+    with open('assets/am-signal.svg', 'w') as f:
         f.write(svg_content)
     
-    print("SVG generated successfully.")
+    print("SVG generated successfully at assets/am-signal.svg")
 
 if __name__ == "__main__":
     generate_am_signal()
