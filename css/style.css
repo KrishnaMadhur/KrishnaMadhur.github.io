@@ -1381,12 +1381,12 @@ body.writing-detail .detail-tag {
 .footer::before {
   content: '';
   display: block;
-  width: 60%;
-  max-width: 400px;
-  height: 20px;
+  width: 45%;
+  max-width: 450px;
+  height: 30px;
   margin: 0 auto 1.5rem;
   background: url('../assets/flute-divider.svg') center / contain no-repeat;
-  opacity: 0.6;
+  opacity: 0.7;
 }
 
 .footer-credit {
