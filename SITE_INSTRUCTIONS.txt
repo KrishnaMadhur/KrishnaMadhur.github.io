@@ -215,3 +215,45 @@ DESIGN REFERENCE (do not edit these unless intentional)
   Text body:   #e0e0e0
 
 ================================================================================
+H. TWEAK THE LOGO GROUNDING PULSE
+================================================================================
+
+File to edit:  js/main.js
+Search for:    "// 2. Canvas shockwave"
+
+All tunable values are in the drawRipple function just below that comment.
+
+  WHAT                  LOOK FOR IN main.js      WHAT IT CONTROLS
+  ────────────────────  ───────────────────────  ────────────────────────────
+  Speed                 const duration = 5000    Time in milliseconds.
+                                                 5000 = 5 sec. Try 3000
+                                                 (snappy) or 8000 (cinematic)
+
+  Ring brightness       ringOpacity * 0.75       Opacity of the outer ring
+                                                 stroke (0–1). Raise for
+                                                 a more visible hard edge.
+
+  Colour wash glow      ringOpacity * 0.12       Opacity of the colour fill
+                                                 wash behind the ring.
+                                                 Try 0.25 for stronger glow,
+                                                 0.05 for barely-there.
+
+  Glow width            radius * 0.55            How far inward the fill
+                                                 glow reaches. 0.55 = inner
+                                                 55%. Try 0.8 for wider.
+
+  Ring thickness        2 - progress * 1.2       Stroke width at start.
+                                                 Change leading "2" to 3 or 4
+                                                 for a thicker ring.
+
+  Start colour          rgba(0, 229, 255, ...)   Cyan at the moment of click.
+  End colour            rgba(212, 175, 55, ...)  Gold as it fades out.
+                                                 Replace with any RGB values.
+
+IMPORTANT — after every edit to main.js, also do this in index.html:
+  • Find:    <script src="js/main.js?v=4">
+  • Change the number higher, e.g. ?v=5, then ?v=6 for the next edit.
+  • This forces the browser to load the new version instead of the cache.
+  • Then deploy normally.
+
+================================================================================
