@@ -225,7 +225,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const ctx = canvas.getContext('2d');
       const maxRadius = Math.hypot(window.innerWidth, window.innerHeight);
-      const duration = 5000; // ms — slow, dramatic pulse
+      const duration = 3000; // ms — slow, dramatic pulse
       let startTime = null;
 
       function drawRipple(timestamp) {
