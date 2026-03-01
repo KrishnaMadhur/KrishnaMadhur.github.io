@@ -1550,27 +1550,27 @@ body.writing-detail .detail-tag {
    =========================================== */
 .logo-ground {
   display: inline-block;
-  transition: color 0.1s ease;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
 .logo-ground.spark {
-  animation: spark-flash 0.5s ease-out forwards;
+  animation: groundSpark 0.6s ease forwards;
 }
 
-@keyframes spark-flash {
+@keyframes groundSpark {
   0% {
     color: var(--white);
     text-shadow: none;
   }
 
-  15% {
+  20% {
     color: #00e5ff;
-    text-shadow: 0 0 16px rgba(0, 229, 255, 0.9), 0 0 32px rgba(0, 229, 255, 0.5);
+    text-shadow: 0 0 12px rgba(0, 229, 255, 0.9), 0 0 30px rgba(0, 229, 255, 0.5);
   }
 
-  40% {
+  50% {
     color: var(--gold);
-    text-shadow: 0 0 10px var(--gold-glow);
+    text-shadow: 0 0 10px var(--gold-glow), 0 0 24px rgba(212, 175, 55, 0.3);
   }
 
   100% {
@@ -1579,26 +1579,29 @@ body.writing-detail .detail-tag {
   }
 }
 
+/* Navbar ripple / shockwave on logo click */
 .navbar.ripple::after {
   content: '';
   position: absolute;
-  inset: 0;
-  border-radius: 16px;
-  box-shadow: 0 0 0 0 rgba(0, 229, 255, 0.4);
-  animation: nav-ripple 0.7s ease-out forwards;
+  top: 50%;
+  left: 36px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(0, 229, 255, 0.6);
+  transform: translate(-50%, -50%) scale(1);
+  animation: navRipple 0.7s ease-out forwards;
   pointer-events: none;
 }
 
-@keyframes nav-ripple {
+@keyframes navRipple {
   0% {
-    box-shadow: 0 0 0 0 rgba(0, 229, 255, 0.5);
-  }
-
-  60% {
-    box-shadow: 0 0 0 16px rgba(0, 229, 255, 0.1);
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.8;
   }
 
   100% {
-    box-shadow: 0 0 0 28px rgba(0, 229, 255, 0);
+    transform: translate(-50%, -50%) scale(35);
+    opacity: 0;
   }
 }
