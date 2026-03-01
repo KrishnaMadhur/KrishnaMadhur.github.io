@@ -683,7 +683,7 @@ body[data-view="writing"] .view-subtitle {
 
 .project-row-desc {
   font-size: 0.87rem;
-  color: rgba(255, 255, 255, 0.62);
+  color: rgba(255, 255, 255, 0.76);
   line-height: 1.6;
 }
 
@@ -1542,5 +1542,63 @@ body.writing-detail .detail-tag {
 
   .home-links {
     flex-direction: column;
+  }
+}
+
+/* ===========================================
+   LOGO GROUNDING PULSE — "The Spark"
+   =========================================== */
+.logo-ground {
+  display: inline-block;
+  transition: color 0.1s ease;
+}
+
+.logo-ground.spark {
+  animation: spark-flash 0.5s ease-out forwards;
+}
+
+@keyframes spark-flash {
+  0% {
+    color: var(--white);
+    text-shadow: none;
+  }
+
+  15% {
+    color: #00e5ff;
+    text-shadow: 0 0 16px rgba(0, 229, 255, 0.9), 0 0 32px rgba(0, 229, 255, 0.5);
+  }
+
+  40% {
+    color: var(--gold);
+    text-shadow: 0 0 10px var(--gold-glow);
+  }
+
+  100% {
+    color: var(--white);
+    text-shadow: none;
+  }
+}
+
+.navbar.ripple::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  box-shadow: 0 0 0 0 rgba(0, 229, 255, 0.4);
+  animation: nav-ripple 0.7s ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes nav-ripple {
+  0% {
+    box-shadow: 0 0 0 0 rgba(0, 229, 255, 0.5);
+  }
+
+  60% {
+    box-shadow: 0 0 0 16px rgba(0, 229, 255, 0.1);
+  }
+
+  100% {
+    box-shadow: 0 0 0 28px rgba(0, 229, 255, 0);
   }
 }

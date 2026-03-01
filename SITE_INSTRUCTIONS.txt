@@ -1,258 +1,217 @@
 ================================================================================
   WEBSITE MAINTENANCE GUIDE — krishnamadhur.github.io
-  Last Updated: Feb 16, 2026
+  Last Updated: March 1, 2026
 ================================================================================
 
-FILE STRUCTURE
-──────────────
-  index.html                  ← Main site (all 5 tabs live here)
-  css/style.css               ← All styles
-  js/main.js                  ← All behavior (tab switching, tilt, animations)
-  projects/                   ← Project detail pages
-      alscn-ferroelectrics.html
-      tia-optical-receiver.html
-      mems-cantilever.html
-      sram-array.html
-      sensor-board.html
-      device-modelling.html
-  writing/posts/              ← Blog posts
-      _template.html           ← Copy this for new posts
-      sample-post.html
-  assets/gallery/             ← Photo folders (drop images here)
-      architecture/  campus/  macro/  nature/  street/  travel/
-  reports/                    ← PDF reports (TIA, MEMS Draft)
+HOW TO MAKE CHANGES IN 3 STEPS:
+  1. Edit the file (instructions below)
+  2. Open Terminal and run:
+       cd /Users/krishnamadhurakella/Developer/KrishnaMadhur.github.io
+       git add -A && git commit -m "what you changed" && git push origin main
+  3. Wait ~2 minutes → live at https://krishnamadhur.github.io
+
+
+================================================================================
+A. UPDATE THE MEMS REPORT (or any report)
+================================================================================
+
+1. Open:  projects/mems-cantilever.html
+
+2. Find this section (Ctrl+F / Cmd+F for "data-report"):
+
+       <a href="../reports/FILENAME.pdf" class="detail-report-link"
+           data-report="../reports/FILENAME.pdf">
+           📄 View Final Report (PDF)
+       </a>
+
+3. Replace BOTH occurrences of the filename with your new PDF filename.
+   ⚠️  Make sure your new PDF is already in the  reports/  folder.
+
+4. Save, deploy (Step 2 above).
+
+
+================================================================================
+B. UPDATE ANY TEXT ON THE HOME PAGE
+================================================================================
+
+1. Open:  index.html  (in the root folder)
+
+2. Use Cmd+F to search for the text you want to change.
+
+3. Edit it directly. The sections are:
+   • Your name / tagline    → search for  "home-tagline"
+   • Your bio paragraph     → search for  "home-bio"
+   • Status LED text        → search for  "status-text"
+     (e.g. change "Characterizing AlScN..." to whatever you're working on now)
+   • Selected Work items    → search for  "selected-work-item"
+
+4. Save, deploy.
+
+
+================================================================================
+C. UPDATE THE CV
+================================================================================
+
+1. Open:  index.html
+
+2. Use Cmd+F to search for the text you want to update.
+   Everything in the CV is plain text — just edit it directly.
+
+   Structure reference:
+   • Education entries     → look for  "cv-edu-item"
+   • Experience entries    → look for  "cv-exp-item"
+   • Each bullet point is  <li>text here</li>
+   • Skills tags           → look for  "cv-skill-tag"
+   • Leadership entries    → look for  "cv-leadership-item"
+
+3. Save, deploy.
+
+
+================================================================================
+D. ADD A NEW BLOG POST
+================================================================================
+
+Step 1: Create the post file
+   a. In Finder, go to:  writing/posts/
+   b. Duplicate the file  _template.html
+   c. Rename it to something like  my-article.html
+
+Step 2: Edit the new file
+   Open it and replace these placeholders:
+   • TITLE HERE           → your post title
+   • TAG HERE             → one of: Technical  /  Books  /  Personal
+   • DATE HERE            → e.g.  March 2026
+   • The paragraph text   → your actual article
+
+Step 3: Add a card to the Writing tab
+   a. Open  index.html
+   b. Search for  "writing-list"
+   c. Add this block inside that section:
+
+       <a href="writing/posts/my-article.html" class="writing-card float-up"
+          data-tag="technical">
+         <p class="writing-card-tag">Technical</p>
+         <h3 class="writing-card-title">Your Title Here</h3>
+         <p class="writing-card-excerpt">One line summary.</p>
+         <p class="writing-card-date">March 2026</p>
+       </a>
+
+   Change data-tag to match: technical / books / personal
+
+Step 4: Deploy.
+
+
+================================================================================
+E. ADD A NEW PROJECT
+================================================================================
+
+Step 1: Create the project page
+   a. In Finder, go to:  projects/
+   b. Duplicate any existing project file (e.g.  sensor-board.html)
+   c. Rename it (e.g.  new-project.html)
+   d. Open and edit:
+      • Title in the <title> tag
+      • The <h1 class="detail-title"> heading
+      • The <p class="detail-meta"> date/tools line
+      • All the content inside <div class="detail-body">
+        (use <h2> for section headings, <p> for paragraphs, <ul><li> for lists)
+
+Step 2: Add a card to the Projects tab
+   a. Open  index.html
+   b. Search for  "projects-list"
+   c. Add this block inside that section:
+
+       <a href="projects/new-project.html" class="project-row float-up">
+         <div>
+           <h3 class="project-row-title">Project Title</h3>
+           <p class="project-row-desc">Short description of what you built.</p>
+         </div>
+         <div class="project-row-meta">
+           <p class="project-row-tools">Tool / Platform</p>
+           <p class="project-row-date">Season Year</p>
+           <p class="project-row-arrow">→</p>
+         </div>
+       </a>
+
+Step 3: Deploy.
+
+
+================================================================================
+F. ADD PHOTOS TO THE GALLERY
+================================================================================
+
+Step 1: Copy your photos into the right folder:
+   assets/gallery/architecture/
+   assets/gallery/street/
+   assets/gallery/macro/
+   assets/gallery/travel/
+   assets/gallery/campus/
+   assets/gallery/nature/
+
+Step 2: Open  index.html  and search for  "photography"
+
+Step 3: Replace the placeholder with:
+
+   <div class="gallery-grid">
+     <div class="gallery-item" data-category="street">
+       <img src="assets/gallery/street/photo1.jpg" alt="Brief description" />
+     </div>
+     <div class="gallery-item" data-category="macro">
+       <img src="assets/gallery/macro/photo2.jpg" alt="Brief description" />
+     </div>
+   </div>
+
+   Clicking any photo opens a full-screen lightbox automatically.
+
+Step 4: Deploy.
+
+
+================================================================================
+G. TESTING LOCALLY (before deploying)
+================================================================================
+
+The local server should still be running. Open your browser and go to:
+   http://localhost:8000
+
+If the server is not running:
+   cd /Users/krishnamadhurakella/Developer/KrishnaMadhur.github.io
+   python3 -m http.server 8000
+
+
+================================================================================
+QUICK DEPLOY COMMAND (copy-paste this every time)
+================================================================================
+
+   cd /Users/krishnamadhurakella/Developer/KrishnaMadhur.github.io
+   git add -A && git commit -m "describe what you changed" && git push origin main
+
+
+================================================================================
+WHERE THINGS LIVE (file map)
+================================================================================
+
+  index.html                  ← MAIN FILE — Home, Projects, Writing, Photos, CV
+  css/style.css               ← All visual styles
+  js/main.js                  ← Animations, tab switching, PDF viewer
+  projects/                   ← One .html file per project
+  writing/posts/              ← One .html file per blog post
+  writing/posts/_template.html ← Copy this for new posts
+  assets/gallery/             ← Photo folders
+  reports/                    ← PDF reports (put new PDFs here)
   AKM_Industry_Resume.pdf     ← Your resume
 
 
 ================================================================================
-1. EDITING HOME PAGE TEXT
+DESIGN REFERENCE (do not edit these unless intentional)
 ================================================================================
 
-Open index.html and search for:  <div id="home"
-
-  • Bio text         → edit the <p class="home-bio"> paragraph
-  • Tagline          → edit the <p class="home-tagline"> paragraph
-  • Status LED text  → edit <span class="status-text"> inside .status-indicator
-  • Selected Work    → edit the <div class="selected-work-item"> blocks
-
-
-================================================================================
-2. ADDING A NEW BLOG POST ("Field Notes" in the Journal tab)
-================================================================================
-
-Step 1: Copy the template
-    cp writing/posts/_template.html writing/posts/your-post-name.html
-
-Step 2: Open your-post-name.html and replace all <!-- TEMPLATE: ... --> placeholders
-    • Title, date, and body content
-    • The body class is already set to "writing-detail"
-
-Step 3: Add an entry in index.html
-    Search for: journal-section-title">Field Notes
-    Add this inside the Field Notes section (before or after existing entries):
-
-    <a href="writing/posts/your-post-name.html" class="journal-entry">
-      <span class="journal-meta">Month Year</span>
-      <span class="journal-content">
-        <span class="journal-entry-title">Your Post Title</span>
-        <span class="journal-entry-desc">One-line summary.</span>
-      </span>
-    </a>
-
-
-================================================================================
-3. ADDING A NEW PROJECT
-================================================================================
-
-Step 1: Create the detail page
-    Copy any existing project page, e.g.:
-    cp projects/sensor-board.html projects/your-project.html
-
-    Edit these parts:
-    • <title> tag
-    • <span class="detail-tag">   → tools/platform used
-    • <h1 class="detail-title">   → project name
-    • <p class="detail-meta">     → date range
-    • <div class="detail-body">   → all content (use <h2>, <p>, <ul>)
-    • Make sure <body class="project-detail"> is set
-
-Step 2: Add a card in index.html
-    Search for: <div class="projects-list">
-    Add this inside it:
-
-    <a href="projects/your-project.html" class="project-row float-up">
-      <div>
-        <h3 class="project-row-title">Project Title</h3>
-        <p class="project-row-desc">One or two sentence description.</p>
-      </div>
-      <div class="project-row-meta">
-        <p class="project-row-tools">Tool / Platform</p>
-        <p class="project-row-date">Season Year</p>
-        <p class="project-row-arrow">→</p>
-      </div>
-    </a>
-
-
-================================================================================
-4. ADDING PHOTOS TO THE GALLERY
-================================================================================
-
-Step 1: Drop image files into the appropriate category folder
-    cp your-photo.jpg assets/gallery/architecture/
-
-    Available categories: architecture, campus, macro, nature, street, travel
-    To add a new category: create a new folder inside assets/gallery/
-
-Step 2: Add gallery items in index.html
-    Search for: <div id="photography"
-    Replace the placeholder with actual gallery items:
-
-    <div class="gallery-grid">
-      <div class="gallery-item" data-category="architecture">
-        <img src="assets/gallery/architecture/your-photo.jpg" alt="Description" />
-      </div>
-      <!-- repeat for more photos -->
-    </div>
-
-    The lightbox (click-to-zoom) works automatically.
-
-
-================================================================================
-5. UPDATING THE CV
-================================================================================
-
-In index.html, search for: <div id="cv">
-
-The CV has these sections (edit the text directly):
-
-  • Education      → <div class="cv-edu-item">
-  • Experience     → <div class="cv-exp-item">
-  • Skills         → <div class="cv-skill-group"> with <span class="cv-skill-tag">
-  • Projects       → same cv-exp-item structure
-  • Leadership     → <div class="cv-leadership-item">
-
-To add a new skill tag:
-    <span class="cv-skill-tag">New Skill</span>
-
-To add a new experience entry, copy any existing cv-exp-item block and edit.
-
-
-================================================================================
-5b. EDITING "THE BOOKSHELF" (inside the Journal tab)
-================================================================================
-
-In index.html, search for: journal-section-title">The Bookshelf
-
-The bookshelf has 3 categories:
-  • Textbooks
-  • Research Papers
-  • Engineering & Beyond
-
-To add a new book to any category, copy this template below the
-matching <p class="journal-category"> heading:
-
-    <div class="journal-entry">
-      <span class="journal-meta">Status</span>
-      <span class="journal-content">
-        <span class="journal-entry-title">Book Title</span>
-        <span class="journal-entry-author">Author Name</span>
-      </span>
-    </div>
-
-  Valid status values: In Progress, Read, Queued
-  For papers, use the journal name (e.g., IEEE TED) as the meta.
-
-To add a new category, add:
-
-    <p class="journal-category">New Category</p>
-    <div class="journal-entry">
-      <span class="journal-meta">Status</span>
-      <span class="journal-content">
-        <span class="journal-entry-title">Title</span>
-        <span class="journal-entry-author">Author</span>
-      </span>
-    </div>
-
-
-================================================================================
-5c. FOOTER
-================================================================================
-
-The footer lives in index.html, search for: <footer class="footer">
-
-Structure: © 2026 Name · Philadelphia, PA · Built with Sasank · ♫
-  • "Sasank" links to gssasank.com (turns Gold on hover)
-  • "♫" links to Spotify Deep Focus playlist (turns Spotify Green on hover)
-  • To change the playlist URL, edit the href in the <a class="footer-spotify">
-
-
-================================================================================
-6. DEPLOYING CHANGES (QUICK PUSH)
-================================================================================
-
-After editing any file (index.html, css/style.css, js/main.js, etc.),
-open Terminal and run these 3 commands:
-
-    cd /Users/krishnamadhurakella/Developer/KrishnaMadhur.github.io
-    git add -A && git commit -m "update: brief description"
-    git push origin main
-
-Changes go live on GitHub Pages within ~2 minutes.
-After pushing, do Cmd+Shift+R in your browser to hard-refresh and bust cache.
-
-TROUBLESHOOTING:
-  • "Your branch is ahead of origin/main"
-      → Just run:  git push origin main
-  • "Changes not staged for commit"
-      → Run:  git add -A   (stages all modified files)
-  • Merge conflicts or errors
-      → Run:  git pull origin main   first, resolve any conflicts, then push
-  • Still not seeing changes on the live site?
-      → Wait 2-3 minutes, then Cmd+Shift+R. GitHub Pages caches aggressively.
-
-
-================================================================================
-7. TESTING LOCALLY
-================================================================================
-
-    cd /Users/krishnamadhurakella/Developer/KrishnaMadhur.github.io
-    python3 -m http.server 8000
-
-Then open http://localhost:8000 in your browser.
-
-
-================================================================================
-DESIGN NOTES (for reference)
-================================================================================
-
-  • Logo:       कृष्णा <span class="logo-ground">⏚</span>
-                Color: Champagne Gold (#d4af37)
-                Click triggers "Grounding Pulse": cyan→gold spark on ⏚,
-                ripple shockwave across navbar, smooth scroll to Home.
-  • Greeting:   "HELLO, I AM" — Champagne Gold (#d4af37)
-  • Home bg:    Radial gradient (#1e293b center → #0f172a edges)
-                + Krishna-themed "Flute & Vines" (बांसुरी) wallpaper overlay
-                  (assets/botanical-bg.png) — gold line-art flutes, lotuses,
-                  peacock feathers, and vines. Tiled at 450px, 12% opacity.
-  • Projects:   ENIG Gold dot-grid (20px spacing, Champagne Gold #d4af37 at 10%)
-                Flashlight hover effect: dots glow ~30% near cursor via
-                CSS custom properties (--mouse-x, --mouse-y) driven by JS.
-  • Journal:    Dark slate (#1a1a1a) + ruled lines (7% opacity)
-                Gold margin line: 2px, rgba(197,160,89,0.25), at 90px
-                  (structural divider: metadata LEFT, content RIGHT)
-                Two sections: "Field Notes" + "The Bookshelf"
-                Authors: italic + dimmed for visual hierarchy
-  • Photography: Pure black (#000000)
-  • CV:         Deep space gradient (matches Home)
-                Body text brightened for readability:
-                  edu-details 0.58, exp-bullets 0.65, edu-degree 0.6
-  • Footer:     © 2026 Name · Philadelphia, PA · Built with Sasank · ♫
-                Sasank → Gold hover, ♫ (Spotify) → #1DB954 hover
-                Short 50px divider line above footer text
-                Text: rgba(255,255,255,0.35)
-  • Nav:        Glassmorphism pill, backdrop-filter: blur(20px)
-  • Fonts:      Playfair Display (headers), Inter (body), JetBrains Mono (code)
-  • Colors:     Champagne Gold #d4af37, Muted Gold #C5A059, Writing text #e0e0e0
-                Spotify Green #1DB954
+  Logo:        कृष्ण ⏚  (click it to reset to Home with a spark animation)
+  Home bg:     Deep Space radial gradient
+  Projects bg: ENIG Champagne Gold dots (#d4af37) — hover for flashlight glow
+  Writing bg:  Dark slate with ruled horizontal lines + gold margin line
+  Photography: Pure black
+  Nav:         Glassmorphism pill, always visible at top
+  Gold accent: #d4af37
+  Text body:   #e0e0e0
 
 ================================================================================
