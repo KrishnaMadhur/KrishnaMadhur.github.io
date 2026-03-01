@@ -194,35 +194,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ---------- Logo "Grounding Pulse" ---------- */
   const navLogo = document.getElementById('nav-logo');
-  const navbar = document.querySelector('.navbar');
 
   if (navLogo) {
     navLogo.addEventListener('click', (e) => {
       e.preventDefault();
 
-      // Spark on the ground symbol
+      // 1. Spark: flash the ground symbol cyan → gold
       const ground = navLogo.querySelector('.logo-ground');
       if (ground) {
         ground.classList.remove('spark');
-        // Force reflow to restart animation
-        void ground.offsetWidth;
+        void ground.offsetWidth; // force reflow to restart
         ground.classList.add('spark');
-        ground.addEventListener('animationend', () => {
-          ground.classList.remove('spark');
-        }, { once: true });
+        ground.addEventListener('animationend', () => ground.classList.remove('spark'), { once: true });
       }
 
-      // Ripple on the navbar
-      if (navbar) {
-        navbar.classList.remove('ripple');
-        void navbar.offsetWidth;
-        navbar.classList.add('ripple');
-        navbar.addEventListener('animationend', () => {
-          navbar.classList.remove('ripple');
-        }, { once: true });
-      }
+      // 2. Shockwave: inject a full-page ripple div at the logo's position
+      const logoRect = navLogo.getBoundingClientRect();
+      const originX = logoRect.left + logoRect.width / 2;
+      const originY = logoRect.top + logoRect.height / 2;
 
-      // Navigate home + scroll to top
+      const ripple = document.createElement('div');
+      ripple.className = 'page-ripple';
+      ripple.style.left = originX + 'px';
+      ripple.style.top = originY + 'px';
+      document.body.appendChild(ripple);
+
+      // Remove after animation
+      ripple.addEventListener('animationend', () => ripple.remove(), { once: true });
+
+      // 3. Navigate home + smooth scroll
       switchView('home');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });

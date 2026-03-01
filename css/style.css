@@ -265,30 +265,36 @@ body[data-view="cv"] {
   }
 }
 
-/* Navbar ripple / shockwave on logo click */
-.navbar.ripple::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 36px;
-  width: 20px;
-  height: 20px;
+/* Full-page shockwave ripple — injected onto body by JS, unconstrained */
+.page-ripple {
+  position: fixed;
+  top: var(--ripple-y, 30px);
+  left: var(--ripple-x, 60px);
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
-  border: 1.5px solid rgba(0, 229, 255, 0.6);
+  border: 1.5px solid rgba(0, 229, 255, 0.65);
   transform: translate(-50%, -50%) scale(1);
-  animation: navRipple 0.7s ease-out forwards;
+  animation: pageRipple 0.9s cubic-bezier(0.17, 0.67, 0.35, 0.99) forwards;
   pointer-events: none;
+  z-index: 99999;
 }
 
-@keyframes navRipple {
+@keyframes pageRipple {
   0% {
     transform: translate(-50%, -50%) scale(1);
-    opacity: 0.8;
+    opacity: 1;
+    border-color: rgba(0, 229, 255, 0.65);
+  }
+
+  40% {
+    border-color: rgba(212, 175, 55, 0.5);
   }
 
   100% {
-    transform: translate(-50%, -50%) scale(35);
+    transform: translate(-50%, -50%) scale(200);
     opacity: 0;
+    border-color: rgba(212, 175, 55, 0);
   }
 }
 
@@ -1576,32 +1582,5 @@ body.writing-detail .detail-tag {
   100% {
     color: var(--white);
     text-shadow: none;
-  }
-}
-
-/* Navbar ripple / shockwave on logo click */
-.navbar.ripple::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 36px;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  border: 1.5px solid rgba(0, 229, 255, 0.6);
-  transform: translate(-50%, -50%) scale(1);
-  animation: navRipple 0.7s ease-out forwards;
-  pointer-events: none;
-}
-
-@keyframes navRipple {
-  0% {
-    transform: translate(-50%, -50%) scale(1);
-    opacity: 0.8;
-  }
-
-  100% {
-    transform: translate(-50%, -50%) scale(35);
-    opacity: 0;
   }
 }
