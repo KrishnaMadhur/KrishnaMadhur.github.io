@@ -203,24 +203,61 @@ document.addEventListener('DOMContentLoaded', () => {
       const ground = navLogo.querySelector('.logo-ground');
       if (ground) {
         ground.classList.remove('spark');
-        void ground.offsetWidth; // force reflow to restart
+        void ground.offsetWidth;
         ground.classList.add('spark');
         ground.addEventListener('animationend', () => ground.classList.remove('spark'), { once: true });
       }
 
-      // 2. Shockwave: inject a full-page ripple div at the logo's position
+      // 2. Canvas shockwave — bypasses all overflow:hidden clipping
       const logoRect = navLogo.getBoundingClientRect();
       const originX = logoRect.left + logoRect.width / 2;
       const originY = logoRect.top + logoRect.height / 2;
 
-      const ripple = document.createElement('div');
-      ripple.className = 'page-ripple';
-      ripple.style.left = originX + 'px';
-      ripple.style.top = originY + 'px';
-      document.body.appendChild(ripple);
+      const canvas = document.createElement('canvas');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      Object.assign(canvas.style, {
+        position: 'fixed', top: '0', left: '0',
+        width: '100vw', height: '100vh',
+        pointerEvents: 'none', zIndex: '99999',
+      });
+      document.documentElement.appendChild(canvas);
 
-      // Remove after animation
-      ripple.addEventListener('animationend', () => ripple.remove(), { once: true });
+      const ctx = canvas.getContext('2d');
+      const maxRadius = Math.hypot(window.innerWidth, window.innerHeight);
+      const duration = 900; // ms
+      let startTime = null;
+
+      function drawRipple(timestamp) {
+        if (!startTime) startTime = timestamp;
+        const elapsed = timestamp - startTime;
+        const progress = Math.min(elapsed / duration, 1); // 0 → 1
+        const eased = 1 - Math.pow(1 - progress, 3);  // ease-out cubic
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        const radius = eased * maxRadius;
+        const opacity = 1 - progress;
+
+        // Interpolate stroke color  cyan (#00e5ff) → gold (#d4af37)
+        const r = Math.round(0 + (212 - 0) * progress);
+        const g = Math.round(229 + (175 - 229) * progress);
+        const b = Math.round(255 + (55 - 255) * progress);
+
+        ctx.beginPath();
+        ctx.arc(originX, originY, Math.max(radius, 1), 0, Math.PI * 2);
+        ctx.strokeStyle = `rgba(${r},${g},${b},${opacity * 0.7})`;
+        ctx.lineWidth = 2.5 * (1 - progress * 0.6); // thin as it expands
+        ctx.stroke();
+
+        if (progress < 1) {
+          requestAnimationFrame(drawRipple);
+        } else {
+          canvas.remove();
+        }
+      }
+
+      requestAnimationFrame(drawRipple);
 
       // 3. Navigate home + smooth scroll
       switchView('home');
