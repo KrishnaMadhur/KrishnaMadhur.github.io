@@ -225,29 +225,46 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const ctx = canvas.getContext('2d');
       const maxRadius = Math.hypot(window.innerWidth, window.innerHeight);
-      const duration = 900; // ms
+      const duration = 2200; // ms — slower, more deliberate
       let startTime = null;
 
       function drawRipple(timestamp) {
         if (!startTime) startTime = timestamp;
         const elapsed = timestamp - startTime;
-        const progress = Math.min(elapsed / duration, 1); // 0 → 1
-        const eased = 1 - Math.pow(1 - progress, 3);  // ease-out cubic
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 2.5); // ease-out
 
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
         const radius = eased * maxRadius;
-        const opacity = 1 - progress;
+        const ringOpacity = Math.pow(1 - progress, 1.5); // fades as it expands
 
-        // Interpolate stroke color  cyan (#00e5ff) → gold (#d4af37)
-        const r = Math.round(0 + (212 - 0) * progress);
-        const g = Math.round(229 + (175 - 229) * progress);
-        const b = Math.round(255 + (55 - 255) * progress);
+        // Color: cyan (#00e5ff) → gold (#d4af37)
+        const cr = Math.round(0 + (212 - 0) * progress);
+        const cg = Math.round(229 + (175 - 229) * progress);
+        const cb = Math.round(255 + (55 - 255) * progress);
+
+        // --- Radial glow fill (color wash radiating outward) ---
+        const glowRadius = radius * 0.55; // glow fills inner ~55% of ring
+        const grad = ctx.createRadialGradient(
+          originX, originY, 0,
+          originX, originY, Math.max(radius, 1)
+        );
+        grad.addColorStop(0, `rgba(0,229,255,0)`);
+        grad.addColorStop(Math.max(0, 1 - glowRadius / Math.max(radius, 1)), `rgba(0,229,255,0)`);
+        grad.addColorStop(0.92, `rgba(${cr},${cg},${cb},${ringOpacity * 0.12})`);
+        grad.addColorStop(1, `rgba(${cr},${cg},${cb},0)`);
 
         ctx.beginPath();
         ctx.arc(originX, originY, Math.max(radius, 1), 0, Math.PI * 2);
-        ctx.strokeStyle = `rgba(${r},${g},${b},${opacity * 0.7})`;
-        ctx.lineWidth = 2.5 * (1 - progress * 0.6); // thin as it expands
+        ctx.fillStyle = grad;
+        ctx.fill();
+
+        // --- Outer ring stroke ---
+        ctx.beginPath();
+        ctx.arc(originX, originY, Math.max(radius, 1), 0, Math.PI * 2);
+        ctx.strokeStyle = `rgba(${cr},${cg},${cb},${ringOpacity * 0.75})`;
+        ctx.lineWidth = 2 - progress * 1.2; // from 2px → 0.8px
         ctx.stroke();
 
         if (progress < 1) {
