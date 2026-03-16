@@ -294,11 +294,98 @@ DESIGN REFERENCE
 
   Logo:        कृष्ण ⏚  (click it for the grounding pulse → scrolls home)
   Home bg:     Deep Space radial gradient + botanical wallpaper (fades out)
-  Projects bg: ENIG Champagne Gold dots (#d4af37) — hover for flashlight glow
-  Writing bg:  Dark slate with ruled horizontal lines + gold margin line
-  Photography: Pure black
+  Projects bg: ENIG Champagne Gold dots (#d4af37 at 20%) — hover for glow
+  Writing bg:  Dark slate (#1a1a1a) + ruled lines + gold margin
+  Photography: Pure black (#000)
+  CV bg:       Deep Espresso (#181514) + faint Smith Chart arcs
   Nav:         Glassmorphism pill, always visible at top
   Gold accent: #d4af37
   Text body:   #e0e0e0
+
+
+================================================================================
+J. CHANGE BACKGROUND COLOURS & IMAGES
+================================================================================
+
+File to edit:  css/style.css
+All backgrounds are at the top of the file — search for "MOOD ZONE BACKGROUNDS".
+
+── HOME TAB ──────────────────────────────────────────────────────────────────
+  Search for:   body[data-view="home"]
+  
+  Background colour:        Change  var(--mood-home)  in the  background-color  line.
+                            Or set a hex code directly, e.g.  background-color: #0f172a;
+  
+  Radial gradient:          Change  var(--mood-home-center)  and  var(--mood-home)
+                            in the  background-image  line. These are the center
+                            and edge colours of the radial gradient.
+                            The CSS variables are defined at the very top of the
+                            file — search for  :root {  to find them.
+  
+  Botanical wallpaper:      Search for  body::before
+                            • opacity: 0.12  → raise/lower to show more/less
+                            • The image file is  assets/botanical-bg.png
+                            • To replace it, swap that file, keep the same name
+
+── PROJECTS TAB ──────────────────────────────────────────────────────────────
+  Search for:   body[data-view="projects"]
+  
+  Background colour:        Change  var(--mood-projects)  or use a hex code.
+  
+  Dot grid:                 The line that says  radial-gradient(rgba(212, 175, 55, 0.20)
+                            • 0.20 = dot opacity (20%). Raise for brighter dots.
+                            • (212, 175, 55) = dot colour (Champagne Gold).
+                              Change these RGB numbers for a different colour.
+                            • 1px = dot size. Try 1.5px for slightly larger dots.
+                            • 20px 20px = dot spacing. Smaller = denser grid.
+  
+  Flashlight glow on hover: Search for  body[data-view="projects"]::after
+                            • 0.18 = glow brightness near cursor. Raise for stronger.
+                            • 220px = glow radius. Bigger = wider spotlight.
+
+── WRITING TAB ───────────────────────────────────────────────────────────────
+  Search for:   body[data-view="writing"]
+  
+  Background colour:        Change  var(--mood-writing)  or use a hex code.
+  
+  Ruled lines:              The line that says  rgba(255, 255, 255, 0.07)
+                            • 0.07 = line opacity. Raise for more visible lines.
+                            • 32px = line spacing. Change for wider/narrower lines.
+
+── PHOTOGRAPHY TAB ───────────────────────────────────────────────────────────
+  Search for:   body[data-view="photography"]
+  
+  Background colour:        Change  var(--mood-photography)  or use a hex code.
+                            Currently pure black.
+
+── CV TAB ────────────────────────────────────────────────────────────────────
+  Search for:   body[data-view="cv"]
+  
+  Background colour:        Currently  #181514  (Deep Espresso).
+                            Change this hex code to any colour you like.
+  
+  Smith Chart:              Search for  body[data-view="cv"]::after
+                            • opacity: 0.035  → raise/lower for more/less visible.
+                            • The SVG file is  assets/smith-chart.svg
+                            • Mask: the  mask-image  line controls where it fades.
+                              "transparent 10%" = invisible zone in center (where text is).
+                              "black 70%" = fully visible zone at edges.
+                              Raise "10%" to hide more of the center.
+                            • To replace with a different image, swap the SVG file.
+
+
+── AFTER EVERY CSS EDIT ──────────────────────────────────────────────────────
+
+  You MUST bump the CSS cache version in index.html, otherwise the browser
+  will keep showing the old styles:
+  
+  1. Open  index.html
+  2. Find:    <link rel="stylesheet" href="css/style.css?v=2" />
+  3. Change  ?v=2  to  ?v=3  (then ?v=4 next time, etc.)
+  4. Deploy normally.
+  
+  Same rule for JS edits:
+  1. Find:    <script src="js/main.js?v=7">
+  2. Bump the number.
 
 ================================================================================
