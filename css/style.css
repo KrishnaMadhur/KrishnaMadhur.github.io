@@ -26,14 +26,14 @@
   /* Deep Space base */
   --mood-home-center: #1e293b;
   /* Deep Space center */
-  --mood-projects: #1a1a1a;
-  /* Charcoal */
-  --mood-writing: #1a1a1a;
-  /* Matte Slate */
-  --mood-photography: #000000;
-  /* Pure Black */
-  --mood-cv: #0B1120;
-  /* Deep Space */
+  --mood-projects: #0A0A0B;
+  /* Rich Black */
+  --mood-writing: #0A0A0B;
+  /* Rich Black */
+  --mood-photography: #0A0A0B;
+  /* Rich Black */
+  --mood-cv: #0A0A0B;
+  /* Rich Black */
 
   --gold: #d4af37;
   --gold-glow: rgba(212, 175, 55, 0.4);
@@ -191,7 +191,7 @@ body[data-view="photography"] {
 }
 
 body[data-view="cv"] {
-  background-color: #181514;
+  background-color: var(--mood-cv);
   color: #E2E8F0;
 }
 
@@ -208,11 +208,11 @@ body[data-view="cv"]::after {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  opacity: 0.035;
+  opacity: 0.09;
   pointer-events: none;
   z-index: 0;
-  -webkit-mask-image: radial-gradient(ellipse at center, transparent 10%, black 70%);
-  mask-image: radial-gradient(ellipse at center, transparent 10%, black 70%);
+  -webkit-mask-image: radial-gradient(ellipse at center, transparent 20%, black 65%);
+  mask-image: radial-gradient(ellipse at center, transparent 20%, black 65%);
 }
 
 /* ===========================================
@@ -755,6 +755,13 @@ body[data-view="writing"] .view-subtitle {
    =========================================== */
 .journal-section {
   margin-bottom: 3rem;
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+}
+
+.journal-section:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
 }
 
 .journal-section-title {
