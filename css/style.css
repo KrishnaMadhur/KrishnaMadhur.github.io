@@ -191,25 +191,28 @@ body[data-view="photography"] {
 }
 
 body[data-view="cv"] {
-  background-color: var(--mood-cv);
+  background-color: #181514;
   color: #E2E8F0;
 }
 
-/* Faint offset Smith Chart — right-shifted, only left arcs visible */
+/* Faint centered Smith Chart — masked to fade out where text sits */
 body[data-view="cv"]::after {
   content: '';
   position: fixed;
-  top: -25%;
-  right: -65%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 150vh;
   height: 150vh;
   background-image: url('../assets/smith-chart.svg');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  opacity: 0.03;
+  opacity: 0.035;
   pointer-events: none;
   z-index: 0;
+  -webkit-mask-image: radial-gradient(ellipse at center, transparent 10%, black 70%);
+  mask-image: radial-gradient(ellipse at center, transparent 10%, black 70%);
 }
 
 /* ===========================================
