@@ -71,8 +71,14 @@ body {
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
-  background: var(--mood-home);
-  transition: background-color var(--transition-slow);
+  background-color: var(--mood-home);
+  transition: background-color var(--transition-slow), opacity 0.4s ease;
+}
+
+/* Crossfade: JS adds this class briefly during tab switch */
+body.view-fading {
+  opacity: 0;
+  transition: opacity 0.2s ease;
 }
 
 a {
@@ -104,7 +110,8 @@ h4 {
    MOOD ZONE BACKGROUNDS
    =========================================== */
 body[data-view="home"] {
-  background: radial-gradient(circle at center, var(--mood-home-center) 0%, var(--mood-home) 100%);
+  background-color: var(--mood-home);
+  background-image: radial-gradient(circle at center, var(--mood-home-center) 0%, var(--mood-home) 100%);
   color: var(--white);
   position: relative;
 }
@@ -129,7 +136,7 @@ body[data-view="home"]::before {
 
 body[data-view="projects"] {
   background-color: var(--mood-projects);
-  background-image: radial-gradient(rgba(212, 175, 55, 0.18) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(212, 175, 55, 0.20) 1px, transparent 1px);
   background-size: 20px 20px;
   color: var(--white);
 }
@@ -186,12 +193,23 @@ body[data-view="photography"] {
 body[data-view="cv"] {
   background-color: var(--mood-cv);
   color: #E2E8F0;
-  /* Equipotential lines — organic topographic curves */
-  background-image:
-    radial-gradient(ellipse at 50% 0%, rgba(30, 41, 59, 0.6) 0%, transparent 70%),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='800' viewBox='0 0 800 800'%3E%3Cg fill='none' stroke='%23E2E8F0' stroke-width='0.6' opacity='0.05'%3E%3Cpath d='M0 200 Q200 150 400 220 T800 180'/%3E%3Cpath d='M0 350 Q250 300 500 370 T800 330'/%3E%3Cpath d='M0 500 Q180 460 400 520 T800 480'/%3E%3Cpath d='M0 650 Q300 600 600 670 T800 630'/%3E%3Cpath d='M0 100 Q150 60 350 110 T800 80'/%3E%3Cpath d='M0 420 Q200 380 450 440 T800 400'/%3E%3Cpath d='M0 570 Q250 530 500 590 T800 560'/%3E%3Cpath d='M0 720 Q200 690 400 740 T800 710'/%3E%3Cpath d='M0 50 Q100 20 300 60 T800 40'/%3E%3Cpath d='M0 270 Q180 240 380 280 T800 260'/%3E%3C/g%3E%3C/svg%3E");
-  background-size: cover, 800px 800px;
-  background-attachment: fixed;
+}
+
+/* Faint offset Smith Chart — right-shifted, only left arcs visible */
+body[data-view="cv"]::after {
+  content: '';
+  position: fixed;
+  top: -25%;
+  right: -65%;
+  width: 150vh;
+  height: 150vh;
+  background-image: url('../assets/smith-chart.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: 0;
 }
 
 /* ===========================================

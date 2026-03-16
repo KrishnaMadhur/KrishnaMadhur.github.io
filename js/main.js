@@ -24,31 +24,44 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function switchView(viewId) {
-    // Hide all views
-    views.forEach(v => v.classList.remove('active'));
+    const currentView = body.getAttribute('data-view');
+    if (currentView === viewId) return; // already on this view
 
-    // Deactivate all tabs
-    tabs.forEach(t => t.classList.remove('active'));
+    // Crossfade: fade out → swap → fade in (kills the gradient flash)
+    body.classList.add('view-fading');
 
-    // Show selected view
-    const target = document.getElementById(viewId);
-    if (target) {
-      target.classList.add('active');
-      triggerFloatUps(target);
-    }
+    setTimeout(() => {
+      // Hide all views
+      views.forEach(v => v.classList.remove('active'));
 
-    // Activate the clicked tab
-    const activeTab = document.querySelector(`.nav-tab[data-view="${viewId}"]`);
-    if (activeTab) activeTab.classList.add('active');
+      // Deactivate all tabs
+      tabs.forEach(t => t.classList.remove('active'));
 
-    // Switch mood zone background
-    body.setAttribute('data-view', viewId);
+      // Show selected view
+      const target = document.getElementById(viewId);
+      if (target) {
+        target.classList.add('active');
+        triggerFloatUps(target);
+      }
 
-    // Scroll to top
-    window.scrollTo(0, 0);
+      // Activate the clicked tab
+      const activeTab = document.querySelector(`.nav-tab[data-view="${viewId}"]`);
+      if (activeTab) activeTab.classList.add('active');
 
-    // Update URL hash
-    history.pushState(null, '', `#${viewId}`);
+      // Switch mood zone background
+      body.setAttribute('data-view', viewId);
+
+      // Scroll to top
+      window.scrollTo(0, 0);
+
+      // Update URL hash
+      history.pushState(null, '', `#${viewId}`);
+
+      // Fade back in
+      requestAnimationFrame(() => {
+        body.classList.remove('view-fading');
+      });
+    }, 200); // wait for fade-out to complete
   }
 
   tabs.forEach(tab => {

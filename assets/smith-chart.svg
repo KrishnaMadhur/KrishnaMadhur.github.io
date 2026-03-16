@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" fill="none">
+  <g stroke="#c8d0dc" stroke-width="1" opacity="1">
+    <!-- Outer boundary circle (unit circle) -->
+    <circle cx="500" cy="500" r="450"/>
+
+    <!-- Constant resistance circles (centered along horizontal axis, to the right) -->
+    <!-- r=0 circle is the unit circle itself -->
+    <!-- r=0.2 -->
+    <circle cx="575" cy="500" r="375"/>
+    <!-- r=0.5 -->
+    <circle cx="650" cy="500" r="300"/>
+    <!-- r=1.0 -->
+    <circle cx="725" cy="500" r="225"/>
+    <!-- r=2.0 -->
+    <circle cx="800" cy="500" r="150"/>
+    <!-- r=5.0 -->
+    <circle cx="875" cy="500" r="75"/>
+
+    <!-- Constant reactance arcs (partial circles tangent to the right end) -->
+    <!-- +j0.2 -->
+    <circle cx="950" cy="500" r="2250" clip-path="url(#smith-clip)"/>
+    <!-- +j0.5 -->
+    <circle cx="950" cy="500" r="900" clip-path="url(#smith-clip)"/>
+    <!-- +j1.0 -->
+    <circle cx="950" cy="500" r="450" clip-path="url(#smith-clip)"/>
+    <!-- +j2.0 -->
+    <circle cx="950" cy="500" r="225" clip-path="url(#smith-clip)"/>
+    <!-- +j5.0 -->
+    <circle cx="950" cy="500" r="90" clip-path="url(#smith-clip)"/>
+
+    <!-- -j0.2 -->
+    <circle cx="950" cy="500" r="2250" clip-path="url(#smith-clip)" transform="scale(1,-1) translate(0,-1000)"/>
+    <!-- -j0.5 -->
+    <circle cx="950" cy="500" r="900" clip-path="url(#smith-clip)" transform="scale(1,-1) translate(0,-1000)"/>
+    <!-- -j1.0 -->
+    <circle cx="950" cy="500" r="450" clip-path="url(#smith-clip)" transform="scale(1,-1) translate(0,-1000)"/>
+    <!-- -j2.0 -->
+    <circle cx="950" cy="500" r="225" clip-path="url(#smith-clip)" transform="scale(1,-1) translate(0,-1000)"/>
+    <!-- -j5.0 -->
+    <circle cx="950" cy="500" r="90" clip-path="url(#smith-clip)" transform="scale(1,-1) translate(0,-1000)"/>
+
+    <!-- Horizontal axis -->
+    <line x1="50" y1="500" x2="950" y2="500"/>
+  </g>
+
+  <defs>
+    <clipPath id="smith-clip">
+      <circle cx="500" cy="500" r="450"/>
+    </clipPath>
+  </defs>
+</svg>
