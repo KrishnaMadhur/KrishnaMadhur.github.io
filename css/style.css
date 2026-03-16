@@ -109,17 +109,22 @@ body[data-view="home"] {
   position: relative;
 }
 
-/* Botanical wallpaper overlay for Home */
-body[data-view="home"]::before {
+/* Botanical wallpaper overlay — always present, fades in/out with tab switch */
+body::before {
   content: '';
   position: fixed;
   inset: 0;
   background-image: url('../assets/botanical-bg.png');
   background-repeat: repeat;
   background-size: 450px 450px;
-  opacity: 0.12;
+  opacity: 0;
   pointer-events: none;
   z-index: 0;
+  transition: opacity 0.5s ease;
+}
+
+body[data-view="home"]::before {
+  opacity: 0.12;
 }
 
 body[data-view="projects"] {
@@ -889,40 +894,20 @@ body[data-view="photography"] .tag-btn.active {
   opacity: 1;
 }
 
-/* Gallery placeholder */
-.gallery-placeholder {
+/* Gallery empty fallback */
+.gallery-empty {
   text-align: center;
   padding: 6rem 2rem;
-  border: 1px dashed rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
   color: rgba(255, 255, 255, 0.35);
-}
-
-.gallery-placeholder h3 {
-  font-size: 1.15rem;
-  color: rgba(255, 255, 255, 0.5);
-  margin-bottom: 0.5rem;
-}
-
-.gallery-placeholder p {
   font-size: 0.88rem;
   line-height: 1.7;
 }
 
-.gallery-folder-list {
-  display: flex;
-  gap: 0.65rem;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-top: 1.5rem;
-}
-
-.gallery-folder-pill {
-  font-size: 0.75rem;
-  padding: 5px 14px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 100px;
-  color: rgba(255, 255, 255, 0.35);
+.gallery-empty code {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.82rem;
 }
 
 /* Lightbox */

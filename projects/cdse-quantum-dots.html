@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CdSe Quantum Dot Synthesis — Krishna Madhur Akella</title>
+    <meta name="description"
+        content="CdSe Quantum Dot synthesis and characterization at the Singh Center for Nanotechnology." />
+    <link rel="stylesheet" href="../css/style.css" />
+</head>
+
+<body class="project-detail">
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../" class="nav-logo">कृष्ण <span class="logo-ground">⏚</span></a>
+            <div class="nav-tabs">
+                <a href="../#home" class="nav-tab">Home</a>
+                <a href="../#projects" class="nav-tab active">Projects</a>
+                <a href="../#writing" class="nav-tab">Journal</a>
+                <a href="../#photography" class="nav-tab">Photography</a>
+                <a href="../#cv" class="nav-tab">CV</a>
+            </div>
+            <button class="nav-hamburger" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <main class="detail-page">
+        <a href="../#projects" class="detail-back">← Back to Projects</a>
+        <span class="detail-tag">Singh Center for Nanotechnology</span>
+        <h1 class="detail-title">CdSe Quantum Dot Synthesis</h1>
+        <p class="detail-meta">Spring 2026</p>
+
+        <div class="detail-body">
+            <!-- EDIT HERE: Add a 2-3 sentence intro about why QD synthesis matters -->
+            <h2>Overview</h2>
+            <p>
+                <!-- EDIT HERE: Describe the QD synthesis process -->
+                Synthesis of CdSe Quantum Dots via colloidal chemistry methods,
+                characterizing optical properties as a function of nanocrystal size.
+            </p>
+
+            <!-- EDIT HERE: Add fluorescence/TEM images inline -->
+            <!-- <img src="../assets/project-images/cdse-fluorescence.jpg" alt="CdSe QD fluorescence" /> -->
+
+            <h2>Key Results</h2>
+            <ul>
+                <!-- EDIT HERE: Replace with your actual results -->
+                <li>Placeholder — describe QD size distribution achieved</li>
+                <li>Placeholder — describe PL emission wavelength</li>
+                <li>Placeholder — describe TEM/UV-Vis characterization</li>
+            </ul>
+
+            <!-- EDIT HERE: Add report link if available -->
+            <!--
+            <h2>Report</h2>
+            <p>
+                <a href="../reports/CdSe-Report.pdf" class="detail-report-link"
+                    data-report="../reports/CdSe-Report.pdf">
+                    📄 View Report (PDF)
+                </a>
+            </p>
+            -->
+
+            <h2>Further Reading</h2>
+            <ul>
+                <!-- EDIT HERE: Add links to relevant papers or resources -->
+                <li><a href="#" target="_blank" rel="noopener">Placeholder — link to relevant paper</a></li>
+            </ul>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 Krishna Madhur Akella</p>
+    </footer>
+
+    <div id="pdf-modal" class="pdf-modal" style="display:none;">
+        <div class="pdf-modal-overlay"></div>
+        <div class="pdf-modal-content">
+            <button class="pdf-modal-close" aria-label="Close">&times;</button>
+            <iframe id="pdf-viewer" src="" title="Report Preview"></iframe>
+        </div>
+    </div>
+
+    <script>
+        const hamburger = document.querySelector('.nav-hamburger');
+        const navTabs = document.querySelector('.nav-tabs');
+        if (hamburger) { hamburger.addEventListener('click', () => { hamburger.classList.toggle('open'); navTabs.classList.toggle('open'); }); }
+        const pdfModal = document.getElementById('pdf-modal');
+        const pdfViewer = document.getElementById('pdf-viewer');
+        document.querySelectorAll('[data-report]').forEach(link => {
+            link.addEventListener('click', e => { e.preventDefault(); pdfViewer.src = link.getAttribute('data-report') + '#toolbar=0&navpanes=0'; pdfModal.style.display = 'flex'; document.body.style.overflow = 'hidden'; });
+        });
+        document.querySelector('.pdf-modal-close')?.addEventListener('click', () => { pdfModal.style.display = 'none'; pdfViewer.src = ''; document.body.style.overflow = ''; });
+        document.querySelector('.pdf-modal-overlay')?.addEventListener('click', () => { pdfModal.style.display = 'none'; pdfViewer.src = ''; document.body.style.overflow = ''; });
+    </script>
+</body>
+
+</html>

@@ -121,9 +121,48 @@
 
         <a href="projects/mems-cantilever.html" class="project-row float-up">
           <div>
-            <h3 class="project-row-title">Nanofabrication of MEMS &amp; Quantum Devices</h3>
-            <p class="project-row-desc">Fabricated MEMS Cantilever Beams and Comb Drive Arrays using photolithography,
-              DRIE, and wet etching. Developing process flows for GFET fabrication and CdSe Quantum Dot synthesis.</p>
+            <h3 class="project-row-title">MEMS Cantilever Beams &amp; Comb Drive Arrays</h3>
+            <p class="project-row-desc">Fabricated freestanding MEMS structures using photolithography, DRIE,
+              and wet etching. Characterized via SEM, AFM, TEM, and profilometry.</p>
+          </div>
+          <div class="project-row-meta">
+            <p class="project-row-tools">Singh Center for Nanotechnology</p>
+            <p class="project-row-date">Spring 2026</p>
+            <p class="project-row-arrow">→</p>
+          </div>
+        </a>
+
+        <a href="projects/dsa.html" class="project-row float-up">
+          <div>
+            <h3 class="project-row-title">Directed Self-Assembly (DSA)</h3>
+            <p class="project-row-desc">Block copolymer nanopatterning beyond photolithographic resolution limits.
+              Developing DSA process flows for sub-20nm features.</p>
+          </div>
+          <div class="project-row-meta">
+            <p class="project-row-tools">Singh Center for Nanotechnology</p>
+            <p class="project-row-date">Spring 2026</p>
+            <p class="project-row-arrow">→</p>
+          </div>
+        </a>
+
+        <a href="projects/graphene-transistor.html" class="project-row float-up">
+          <div>
+            <h3 class="project-row-title">Graphene Field-Effect Transistor (GFET)</h3>
+            <p class="project-row-desc">Developing process flows for GFET fabrication using CVD-grown graphene
+              transferred onto SiO₂/Si substrates.</p>
+          </div>
+          <div class="project-row-meta">
+            <p class="project-row-tools">Singh Center for Nanotechnology</p>
+            <p class="project-row-date">Spring 2026</p>
+            <p class="project-row-arrow">→</p>
+          </div>
+        </a>
+
+        <a href="projects/cdse-quantum-dots.html" class="project-row float-up">
+          <div>
+            <h3 class="project-row-title">CdSe Quantum Dot Synthesis</h3>
+            <p class="project-row-desc">Colloidal synthesis of CdSe Quantum Dots, characterizing optical
+              properties and nanocrystal size distributions via UV-Vis and TEM.</p>
           </div>
           <div class="project-row-meta">
             <p class="project-row-tools">Singh Center for Nanotechnology</p>
@@ -286,18 +325,12 @@
         <p class="view-subtitle">Moments captured through the lens</p>
       </div>
 
-      <div class="gallery-placeholder float-up">
-        <h3>Gallery coming soon</h3>
-        <p>Drop your photos into the category folders and they'll appear here.</p>
-        <div class="gallery-folder-list">
-          <span class="gallery-folder-pill">architecture</span>
-          <span class="gallery-folder-pill">street</span>
-          <span class="gallery-folder-pill">macro</span>
-          <span class="gallery-folder-pill">travel</span>
-          <span class="gallery-folder-pill">campus</span>
-          <span class="gallery-folder-pill">nature</span>
-        </div>
+      <div id="gallery-grid" class="gallery-grid float-up">
+        <!-- JS populates this from assets/gallery/photos.json -->
       </div>
+      <p id="gallery-empty" class="gallery-empty" style="display:none;">Gallery coming soon — drop photos into
+        <code>assets/gallery/</code> and add them to <code>photos.json</code>.
+      </p>
     </div>
   </div>
 
@@ -411,7 +444,7 @@
     <img src="" alt="Full size" />
   </div>
 
-  <script src="js/main.js?v=5"></script>
+  <script src="js/main.js?v=6"></script>
 </body>
 
 </html>

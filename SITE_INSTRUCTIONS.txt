@@ -1,6 +1,6 @@
 ================================================================================
   WEBSITE MAINTENANCE GUIDE — krishnamadhur.github.io
-  Last Updated: March 1, 2026
+  Last Updated: March 16, 2026
 ================================================================================
 
 HOW TO MAKE CHANGES IN 3 STEPS:
@@ -12,26 +12,7 @@ HOW TO MAKE CHANGES IN 3 STEPS:
 
 
 ================================================================================
-A. UPDATE THE MEMS REPORT (or any report)
-================================================================================
-
-1. Open:  projects/mems-cantilever.html
-
-2. Find this section (Ctrl+F / Cmd+F for "data-report"):
-
-       <a href="../reports/FILENAME.pdf" class="detail-report-link"
-           data-report="../reports/FILENAME.pdf">
-           📄 View Final Report (PDF)
-       </a>
-
-3. Replace BOTH occurrences of the filename with your new PDF filename.
-   ⚠️  Make sure your new PDF is already in the  reports/  folder.
-
-4. Save, deploy (Step 2 above).
-
-
-================================================================================
-B. UPDATE ANY TEXT ON THE HOME PAGE
+A. UPDATE ANY TEXT ON THE HOME PAGE
 ================================================================================
 
 1. Open:  index.html  (in the root folder)
@@ -49,7 +30,7 @@ B. UPDATE ANY TEXT ON THE HOME PAGE
 
 
 ================================================================================
-C. UPDATE THE CV
+B. UPDATE THE CV
 ================================================================================
 
 1. Open:  index.html
@@ -68,7 +49,7 @@ C. UPDATE THE CV
 
 
 ================================================================================
-D. ADD A NEW BLOG POST
+C. ADD A NEW BLOG POST
 ================================================================================
 
 Step 1: Create the post file
@@ -102,21 +83,26 @@ Step 4: Deploy.
 
 
 ================================================================================
-E. ADD A NEW PROJECT
+D. ADD A NEW PROJECT
 ================================================================================
 
-Step 1: Create the project page
+Step 1: Create the project detail page
    a. In Finder, go to:  projects/
-   b. Duplicate any existing project file (e.g.  sensor-board.html)
+   b. Duplicate any existing project file (e.g.  dsa.html)
    c. Rename it (e.g.  new-project.html)
-   d. Open and edit:
-      • Title in the <title> tag
-      • The <h1 class="detail-title"> heading
-      • The <p class="detail-meta"> date/tools line
-      • All the content inside <div class="detail-body">
-        (use <h2> for section headings, <p> for paragraphs, <ul><li> for lists)
+   d. Open the new file and edit:
+      • <title> tag — your project title
+      • <h1 class="detail-title"> — the heading
+      • <p class="detail-meta"> — date and tools
+      • Everything inside <div class="detail-body">:
+        - <h2> for section headings
+        - <p> for paragraphs
+        - <ul><li> for bullet lists
+        - <img src="..." alt="..."> for inline images
+      • Report link (see Section F below for how to add PDFs)
+      • "Further Reading" links at the bottom
 
-Step 2: Add a card to the Projects tab
+Step 2: Add a project card to the Projects tab
    a. Open  index.html
    b. Search for  "projects-list"
    c. Add this block inside that section:
@@ -137,82 +123,79 @@ Step 3: Deploy.
 
 
 ================================================================================
-F. ADD PHOTOS TO THE GALLERY
+E. EDIT AN EXISTING PROJECT
 ================================================================================
 
-Step 1: Copy your photos into the right folder:
-   assets/gallery/architecture/
-   assets/gallery/street/
-   assets/gallery/macro/
-   assets/gallery/travel/
-   assets/gallery/campus/
-   assets/gallery/nature/
+1. Open the project's .html file in  projects/  folder.
 
-Step 2: Open  index.html  and search for  "photography"
+2. Edit the content directly:
+   • Title          →  <h1 class="detail-title">
+   • Date/tools     →  <p class="detail-meta">
+   • Body text      →  everything inside  <div class="detail-body">
+   • Add images     →  <img src="../assets/project-images/your-image.jpg" alt="Description" />
+                       (put the image file in  assets/project-images/  first)
+   • Add sections   →  <h2>New Section</h2> <p>Your paragraph.</p>
 
-Step 3: Replace the placeholder with:
+3. Save, deploy.
 
-   <div class="gallery-grid">
-     <div class="gallery-item" data-category="street">
-       <img src="assets/gallery/street/photo1.jpg" alt="Brief description" />
-     </div>
-     <div class="gallery-item" data-category="macro">
-       <img src="assets/gallery/macro/photo2.jpg" alt="Brief description" />
-     </div>
-   </div>
+Current nanofab project files:
+   • projects/mems-cantilever.html      — MEMS Cantilever Beams & Comb Drives
+   • projects/dsa.html                  — Directed Self-Assembly (DSA)
+   • projects/graphene-transistor.html  — Graphene FET (GFET)
+   • projects/cdse-quantum-dots.html    — CdSe Quantum Dot Synthesis
 
-   Clicking any photo opens a full-screen lightbox automatically.
+
+================================================================================
+F. ADD OR UPDATE A PROJECT REPORT (PDF)
+================================================================================
+
+Step 1: Put your PDF in the  reports/  folder.
+
+Step 2: Open the project's .html file in  projects/.
+
+Step 3: Find or add the Report section. It should look like this:
+
+       <h2>Report</h2>
+       <p>
+           <a href="../reports/YOUR-REPORT.pdf" class="detail-report-link"
+               data-report="../reports/YOUR-REPORT.pdf">
+               📄 View Report (PDF)
+           </a>
+       </p>
+
+   ⚠️  Replace YOUR-REPORT.pdf in BOTH the  href  and  data-report  attributes.
+   ⚠️  If the section is commented out (<!-- -->), remove the comment markers.
+
+Step 4: Save, deploy.
+
+
+================================================================================
+G. ADD PHOTOS TO THE GALLERY
+================================================================================
+
+Photography tab auto-populates from a  photos.json  manifest file.
+
+Step 1: Copy your photo into:  assets/gallery/
+   Any format works (jpg, jpeg, png, webp).
+
+Step 2: Open:  assets/gallery/photos.json
+
+Step 3: Add one line for each new photo. Example:
+
+   [
+     {"file": "LocustWalk.jpeg", "caption": "Locust Walk, University of Pennsylvania"},
+     {"file": "your-new-photo.jpg", "caption": "Caption shown on hover"}
+   ]
+
+   ⚠️  Make sure the last entry does NOT have a trailing comma.
+   ⚠️  The "file" must match the exact filename (case-sensitive).
+   ⚠️  The "caption" appears when hovering over the photo.
 
 Step 4: Deploy.
 
+   To remove a photo: delete its line from photos.json (and optionally
+   delete the file from  assets/gallery/).
 
-================================================================================
-G. TESTING LOCALLY (before deploying)
-================================================================================
-
-The local server should still be running. Open your browser and go to:
-   http://localhost:8000
-
-If the server is not running:
-   cd /Users/krishnamadhurakella/Developer/KrishnaMadhur.github.io
-   python3 -m http.server 8000
-
-
-================================================================================
-QUICK DEPLOY COMMAND (copy-paste this every time)
-================================================================================
-
-   cd /Users/krishnamadhurakella/Developer/KrishnaMadhur.github.io
-   git add -A && git commit -m "describe what you changed" && git push origin main
-
-
-================================================================================
-WHERE THINGS LIVE (file map)
-================================================================================
-
-  index.html                  ← MAIN FILE — Home, Projects, Writing, Photos, CV
-  css/style.css               ← All visual styles
-  js/main.js                  ← Animations, tab switching, PDF viewer
-  projects/                   ← One .html file per project
-  writing/posts/              ← One .html file per blog post
-  writing/posts/_template.html ← Copy this for new posts
-  assets/gallery/             ← Photo folders
-  reports/                    ← PDF reports (put new PDFs here)
-  AKM_Industry_Resume.pdf     ← Your resume
-
-
-================================================================================
-DESIGN REFERENCE (do not edit these unless intentional)
-================================================================================
-
-  Logo:        कृष्ण ⏚  (click it to reset to Home with a spark animation)
-  Home bg:     Deep Space radial gradient
-  Projects bg: ENIG Champagne Gold dots (#d4af37) — hover for flashlight glow
-  Writing bg:  Dark slate with ruled horizontal lines + gold margin line
-  Photography: Pure black
-  Nav:         Glassmorphism pill, always visible at top
-  Gold accent: #d4af37
-  Text body:   #e0e0e0
 
 ================================================================================
 H. TWEAK THE LOGO GROUNDING PULSE
@@ -251,9 +234,71 @@ All tunable values are in the drawRipple function just below that comment.
                                                  Replace with any RGB values.
 
 IMPORTANT — after every edit to main.js, also do this in index.html:
-  • Find:    <script src="js/main.js?v=4">
-  • Change the number higher, e.g. ?v=5, then ?v=6 for the next edit.
+  • Find:    <script src="js/main.js?v=6">
+  • Change the number higher, e.g. ?v=7, then ?v=8 for the next edit.
   • This forces the browser to load the new version instead of the cache.
   • Then deploy normally.
+
+
+================================================================================
+I. TESTING LOCALLY (before deploying)
+================================================================================
+
+The local server should still be running. Open your browser and go to:
+   http://localhost:8000
+
+If the server is not running:
+   cd /Users/krishnamadhurakella/Developer/KrishnaMadhur.github.io
+   python3 -m http.server 8000
+
+If changes don't appear, open DevTools (Cmd+Opt+I) → Network tab →
+check "Disable cache" → refresh.
+
+
+================================================================================
+QUICK DEPLOY COMMAND (copy-paste this every time)
+================================================================================
+
+   cd /Users/krishnamadhurakella/Developer/KrishnaMadhur.github.io
+   git add -A && git commit -m "describe what you changed" && git push origin main
+
+
+================================================================================
+WHERE THINGS LIVE (file map)
+================================================================================
+
+  index.html                  ← MAIN FILE — Home, Projects, Writing, Photos, CV
+  css/style.css               ← All visual styles
+  js/main.js                  ← Animations, tab switching, gallery loader
+  projects/                   ← One .html file per project
+    mems-cantilever.html      ← MEMS Cantilevers & Comb Drives
+    dsa.html                  ← Directed Self-Assembly
+    graphene-transistor.html  ← Graphene FET
+    cdse-quantum-dots.html    ← CdSe Quantum Dots
+    alscn-ferroelectrics.html ← AlScN Ferroelectric Devices
+    tia-optical-receiver.html ← Wideband TIA
+    sram-array.html           ← SRAM Array
+    device-modelling.html     ← Device Modelling
+    sensor-board.html         ← Sensor Board
+  writing/posts/              ← One .html file per blog post
+  writing/posts/_template.html ← Copy this for new posts
+  assets/gallery/             ← Photos (flat folder, no subfolders needed)
+  assets/gallery/photos.json  ← Photo manifest (filename + caption pairs)
+  reports/                    ← PDF reports
+  AKM_Industry_Resume.pdf     ← Your resume
+
+
+================================================================================
+DESIGN REFERENCE
+================================================================================
+
+  Logo:        कृष्ण ⏚  (click it for the grounding pulse → scrolls home)
+  Home bg:     Deep Space radial gradient + botanical wallpaper (fades out)
+  Projects bg: ENIG Champagne Gold dots (#d4af37) — hover for flashlight glow
+  Writing bg:  Dark slate with ruled horizontal lines + gold margin line
+  Photography: Pure black
+  Nav:         Glassmorphism pill, always visible at top
+  Gold accent: #d4af37
+  Text body:   #e0e0e0
 
 ================================================================================

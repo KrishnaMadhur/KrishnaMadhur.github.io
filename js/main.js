@@ -143,20 +143,49 @@ document.addEventListener('DOMContentLoaded', () => {
   if (pdfClose) pdfClose.addEventListener('click', closePdfModal);
   if (pdfOverlay) pdfOverlay.addEventListener('click', closePdfModal);
 
-  /* ---------- Lightbox (Photography) ---------- */
+  /* ---------- Gallery Loader (Photography) ---------- */
+  const galleryGrid = document.getElementById('gallery-grid');
+  const galleryEmpty = document.getElementById('gallery-empty');
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = lightbox ? lightbox.querySelector('img') : null;
 
-  if (lightbox) {
-    document.querySelectorAll('.gallery-item').forEach(item => {
-      item.addEventListener('click', () => {
-        const imgSrc = item.querySelector('img').src;
-        lightboxImg.src = imgSrc;
-        lightbox.classList.add('open');
-        body.style.overflow = 'hidden';
+  // Fetch photos.json and build the gallery
+  if (galleryGrid) {
+    fetch('assets/gallery/photos.json')
+      .then(r => r.json())
+      .then(photos => {
+        if (!photos || photos.length === 0) {
+          galleryGrid.style.display = 'none';
+          if (galleryEmpty) galleryEmpty.style.display = 'block';
+          return;
+        }
+        photos.forEach(photo => {
+          const item = document.createElement('div');
+          item.className = 'gallery-item';
+          item.innerHTML = `
+            <img src="assets/gallery/${photo.file}" alt="${photo.caption || ''}" loading="lazy" />
+            <div class="gallery-item-caption">${photo.caption || ''}</div>
+          `;
+          galleryGrid.appendChild(item);
+        });
+      })
+      .catch(() => {
+        galleryGrid.style.display = 'none';
+        if (galleryEmpty) galleryEmpty.style.display = 'block';
       });
-    });
 
+    // Event-delegated lightbox (works for dynamically added items)
+    galleryGrid.addEventListener('click', (e) => {
+      const item = e.target.closest('.gallery-item');
+      if (!item || !lightbox) return;
+      const imgSrc = item.querySelector('img').src;
+      lightboxImg.src = imgSrc;
+      lightbox.classList.add('open');
+      body.style.overflow = 'hidden';
+    });
+  }
+
+  if (lightbox) {
     lightbox.addEventListener('click', () => {
       lightbox.classList.remove('open');
       body.style.overflow = '';
