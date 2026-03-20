@@ -81,7 +81,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Handle initial hash or default to home
   const initialView = window.location.hash.replace('#', '') || 'home';
-  switchView(initialView);
+
+  // Initial setup — no crossfade, just show the right view and trigger float-ups
+  const initialTarget = document.getElementById(initialView);
+  if (initialTarget) {
+    views.forEach(v => v.classList.remove('active'));
+    initialTarget.classList.add('active');
+    triggerFloatUps(initialTarget);
+  }
+  const initialTab = document.querySelector(`.nav-tab[data-view="${initialView}"]`);
+  if (initialTab) {
+    tabs.forEach(t => t.classList.remove('active'));
+    initialTab.classList.add('active');
+  }
+  body.setAttribute('data-view', initialView);
+  if (initialView !== 'home') history.replaceState(null, '', `#${initialView}`);
 
   // Handle browser back/forward
   window.addEventListener('popstate', () => {
