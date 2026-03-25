@@ -1,6 +1,6 @@
 ================================================================================
   WEBSITE MAINTENANCE GUIDE — krishnamadhur.github.io
-  Last Updated: March 16, 2026
+  Last Updated: March 25, 2026
 ================================================================================
 
 HOW TO MAKE CHANGES IN 3 STEPS:
@@ -10,42 +10,60 @@ HOW TO MAKE CHANGES IN 3 STEPS:
        git add -A && git commit -m "what you changed" && git push origin main
   3. Wait ~2 minutes → live at https://krishnamadhur.github.io
 
+⚠️  IMPORTANT — CACHE BUSTING
+   After editing  css/style.css  or  js/main.js , you MUST bump the version
+   number in index.html so the browser loads the new file:
+
+     CSS:  <link rel="stylesheet" href="css/style.css?v=3" />
+           → change  ?v=3  to  ?v=4 , then  ?v=5 , etc.
+
+     JS:   <script src="js/main.js?v=8">
+           → change  ?v=8  to  ?v=9 , then  ?v=10 , etc.
+
+   If you skip this step, the browser will keep showing old styles/behaviour.
+
 
 ================================================================================
 A. UPDATE ANY TEXT ON THE HOME PAGE
 ================================================================================
 
-1. Open:  index.html  (in the root folder)
+File:  index.html
 
-2. Use Cmd+F to search for the text you want to change.
+1. Open index.html and use Cmd+F to find the text you want to change.
 
-3. Edit it directly. The sections are:
+2. Edit it directly. Searchable markers:
    • Your name / tagline    → search for  "home-tagline"
    • Your bio paragraph     → search for  "home-bio"
    • Status LED text        → search for  "status-text"
-     (e.g. change "Characterizing AlScN..." to whatever you're working on now)
+     (e.g. "Characterizing AlScN..." → whatever you're working on now)
    • Selected Work items    → search for  "selected-work-item"
+   • Contact links          → search for  "home-links"
 
-4. Save, deploy.
+3. Save, deploy.
 
 
 ================================================================================
 B. UPDATE THE CV
 ================================================================================
 
-1. Open:  index.html
+File:  index.html
 
-2. Use Cmd+F to search for the text you want to update.
-   Everything in the CV is plain text — just edit it directly.
+1. Cmd+F to find the text you want to update.
+   Everything in the CV is plain text — edit directly.
 
-   Structure reference:
-   • Education entries     → look for  "cv-edu-item"
-   • Experience entries    → look for  "cv-exp-item"
-   • Each bullet point is  <li>text here</li>
-   • Skills tags           → look for  "cv-skill-tag"
-   • Leadership entries    → look for  "cv-leadership-item"
+   Searchable markers:
+   • Education entries     → search for  "cv-edu-item"
+   • Experience entries    → search for  "cv-exp-item"
+   • Each bullet point     →  <li>text here</li>
+   • Skills tags           → search for  "cv-skill-tag"
+   • Leadership entries    → search for  "cv-leadership-item"
 
-3. Save, deploy.
+   To ADD a new education entry, copy-paste an existing  <div class="cv-edu-item">
+   block and edit the text inside.
+   
+   To ADD a new skill tag, add:  <span class="cv-skill-tag">New Skill</span>
+
+2. Save, deploy.
 
 
 ================================================================================
@@ -53,12 +71,12 @@ C. ADD A NEW BLOG POST
 ================================================================================
 
 Step 1: Create the post file
-   a. In Finder, go to:  writing/posts/
-   b. Duplicate the file  _template.html
-   c. Rename it to something like  my-article.html
+   a. Go to:  writing/posts/
+   b. Duplicate  _template.html
+   c. Rename it (e.g.  my-article.html)
 
 Step 2: Edit the new file
-   Open it and replace these placeholders:
+   Find and replace these placeholders:
    • TITLE HERE           → your post title
    • TAG HERE             → one of: Technical  /  Books  /  Personal
    • DATE HERE            → e.g.  March 2026
@@ -87,20 +105,27 @@ D. ADD A NEW PROJECT
 ================================================================================
 
 Step 1: Create the project detail page
-   a. In Finder, go to:  projects/
+   a. Go to:  projects/
    b. Duplicate any existing project file (e.g.  dsa.html)
    c. Rename it (e.g.  new-project.html)
-   d. Open the new file and edit:
-      • <title> tag — your project title
-      • <h1 class="detail-title"> — the heading
-      • <p class="detail-meta"> — date and tools
-      • Everything inside <div class="detail-body">:
-        - <h2> for section headings
-        - <p> for paragraphs
-        - <ul><li> for bullet lists
-        - <img src="..." alt="..."> for inline images
-      • Report link (see Section F below for how to add PDFs)
-      • "Further Reading" links at the bottom
+   d. Open the new file and edit these parts:
+
+      IN THE <head>:
+      • <title> tag                → your project title
+      • <meta name="description"> → one-line summary
+
+      IN THE <main> BODY:
+      • <span class="detail-tag">   → lab/platform name
+      • <h1 class="detail-title">   → project heading
+      • <p class="detail-meta">     → date (e.g. "Spring 2026")
+
+      IN THE <div class="detail-body">:
+      • <h2> tags                   → section headings
+      • <p> tags                    → paragraph text
+      • <ul><li> tags               → bullet-point lists
+      • <img> tags                  → inline images (see Section E2)
+      • Report link                 → see Section F
+      • Further Reading links       → at the bottom
 
 Step 2: Add a project card to the Projects tab
    a. Open  index.html
@@ -126,34 +151,75 @@ Step 3: Deploy.
 E. EDIT AN EXISTING PROJECT
 ================================================================================
 
-1. Open the project's .html file in  projects/  folder.
+──── E1. EDIT TEXT ────
+
+1. Open the project's .html file in the  projects/  folder.
 
 2. Edit the content directly:
    • Title          →  <h1 class="detail-title">
    • Date/tools     →  <p class="detail-meta">
    • Body text      →  everything inside  <div class="detail-body">
-   • Add images     →  <img src="../assets/project-images/your-image.jpg" alt="Description" />
-                       (put the image file in  assets/project-images/  first)
-   • Add sections   →  <h2>New Section</h2> <p>Your paragraph.</p>
+   • Add a section  →  <h2>New Section</h2> <p>Your paragraph.</p>
 
 3. Save, deploy.
 
-Current nanofab project files:
-   • projects/mems-cantilever.html      — MEMS Cantilever Beams & Comb Drives
-   • projects/dsa.html                  — Directed Self-Assembly (DSA)
-   • projects/graphene-transistor.html  — Graphene FET (GFET)
-   • projects/cdse-quantum-dots.html    — CdSe Quantum Dot Synthesis
+──── E2. ADD INLINE IMAGES TO A PROJECT PAGE ────
+
+1. Put your image file in:  assets/project-images/
+   (Create this folder if it doesn't exist yet.)
+
+2. In the project's .html file, add this where you want the image:
+
+       <img src="../assets/project-images/your-image.jpg" alt="Description" />
+
+   ⚠️  The  ../  prefix is needed because project pages are inside  projects/.
+   ⚠️  Use descriptive alt text for accessibility.
+
+3. Save, deploy.
+
+──── E3. EDIT THE PROJECT CARD ON THE MAIN PAGE ────
+
+The project card is what appears on the Projects tab (the row with title,
+description, tools, and date). To change it:
+
+1. Open  index.html
+2. Search for the project title text (e.g. "Directed Self-Assembly")
+3. Edit the text inside  <h3 class="project-row-title">  and
+   <p class="project-row-desc">
+
+4. Save, deploy.
+
+──── E4. REMOVE A PROJECT ────
+
+1. Delete the project's .html file from  projects/
+2. Open  index.html  and delete the entire  <a href="projects/..." class="project-row">
+   block for that project.
+3. Save, deploy.
+
+Current project files:
+   • projects/alscn-ferroelectrics.html ← AlScN Ferroelectric Devices
+   • projects/mems-cantilever.html      ← MEMS Cantilever Beams & Comb Drives
+   • projects/dsa.html                  ← Directed Self-Assembly (DSA)
+   • projects/graphene-transistor.html  ← Graphene FET (GFET)
+   • projects/cdse-quantum-dots.html    ← CdSe Quantum Dot Synthesis
+   • projects/tia-optical-receiver.html ← Wideband TIA
+   • projects/sram-array.html           ← SRAM Array
+   • projects/device-modelling.html     ← Device Modelling
+   • projects/sensor-board.html         ← Sensor Board
 
 
 ================================================================================
 F. ADD OR UPDATE A PROJECT REPORT (PDF)
 ================================================================================
 
-Step 1: Put your PDF in the  reports/  folder.
+Step 1: Put the PDF in:  reports/
 
-Step 2: Open the project's .html file in  projects/.
+Step 2: Open the project's .html file in  projects/
 
-Step 3: Find or add the Report section. It should look like this:
+Step 3: Look for the Report section.
+   • If it exists (already visible), change the filename in BOTH places.
+   • If it is COMMENTED OUT (wrapped in <!-- -->), remove those markers.
+   • If it doesn't exist at all, add this block before  </div>  (end of detail-body):
 
        <h2>Report</h2>
        <p>
@@ -163,37 +229,54 @@ Step 3: Find or add the Report section. It should look like this:
            </a>
        </p>
 
-   ⚠️  Replace YOUR-REPORT.pdf in BOTH the  href  and  data-report  attributes.
-   ⚠️  If the section is commented out (<!-- -->), remove the comment markers.
+   ⚠️  Replace  YOUR-REPORT.pdf  in BOTH the  href  and  data-report  attributes.
+       They must be identical.
 
-Step 4: Save, deploy.
+   Example: For "ESE5360_DSA-Report_GrpA.pdf", it becomes:
+       href="../reports/ESE5360_DSA-Report_GrpA.pdf"
+       data-report="../reports/ESE5360_DSA-Report_GrpA.pdf"
+
+HOW TO UNCOMMENT A REPORT SECTION:
+   If the report block looks like this:
+       <!--
+       <h2>Report</h2>
+       ...
+       -->
+   Delete the  <!--  at the top and the  -->  at the bottom.
+   Then update the filename. Save, deploy.
+
+Step 4: Deploy.
+
+Current reports:
+   • reports/ESE5360_MEMS-Report_GrpA.pdf  ← linked in mems-cantilever.html
+   • reports/ESE5360_DSA-Report_GrpA.pdf   ← linked in dsa.html
 
 
 ================================================================================
 G. ADD PHOTOS TO THE GALLERY
 ================================================================================
 
-Photography tab auto-populates from a  photos.json  manifest file.
+The Photography tab auto-populates from  assets/gallery/photos.json.
 
 Step 1: Copy your photo into:  assets/gallery/
    Any format works (jpg, jpeg, png, webp).
 
 Step 2: Open:  assets/gallery/photos.json
 
-Step 3: Add one line for each new photo. Example:
+Step 3: Add one entry per photo:
 
    [
      {"file": "LocustWalk.jpeg", "caption": "Locust Walk, University of Pennsylvania"},
      {"file": "your-new-photo.jpg", "caption": "Caption shown on hover"}
    ]
 
-   ⚠️  Make sure the last entry does NOT have a trailing comma.
-   ⚠️  The "file" must match the exact filename (case-sensitive).
-   ⚠️  The "caption" appears when hovering over the photo.
+   ⚠️  "file" must match the exact filename (case-sensitive).
+   ⚠️  "caption" is what appears when you hover over the photo.
+   ⚠️  Last entry must NOT have a trailing comma.
 
 Step 4: Deploy.
 
-   To remove a photo: delete its line from photos.json (and optionally
+   To REMOVE a photo: delete its line from photos.json (and optionally
    delete the file from  assets/gallery/).
 
 
@@ -201,58 +284,150 @@ Step 4: Deploy.
 H. TWEAK THE LOGO GROUNDING PULSE
 ================================================================================
 
-File to edit:  js/main.js
-Search for:    "// 2. Canvas shockwave"
+File:  js/main.js
+Search for:  "// 2. Canvas shockwave"
 
-All tunable values are in the drawRipple function just below that comment.
+   WHAT                  LOOK FOR                 WHAT IT CONTROLS
+   ────────────────────  ───────────────────────  ────────────────────────────
+   Speed                 const duration = 5000    Milliseconds. 3000 = snappy,
+                                                  8000 = cinematic.
 
-  WHAT                  LOOK FOR IN main.js      WHAT IT CONTROLS
-  ────────────────────  ───────────────────────  ────────────────────────────
-  Speed                 const duration = 5000    Time in milliseconds.
-                                                 5000 = 5 sec. Try 3000
-                                                 (snappy) or 8000 (cinematic)
+   Ring brightness       ringOpacity * 0.75       Ring stroke opacity (0–1).
 
-  Ring brightness       ringOpacity * 0.75       Opacity of the outer ring
-                                                 stroke (0–1). Raise for
-                                                 a more visible hard edge.
+   Colour wash glow      ringOpacity * 0.12       Fill wash behind the ring.
+                                                  Try 0.25 for stronger,
+                                                  0.05 for barely-there.
 
-  Colour wash glow      ringOpacity * 0.12       Opacity of the colour fill
-                                                 wash behind the ring.
-                                                 Try 0.25 for stronger glow,
-                                                 0.05 for barely-there.
+   Glow width            radius * 0.55            How far inward the fill extends.
+                                                  Try 0.8 for wider.
 
-  Glow width            radius * 0.55            How far inward the fill
-                                                 glow reaches. 0.55 = inner
-                                                 55%. Try 0.8 for wider.
+   Ring thickness        2 - progress * 1.2       Change "2" to 3 or 4 for thicker.
 
-  Ring thickness        2 - progress * 1.2       Stroke width at start.
-                                                 Change leading "2" to 3 or 4
-                                                 for a thicker ring.
+   Start colour          rgba(0, 229, 255, ...)   Cyan at click.
+   End colour            rgba(212, 175, 55, ...)  Gold at fade-out.
+                                                  Replace with any RGB values.
 
-  Start colour          rgba(0, 229, 255, ...)   Cyan at the moment of click.
-  End colour            rgba(212, 175, 55, ...)  Gold as it fades out.
-                                                 Replace with any RGB values.
-
-IMPORTANT — after every edit to main.js, also do this in index.html:
-  • Find:    <script src="js/main.js?v=6">
-  • Change the number higher, e.g. ?v=7, then ?v=8 for the next edit.
-  • This forces the browser to load the new version instead of the cache.
-  • Then deploy normally.
+⚠️  After editing main.js, bump the JS cache version (see top of this file).
 
 
 ================================================================================
 I. TESTING LOCALLY (before deploying)
 ================================================================================
 
-The local server should still be running. Open your browser and go to:
+Open your browser and go to:
    http://localhost:8000
 
 If the server is not running:
    cd /Users/krishnamadhurakella/Developer/KrishnaMadhur.github.io
    python3 -m http.server 8000
 
-If changes don't appear, open DevTools (Cmd+Opt+I) → Network tab →
-check "Disable cache" → refresh.
+If changes don't appear:
+   • Try Cmd+Shift+R (hard refresh)
+   • Or open DevTools (Cmd+Opt+I) → Network tab → check "Disable cache" → refresh
+   • Or open in an incognito window
+
+
+================================================================================
+J. CHANGE BACKGROUND COLOURS & IMAGES
+================================================================================
+
+File:  css/style.css
+Search for:  "MOOD ZONE BACKGROUNDS"
+
+All tab backgrounds live near the top of the file. Here is what
+controls each tab:
+
+── HOME TAB ──────────────────────────────────────────────────────────────────
+  Search for:   body[data-view="home"]
+
+  Background colour:        var(--mood-home) in the background-color line.
+                            Or use a direct hex, e.g.  background-color: #0f172a;
+                            The CSS variables are at the very top of the
+                            file — search for  :root {
+
+  Radial gradient:          Change  var(--mood-home-center) and var(--mood-home)
+                            in the background-image line.
+                            These are the center and edge colours.
+
+  Botanical wallpaper:      Search for  body::before
+                            • opacity: 0.12  → raise/lower for more/less
+                            • Image file: assets/botanical-bg.png
+                            • To replace, swap the file, keep the same name
+
+── PROJECTS TAB ──────────────────────────────────────────────────────────────
+  Search for:   body[data-view="projects"]
+
+  Background colour:        var(--mood-projects) — currently Rich Black #0A0A0B
+
+  Dot grid:                 radial-gradient(rgba(212, 175, 55, 0.20) ...
+                            • 0.20 = dot opacity. Raise = brighter.
+                            • (212, 175, 55) = dot colour (Gold). Change RGB.
+                            • 1px = dot size. Try 1.5px for bigger dots.
+                            • 20px 20px = spacing. Smaller = denser grid.
+
+  Flashlight cursor glow:   Search for  body[data-view="projects"]::after
+                            • 0.18 = glow brightness. 
+                            • 220px = glow radius.
+
+── WRITING TAB ───────────────────────────────────────────────────────────────
+  Search for:   body[data-view="writing"]
+
+  Background colour:        var(--mood-writing) — currently Rich Black #0A0A0B
+
+  Ruled lines:              rgba(255, 255, 255, 0.07)
+                            • 0.07 = line visibility. Raise for darker lines.
+                            • 32px = line spacing.
+
+── PHOTOGRAPHY TAB ───────────────────────────────────────────────────────────
+  Search for:   body[data-view="photography"]
+
+  Background colour:        var(--mood-photography) — currently Rich Black #0A0A0B
+
+── CV TAB ────────────────────────────────────────────────────────────────────
+  Search for:   body[data-view="cv"]
+
+  Background colour:        var(--mood-cv) — currently Rich Black #0A0A0B
+
+  Smith Chart:              Search for  body[data-view="cv"]::after
+                            • opacity: 0.09  → raise/lower for visibility
+                            • SVG file: assets/smith-chart.svg
+                            • SVG stroke colour: open the SVG, change the
+                              stroke="#9CA3AF" value. Currently Silver/Slate.
+                            • Mask (center fade-out):
+                              mask-image: radial-gradient(ellipse at center,
+                                transparent 20%, black 65%);
+                              "transparent 20%" = invisible zone radius.
+                              "black 65%" = fully visible zone.
+                              Raise "20%" to hide more of the center.
+
+── CHANGING THE SHARED BASE COLOUR ───────────────────────────────────────────
+  All non-Home tabs use a CSS variable. To change them all at once:
+  1. Open  css/style.css
+  2. Search for  :root {
+  3. Change the four  --mood-*  values to your new colour:
+       --mood-projects: #0A0A0B;
+       --mood-writing: #0A0A0B;
+       --mood-photography: #0A0A0B;
+       --mood-cv: #0A0A0B;
+  4. Bump CSS cache version, deploy.
+
+⚠️  After any CSS edit, bump the CSS cache version (see top of this file).
+
+
+================================================================================
+K. CHANGE THE FLUTE FOOTER DIVIDER
+================================================================================
+
+File:  index.html
+Search for:  "flute-divider" or the <svg> near the footer.
+
+The flute is an inline SVG using a linear gradient from Silver to Teal.
+To change colours:
+   • Search for  <stop offset=  inside the flute SVG
+   • The first stop is the start colour, the second is the end colour
+   • Change the  stop-color="#..."  values
+
+To resize: adjust the  width  attribute on the <svg> tag.
 
 
 ================================================================================
@@ -270,122 +445,31 @@ WHERE THINGS LIVE (file map)
   index.html                  ← MAIN FILE — Home, Projects, Writing, Photos, CV
   css/style.css               ← All visual styles
   js/main.js                  ← Animations, tab switching, gallery loader
-  projects/                   ← One .html file per project
-    mems-cantilever.html      ← MEMS Cantilevers & Comb Drives
-    dsa.html                  ← Directed Self-Assembly
-    graphene-transistor.html  ← Graphene FET
-    cdse-quantum-dots.html    ← CdSe Quantum Dots
-    alscn-ferroelectrics.html ← AlScN Ferroelectric Devices
-    tia-optical-receiver.html ← Wideband TIA
-    sram-array.html           ← SRAM Array
-    device-modelling.html     ← Device Modelling
-    sensor-board.html         ← Sensor Board
+  assets/
+    botanical-bg.png          ← Home page wallpaper overlay
+    smith-chart.svg           ← CV background Smith Chart
+    gallery/                  ← Photos (flat folder)
+    gallery/photos.json       ← Photo manifest (filename + caption)
+    project-images/           ← Inline images for project pages
+  projects/                   ← One .html file per project (9 files)
   writing/posts/              ← One .html file per blog post
   writing/posts/_template.html ← Copy this for new posts
-  assets/gallery/             ← Photos (flat folder, no subfolders needed)
-  assets/gallery/photos.json  ← Photo manifest (filename + caption pairs)
   reports/                    ← PDF reports
-  AKM_Industry_Resume.pdf     ← Your resume
+  AKM_Industry_Resume.pdf     ← Resume
 
 
 ================================================================================
 DESIGN REFERENCE
 ================================================================================
 
-  Logo:        कृष्ण ⏚  (click it for the grounding pulse → scrolls home)
+  Logo:        कृष्ण ⏚  (click for grounding pulse → scrolls home)
   Home bg:     Deep Space radial gradient + botanical wallpaper (fades out)
-  Projects bg: ENIG Champagne Gold dots (#d4af37 at 20%) — hover for glow
-  Writing bg:  Dark slate (#1a1a1a) + ruled lines + gold margin
-  Photography: Pure black (#000)
-  CV bg:       Deep Espresso (#181514) + faint Smith Chart arcs
+  Projects bg: Rich Black (#0A0A0B) + Gold dot grid (20%) + cursor glow
+  Writing bg:  Rich Black (#0A0A0B) + ruled lines + gold margin + vignette
+  Photography: Rich Black (#0A0A0B)
+  CV bg:       Rich Black (#0A0A0B) + Smith Chart arcs (Silver/Slate, 9%)
   Nav:         Glassmorphism pill, always visible at top
   Gold accent: #d4af37
   Text body:   #e0e0e0
-
-
-================================================================================
-J. CHANGE BACKGROUND COLOURS & IMAGES
-================================================================================
-
-File to edit:  css/style.css
-All backgrounds are at the top of the file — search for "MOOD ZONE BACKGROUNDS".
-
-── HOME TAB ──────────────────────────────────────────────────────────────────
-  Search for:   body[data-view="home"]
-  
-  Background colour:        Change  var(--mood-home)  in the  background-color  line.
-                            Or set a hex code directly, e.g.  background-color: #0f172a;
-  
-  Radial gradient:          Change  var(--mood-home-center)  and  var(--mood-home)
-                            in the  background-image  line. These are the center
-                            and edge colours of the radial gradient.
-                            The CSS variables are defined at the very top of the
-                            file — search for  :root {  to find them.
-  
-  Botanical wallpaper:      Search for  body::before
-                            • opacity: 0.12  → raise/lower to show more/less
-                            • The image file is  assets/botanical-bg.png
-                            • To replace it, swap that file, keep the same name
-
-── PROJECTS TAB ──────────────────────────────────────────────────────────────
-  Search for:   body[data-view="projects"]
-  
-  Background colour:        Change  var(--mood-projects)  or use a hex code.
-  
-  Dot grid:                 The line that says  radial-gradient(rgba(212, 175, 55, 0.20)
-                            • 0.20 = dot opacity (20%). Raise for brighter dots.
-                            • (212, 175, 55) = dot colour (Champagne Gold).
-                              Change these RGB numbers for a different colour.
-                            • 1px = dot size. Try 1.5px for slightly larger dots.
-                            • 20px 20px = dot spacing. Smaller = denser grid.
-  
-  Flashlight glow on hover: Search for  body[data-view="projects"]::after
-                            • 0.18 = glow brightness near cursor. Raise for stronger.
-                            • 220px = glow radius. Bigger = wider spotlight.
-
-── WRITING TAB ───────────────────────────────────────────────────────────────
-  Search for:   body[data-view="writing"]
-  
-  Background colour:        Change  var(--mood-writing)  or use a hex code.
-  
-  Ruled lines:              The line that says  rgba(255, 255, 255, 0.07)
-                            • 0.07 = line opacity. Raise for more visible lines.
-                            • 32px = line spacing. Change for wider/narrower lines.
-
-── PHOTOGRAPHY TAB ───────────────────────────────────────────────────────────
-  Search for:   body[data-view="photography"]
-  
-  Background colour:        Change  var(--mood-photography)  or use a hex code.
-                            Currently pure black.
-
-── CV TAB ────────────────────────────────────────────────────────────────────
-  Search for:   body[data-view="cv"]
-  
-  Background colour:        Currently  #181514  (Deep Espresso).
-                            Change this hex code to any colour you like.
-  
-  Smith Chart:              Search for  body[data-view="cv"]::after
-                            • opacity: 0.035  → raise/lower for more/less visible.
-                            • The SVG file is  assets/smith-chart.svg
-                            • Mask: the  mask-image  line controls where it fades.
-                              "transparent 10%" = invisible zone in center (where text is).
-                              "black 70%" = fully visible zone at edges.
-                              Raise "10%" to hide more of the center.
-                            • To replace with a different image, swap the SVG file.
-
-
-── AFTER EVERY CSS EDIT ──────────────────────────────────────────────────────
-
-  You MUST bump the CSS cache version in index.html, otherwise the browser
-  will keep showing the old styles:
-  
-  1. Open  index.html
-  2. Find:    <link rel="stylesheet" href="css/style.css?v=2" />
-  3. Change  ?v=2  to  ?v=3  (then ?v=4 next time, etc.)
-  4. Deploy normally.
-  
-  Same rule for JS edits:
-  1. Find:    <script src="js/main.js?v=7">
-  2. Bump the number.
 
 ================================================================================
