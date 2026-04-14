@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SRAM Array Design — Krishna Madhur Akella</title>
     <meta name="description" content="Low-power 16×4 SRAM array design in Cadence Virtuoso at 45nm." />
-    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/style.css?v=3" />
 </head>
 
-<body class="project-detail">
+<body class="project-detail" data-glow="gold">
 
     <nav class="navbar">
         <div class="nav-container">
@@ -66,6 +66,16 @@
         const hamburger = document.querySelector('.nav-hamburger');
         const navTabs = document.querySelector('.nav-tabs');
         if (hamburger) { hamburger.addEventListener('click', () => { hamburger.classList.toggle('open'); navTabs.classList.toggle('open'); }); }
+    
+        // Lab Bench cursor glow
+        document.addEventListener('mousemove', (e) => {
+            document.documentElement.style.setProperty('--mouse-x', e.clientX + 'px');
+            document.documentElement.style.setProperty('--mouse-y', e.clientY + 'px');
+        });
+        document.addEventListener('mouseleave', () => {
+            document.documentElement.style.setProperty('--mouse-x', '-9999px');
+            document.documentElement.style.setProperty('--mouse-y', '-9999px');
+        });
     </script>
 </body>
 

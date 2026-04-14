@@ -1354,12 +1354,52 @@ body[data-view="photography"] .tag-btn.active {
   display: block;
 }
 
-/* Project detail pages (charcoal + dot-grid) */
+/* Project detail pages — Lab Bench background */
 body.project-detail {
   background-color: var(--mood-projects);
-  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(212, 175, 55, 0.20) 1px, transparent 1px);
   background-size: 20px 20px;
   color: var(--white);
+
+  /* Domain glow defaults to Champagne Gold */
+  --glow-r: 212;
+  --glow-g: 175;
+  --glow-b: 55;
+}
+
+/* ── Domain glow colour overrides ── */
+/* Cleanroom & Fabrication — Electric Cyan */
+body.project-detail[data-glow="cyan"] {
+  --glow-r: 0;
+  --glow-g: 230;
+  --glow-b: 255;
+}
+
+/* TCAD & Device Physics — Deep Laser Red */
+body.project-detail[data-glow="red"] {
+  --glow-r: 255;
+  --glow-g: 0;
+  --glow-b: 85;
+}
+
+/* Analog & Mixed-Signal — Champagne Gold (explicit, same as default) */
+body.project-detail[data-glow="gold"] {
+  --glow-r: 212;
+  --glow-g: 175;
+  --glow-b: 55;
+}
+
+/* Cursor flashlight glow on project sub-pages */
+body.project-detail::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: radial-gradient(circle 220px at var(--mouse-x, -9999px) var(--mouse-y, -9999px),
+      rgba(var(--glow-r), var(--glow-g), var(--glow-b), 0.18) 0%,
+      transparent 100%);
+  transition: opacity 0.3s ease;
 }
 
 /* Writing detail pages (dark slate + notebook lines) */

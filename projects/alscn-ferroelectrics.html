@@ -7,10 +7,10 @@
     <title>AlScN Ferroelectric Devices — Krishna Madhur Akella</title>
     <meta name="description"
         content="Modelling and characterization of AlScN-based ferroelectric FE-FET devices using Synopsys Sentaurus TCAD." />
-    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/style.css?v=3" />
 </head>
 
-<body class="project-detail">
+<body class="project-detail" data-glow="red">
 
     <nav class="navbar">
         <div class="nav-container">
@@ -79,6 +79,15 @@
                 navTabs.classList.toggle('open');
             });
         }
+        // Lab Bench cursor glow
+        document.addEventListener('mousemove', (e) => {
+            document.documentElement.style.setProperty('--mouse-x', e.clientX + 'px');
+            document.documentElement.style.setProperty('--mouse-y', e.clientY + 'px');
+        });
+        document.addEventListener('mouseleave', () => {
+            document.documentElement.style.setProperty('--mouse-x', '-9999px');
+            document.documentElement.style.setProperty('--mouse-y', '-9999px');
+        });
     </script>
 </body>
 

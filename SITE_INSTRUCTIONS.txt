@@ -14,8 +14,8 @@ HOW TO MAKE CHANGES IN 3 STEPS:
    After editing  css/style.css  or  js/main.js , you MUST bump the version
    number in index.html so the browser loads the new file:
 
-     CSS:  <link rel="stylesheet" href="css/style.css?v=3" />
-           → change  ?v=3  to  ?v=4 , then  ?v=5 , etc.
+     CSS:  <link rel="stylesheet" href="css/style.css?v=4" />
+           → change  ?v=4  to  ?v=5 , then  ?v=6 , etc.
 
      JS:   <script src="js/main.js?v=8">
            → change  ?v=8  to  ?v=9 , then  ?v=10 , etc.
@@ -311,7 +311,62 @@ Search for:  "// 2. Canvas shockwave"
 
 
 ================================================================================
-I. TESTING LOCALLY (before deploying)
+I. CHANGE THE LAB BENCH CURSOR GLOW ON PROJECT SUB-PAGES
+================================================================================
+
+Each project sub-page has a gold dot grid background and a "flashlight"
+cursor glow. The glow colour changes based on the engineering domain:
+
+   DOMAIN                 GLOW COLOUR         VALUE ON <body>
+   ────────────────────   ─────────────────   ──────────────────────
+   Analog / Mixed-Signal  Champagne Gold      data-glow="gold"
+   Cleanroom / Nanofab    Electric Cyan       data-glow="cyan"
+   TCAD / Device Physics  Deep Laser Red      data-glow="red"
+
+Current assignments:
+   • Gold:  tia-optical-receiver, sram-array, sensor-board
+   • Cyan:  mems-cantilever, dsa, graphene-transistor, cdse-quantum-dots
+   • Red:   alscn-ferroelectrics, device-modelling
+
+──── CHANGE A PROJECT'S GLOW COLOUR ────
+
+1. Open the project's .html file in  projects/
+2. Find the <body> tag (near line 13). It looks like:
+       <body class="project-detail" data-glow="cyan">
+3. Change  data-glow="cyan"  to  data-glow="gold"  or  data-glow="red"
+4. Save, deploy.
+
+──── ADD A CUSTOM GLOW COLOUR ────
+
+1. Open  css/style.css
+2. Search for  "Domain glow colour overrides"
+3. Add a new block like this:
+
+       /* My Custom Domain — Neon Green */
+       body.project-detail[data-glow="green"] {
+         --glow-r: 0;
+         --glow-g: 255;
+         --glow-b: 100;
+       }
+
+4. Use it by setting  data-glow="green"  on the project's <body> tag.
+5. Bump CSS cache version, deploy.
+
+──── CHANGE THE GLOW BRIGHTNESS OR RADIUS ────
+
+File:  css/style.css
+Search for:  "Cursor flashlight glow on project sub-pages"
+
+   • 0.18  →  glow brightness (raise for stronger, lower for subtler)
+   • 220px →  glow radius (bigger = wider spotlight)
+
+⚠️  After any CSS edit, bump the CSS cache version (see top of this file).
+⚠️  After any change to sub-page HTML, remember to also bump the CSS
+    version inside the sub-page's <link> tag if you changed it.
+
+
+================================================================================
+J. TESTING LOCALLY (before deploying)
 ================================================================================
 
 Open your browser and go to:
@@ -328,7 +383,7 @@ If changes don't appear:
 
 
 ================================================================================
-J. CHANGE BACKGROUND COLOURS & IMAGES
+K. CHANGE BACKGROUND COLOURS & IMAGES
 ================================================================================
 
 File:  css/style.css
@@ -415,7 +470,7 @@ controls each tab:
 
 
 ================================================================================
-K. CHANGE THE FLUTE FOOTER DIVIDER
+L. CHANGE THE FLUTE FOOTER DIVIDER
 ================================================================================
 
 File:  index.html
@@ -465,6 +520,8 @@ DESIGN REFERENCE
   Logo:        कृष्ण ⏚  (click for grounding pulse → scrolls home)
   Home bg:     Deep Space radial gradient + botanical wallpaper (fades out)
   Projects bg: Rich Black (#0A0A0B) + Gold dot grid (20%) + cursor glow
+  Sub-pages:   Same dot grid + domain-specific cursor glow
+               → Gold (Analog), Cyan (Cleanroom), Red (TCAD)
   Writing bg:  Rich Black (#0A0A0B) + ruled lines + gold margin + vignette
   Photography: Rich Black (#0A0A0B)
   CV bg:       Rich Black (#0A0A0B) + Smith Chart arcs (Silver/Slate, 9%)

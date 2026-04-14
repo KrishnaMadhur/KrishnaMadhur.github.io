@@ -7,10 +7,10 @@
     <title>Wideband TIA — Krishna Madhur Akella</title>
     <meta name="description"
         content="Wideband transimpedance amplifier for optical receivers designed in Cadence Virtuoso at 45nm." />
-    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/style.css?v=3" />
 </head>
 
-<body class="project-detail">
+<body class="project-detail" data-glow="gold">
 
     <nav class="navbar">
         <div class="nav-container">
@@ -103,6 +103,16 @@
         });
         document.querySelector('.pdf-modal-close').addEventListener('click', () => { pdfModal.style.display = 'none'; pdfViewer.src = ''; document.body.style.overflow = ''; });
         document.querySelector('.pdf-modal-overlay').addEventListener('click', () => { pdfModal.style.display = 'none'; pdfViewer.src = ''; document.body.style.overflow = ''; });
+    
+        // Lab Bench cursor glow
+        document.addEventListener('mousemove', (e) => {
+            document.documentElement.style.setProperty('--mouse-x', e.clientX + 'px');
+            document.documentElement.style.setProperty('--mouse-y', e.clientY + 'px');
+        });
+        document.addEventListener('mouseleave', () => {
+            document.documentElement.style.setProperty('--mouse-x', '-9999px');
+            document.documentElement.style.setProperty('--mouse-y', '-9999px');
+        });
     </script>
 </body>
 
