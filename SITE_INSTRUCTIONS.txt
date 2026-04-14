@@ -32,12 +32,32 @@ File:  index.html
 1. Open index.html and use Cmd+F to find the text you want to change.
 
 2. Edit it directly. Searchable markers:
-   • Your name / tagline    → search for  "home-tagline"
-   • Your bio paragraph     → search for  "home-bio"
+   • Your name              → search for  "home-name"
+   • Tagline (sub-header)   → search for  "home-tagline"
+     (Currently: "The Bridge Between Atoms and Systems.")
+   • Bio paragraphs         → search for  "home-bio"
    • Status LED text        → search for  "status-text"
      (e.g. "Characterizing AlScN..." → whatever you're working on now)
    • Selected Work items    → search for  "selected-work-item"
    • Contact links          → search for  "home-links"
+
+──── EDITING THE BIO TEXT ────
+
+The bio is split into 3 separate <p class="home-bio"> paragraphs.
+Each one animates in independently (float-up). Edit the text between
+the <p> and </p> tags.
+
+   To make a word bold:  wrap it in  <strong>word</strong>
+   To remove bold:       delete the  <strong>  and  </strong>  tags
+   To add a line break:  insert  <br />  where you want the break
+
+   Example:
+     <p class="home-bio float-up">
+       I work at <strong>Penn</strong> on ferroelectric devices.
+     </p>
+
+   To add a 4th paragraph, copy one of the existing <p> blocks and
+   paste it after the last one. Keep the  class="home-bio float-up".
 
 3. Save, deploy.
 
