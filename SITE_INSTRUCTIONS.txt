@@ -526,14 +526,14 @@ with IC layout X-ray cursor). Clicking "HELLO, I AM" toggles to "Casual"
 
 ──── CHANGE THE PROFESSIONAL THEME BACKGROUND ────
 
-   The X-ray cursor reveals an IC layout pattern.
-   File: assets/ic-layout.svg
+   The X-ray cursor reveals a CMOS op-amp schematic pattern.
+   File: assets/option-c-schematic.svg
    CSS:  Search for "X-Ray cursor" in style.css
 
    • To REPLACE the pattern: swap the SVG file, keep the same name.
      Or change the  background-image: url(...)  line.
-   • Tile size: change  background-size: 200px 200px
-   • Reveal radius: change  circle 220px  (bigger = wider flashlight)
+   • Tile size: change  background-size: 420px 340px
+   • Reveal radius: change  circle 180px  (bigger = wider flashlight)
    • Reveal opacity: change  rgba(0,0,0,0.6)  (higher = sharper edge)
 
    Floating gradient orb:
@@ -555,7 +555,7 @@ with IC layout X-ray cursor). Clicking "HELLO, I AM" toggles to "Casual"
 
    Firefly spotlight:
    Search for "Firefly spotlight" in style.css
-   • Radius: change  circle 220px
+   • Radius: change  circle 180px
    • Brightness: change  0.14  (inner glow) and  0.05  (outer glow)
 
 ──── CHANGE THE "HELLO, I AM" HOVER GLOW ────
@@ -624,7 +624,7 @@ The colours are different per tab:
 ──── CHANGE GLOW RADIUS OR BRIGHTNESS ────
 
    Search for  #tab-cursor-glow  (the base rule)
-   • Radius: change  circle 220px
+   • Radius: change  circle 180px
    • Inner opacity: change  0.08
    • Outer opacity: change  0.02
 
@@ -648,7 +648,7 @@ WHERE THINGS LIVE (file map)
   js/main.js                  ← Animations, tab switching, gallery loader, theme toggle
   assets/
     botanical-bg.png          ← Casual theme wallpaper
-    ic-layout.svg             ← Professional theme X-ray cursor pattern
+    ic-layout.svg → option-c-schematic.svg
     smith-chart.svg           ← CV background Smith Chart
     gallery/                  ← Photos (flat folder)
     gallery/photos.json       ← Photo manifest (filename + caption)
@@ -668,12 +668,12 @@ DESIGN REFERENCE
 
   HOME — Professional (default):
     Background:  Deep Obsidian (#0A0A0A) + floating champagne gradient orb
-    Cursor:      X-ray IC layout reveal (220px, champagne gold traces)
+    Cursor:      X-ray op-amp schematic reveal (180px, champagne gold traces)
     Selection:   Photolithography Amber (#FFBF00)
 
   HOME — Casual (Easter egg, click "HELLO, I AM"):
     Background:  Deep Space (#0f172a) + botanical floral wallpaper (12%)
-    Cursor:      Firefly golden spotlight (220px, warm gold)
+    Cursor:      Firefly golden spotlight (180px, warm gold)
     Status LED:  Red (pulsing)
 
   Projects bg: Rich Black (#0A0A0B) + Gold dot grid (20%) + cursor glow

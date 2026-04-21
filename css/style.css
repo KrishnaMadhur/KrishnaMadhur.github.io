@@ -166,12 +166,12 @@ body:not([data-view="home"])::before {
   inset: 0;
   pointer-events: none;
   z-index: 1;
-  background-image: url('../assets/ic-layout.svg');
-  background-size: 200px 200px;
+  background-image: url('../assets/option-c-schematic.svg');
+  background-size: 420px 340px;
   background-repeat: repeat;
-  -webkit-mask-image: radial-gradient(circle 220px at var(--mouse-x, -400px) var(--mouse-y, -400px),
+  -webkit-mask-image: radial-gradient(circle 180px at var(--mouse-x, -400px) var(--mouse-y, -400px),
     rgba(0,0,0,0.6) 0%, transparent 100%);
-  mask-image: radial-gradient(circle 220px at var(--mouse-x, -400px) var(--mouse-y, -400px),
+  mask-image: radial-gradient(circle 180px at var(--mouse-x, -400px) var(--mouse-y, -400px),
     rgba(0,0,0,0.6) 0%, transparent 100%);
   opacity: 0;
   transition: opacity 0.5s ease;
@@ -187,7 +187,7 @@ body[data-view="home"]:not(.theme-casual) #xray-grid {
   inset: 0;
   pointer-events: none;
   z-index: 1;
-  background: radial-gradient(circle 220px at var(--mouse-x, -400px) var(--mouse-y, -400px),
+  background: radial-gradient(circle 180px at var(--mouse-x, -400px) var(--mouse-y, -400px),
     rgba(212, 175, 55, 0.14) 0%,
     rgba(212, 175, 55, 0.05) 40%,
     transparent 100%);
@@ -237,7 +237,7 @@ body[data-view="home"].theme-casual::before {
   --tcg-r: 0;
   --tcg-g: 0;
   --tcg-b: 0;
-  background: radial-gradient(circle 220px at var(--mouse-x, -400px) var(--mouse-y, -400px),
+  background: radial-gradient(circle 180px at var(--mouse-x, -400px) var(--mouse-y, -400px),
     rgba(var(--tcg-r), var(--tcg-g), var(--tcg-b), 0.08) 0%,
     rgba(var(--tcg-r), var(--tcg-g), var(--tcg-b), 0.02) 50%,
     transparent 100%);
@@ -275,7 +275,7 @@ body[data-view="projects"]::after {
   inset: 0;
   pointer-events: none;
   z-index: 0;
-  background: radial-gradient(circle 220px at var(--mouse-x, -9999px) var(--mouse-y, -9999px),
+  background: radial-gradient(circle 180px at var(--mouse-x, -9999px) var(--mouse-y, -9999px),
       rgba(212, 175, 55, 0.18) 0%,
       transparent 100%);
   transition: opacity 0.3s ease;
@@ -1547,7 +1547,7 @@ body.project-detail::after {
   inset: 0;
   pointer-events: none;
   z-index: 0;
-  background: radial-gradient(circle 220px at var(--mouse-x, -9999px) var(--mouse-y, -9999px),
+  background: radial-gradient(circle 180px at var(--mouse-x, -9999px) var(--mouse-y, -9999px),
       rgba(var(--glow-r), var(--glow-g), var(--glow-b), 0.18) 0%,
       transparent 100%);
   transition: opacity 0.3s ease;
