@@ -231,20 +231,25 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  /* ---------- Projects Flashlight Effect ---------- */
-  const projectsView = document.getElementById('projects');
-  if (projectsView) {
-    document.addEventListener('mousemove', (e) => {
-      if (body.getAttribute('data-view') === 'projects') {
-        document.documentElement.style.setProperty('--mouse-x', e.clientX + 'px');
-        document.documentElement.style.setProperty('--mouse-y', e.clientY + 'px');
-      }
-    });
+  /* ---------- Cursor Effects (Projects flashlight + Home X-ray/Firefly) ---------- */
+  document.addEventListener('mousemove', (e) => {
+    const view = body.getAttribute('data-view');
+    if (view === 'projects' || view === 'home') {
+      document.documentElement.style.setProperty('--mouse-x', e.clientX + 'px');
+      document.documentElement.style.setProperty('--mouse-y', e.clientY + 'px');
+    }
+  });
 
-    // Reset glow position when leaving projects
-    document.addEventListener('mouseleave', () => {
-      document.documentElement.style.setProperty('--mouse-x', '-9999px');
-      document.documentElement.style.setProperty('--mouse-y', '-9999px');
+  document.addEventListener('mouseleave', () => {
+    document.documentElement.style.setProperty('--mouse-x', '-9999px');
+    document.documentElement.style.setProperty('--mouse-y', '-9999px');
+  });
+
+  /* ---------- Easter Egg: "HELLO, I AM" Theme Toggle ---------- */
+  const greeting = document.querySelector('.home-greeting');
+  if (greeting) {
+    greeting.addEventListener('click', () => {
+      body.classList.toggle('theme-casual');
     });
   }
 

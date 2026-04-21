@@ -22,9 +22,9 @@
   --gray-900: #171717;
 
   /* Mood Zone Colors */
-  --mood-home: #0f172a;
-  /* Deep Space base */
-  --mood-home-center: #1e293b;
+  --mood-home: #0A0A0A;
+  /* Deep Obsidian */
+  --mood-home-center: #0A0A0A;
   /* Deep Space center */
   --mood-projects: #0A0A0B;
   /* Rich Black */
@@ -111,14 +111,97 @@ h4 {
    =========================================== */
 body[data-view="home"] {
   background-color: var(--mood-home);
-  background-image: radial-gradient(circle at center, var(--mood-home-center) 0%, var(--mood-home) 100%);
   color: var(--white);
   position: relative;
 }
 
-/* Botanical wallpaper overlay — always present, fades in/out with tab switch */
-body::before {
+/* ── Photolithography Amber text selection ── */
+::selection {
+  background: #FFBF00;
+  color: #0A0A0A;
+}
+::-moz-selection {
+  background: #FFBF00;
+  color: #0A0A0A;
+}
+
+/* ── Floating champagne gradient orb (Professional theme) ── */
+body[data-view="home"]::before {
   content: '';
+  position: fixed;
+  width: 60vmax;
+  height: 60vmax;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(ellipse at center,
+    rgba(212, 175, 55, 0.06) 0%,
+    rgba(212, 175, 55, 0.02) 40%,
+    transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  animation: orbFloat 20s ease-in-out infinite;
+  filter: blur(60px);
+  opacity: 1;
+  transition: opacity 0.8s ease;
+}
+
+/* Hide the orb on non-home views */
+body:not([data-view="home"])::before {
+  opacity: 0;
+  pointer-events: none;
+}
+
+@keyframes orbFloat {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); }
+  25%      { transform: translate(-45%, -55%) scale(1.05); }
+  50%      { transform: translate(-55%, -45%) scale(0.95); }
+  75%      { transform: translate(-48%, -52%) scale(1.03); }
+}
+
+/* ── X-Ray cursor grid (Professional theme) ── */
+#xray-grid {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background-image:
+    linear-gradient(rgba(212, 175, 55, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(212, 175, 55, 0.04) 1px, transparent 1px);
+  background-size: 24px 24px;
+  -webkit-mask-image: radial-gradient(circle 100px at var(--mouse-x, -200px) var(--mouse-y, -200px),
+    rgba(0,0,0,0.7) 0%, transparent 100%);
+  mask-image: radial-gradient(circle 100px at var(--mouse-x, -200px) var(--mouse-y, -200px),
+    rgba(0,0,0,0.7) 0%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+body[data-view="home"]:not(.theme-casual) #xray-grid {
+  opacity: 1;
+}
+
+/* ── Firefly spotlight (Casual/Floral theme) ── */
+#firefly-spotlight {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background: radial-gradient(circle 180px at var(--mouse-x, -200px) var(--mouse-y, -200px),
+    rgba(212, 175, 55, 0.12) 0%,
+    rgba(212, 175, 55, 0.04) 40%,
+    transparent 100%);
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+body[data-view="home"].theme-casual #firefly-spotlight {
+  opacity: 1;
+}
+
+/* ── Floral background (Casual theme only) ── */
+#floral-bg {
   position: fixed;
   inset: 0;
   background-image: url('../assets/botanical-bg.png');
@@ -127,11 +210,21 @@ body::before {
   opacity: 0;
   pointer-events: none;
   z-index: 0;
-  transition: opacity 0.5s ease;
+  transition: opacity 0.8s ease;
 }
 
-body[data-view="home"]::before {
+body[data-view="home"].theme-casual #floral-bg {
   opacity: 0.12;
+}
+
+/* Casual theme — warmer obsidian */
+body[data-view="home"].theme-casual {
+  background-color: #0f172a;
+}
+
+/* Hide the gradient orb in casual mode */
+body[data-view="home"].theme-casual::before {
+  opacity: 0;
 }
 
 body[data-view="projects"] {
@@ -476,6 +569,14 @@ body[data-view="cv"]::after {
   letter-spacing: 0.2em;
   margin-bottom: 1.5rem;
   font-weight: 500;
+  cursor: pointer;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+  user-select: none;
+}
+
+.home-greeting:hover {
+  color: #FFBF00;
+  text-shadow: 0 0 12px rgba(255, 191, 0, 0.4);
 }
 
 .home-name {
