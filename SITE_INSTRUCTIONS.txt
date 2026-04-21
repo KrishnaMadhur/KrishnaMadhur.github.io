@@ -14,11 +14,11 @@ HOW TO MAKE CHANGES IN 3 STEPS:
    After editing  css/style.css  or  js/main.js , you MUST bump the version
    number in index.html so the browser loads the new file:
 
-     CSS:  <link rel="stylesheet" href="css/style.css?v=4" />
-           → change  ?v=4  to  ?v=5 , then  ?v=6 , etc.
+     CSS:  <link rel="stylesheet" href="css/style.css?v=6" />
+           → change  ?v=6  to  ?v=7 , then  ?v=8 , etc.
 
-     JS:   <script src="js/main.js?v=8">
-           → change  ?v=8  to  ?v=9 , then  ?v=10 , etc.
+     JS:   <script src="js/main.js?v=10">
+           → change  ?v=10  to  ?v=11 , then  ?v=12 , etc.
 
    If you skip this step, the browser will keep showing old styles/behaviour.
 
@@ -268,8 +268,9 @@ HOW TO UNCOMMENT A REPORT SECTION:
 Step 4: Deploy.
 
 Current reports:
-   • reports/ESE5360_MEMS-Report_GrpA.pdf  ← linked in mems-cantilever.html
-   • reports/ESE5360_DSA-Report_GrpA.pdf   ← linked in dsa.html
+   • reports/ESE5360_MEMS-Report_GrpA.pdf       ← linked in mems-cantilever.html
+   • reports/ESE5360_DSA-Report_GrpA.pdf        ← linked in dsa.html
+   • reports/ESE5360_Graphene-Report_GrpB.pdf   ← linked in graphene-transistor.html
 
 
 ================================================================================
@@ -506,6 +507,131 @@ To resize: adjust the  width  attribute on the <svg> tag.
 
 
 ================================================================================
+M. HOMEPAGE THEME SYSTEM (Professional ↔ Casual Easter Egg)
+================================================================================
+
+The homepage has TWO themes. The default is "Professional" (dark obsidian
+with IC layout X-ray cursor). Clicking "HELLO, I AM" toggles to "Casual"
+(floral wallpaper with firefly golden spotlight).
+
+──── HOW THE TOGGLE WORKS ────
+
+   Clicking "HELLO, I AM" adds/removes  .theme-casual  on the <body>.
+   This swaps:
+     • Background: obsidian → Deep Space blue + floral wallpaper
+     • Cursor effect: X-ray IC layout → Firefly golden spotlight
+     • Third bio paragraph: professional → casual text
+     • Status LED: green → red
+     • Status text: engineering → F1 Grand Prix
+
+──── CHANGE THE PROFESSIONAL THEME BACKGROUND ────
+
+   The X-ray cursor reveals an IC layout pattern.
+   File: assets/ic-layout.svg
+   CSS:  Search for "X-Ray cursor" in style.css
+
+   • To REPLACE the pattern: swap the SVG file, keep the same name.
+     Or change the  background-image: url(...)  line.
+   • Tile size: change  background-size: 200px 200px
+   • Reveal radius: change  circle 220px  (bigger = wider flashlight)
+   • Reveal opacity: change  rgba(0,0,0,0.6)  (higher = sharper edge)
+
+   Floating gradient orb:
+   Search for "Floating champagne gradient orb"
+   • Colour: change the  rgba(212, 175, 55, ...)  values
+   • Size: change  width: 60vmax  /  height: 60vmax
+   • Speed: change  20s  in the  animation  line (lower = faster)
+   • Blur: change  filter: blur(60px)
+
+──── CHANGE THE CASUAL THEME BACKGROUND ────
+
+   Floral wallpaper:
+   File: assets/botanical-bg.png
+   CSS:  Search for "Floral background" in style.css
+
+   • To REPLACE: swap the PNG file, keep the same name.
+   • Opacity: change  opacity: 0.12  (higher = more visible)
+   • Tile size: change  background-size: 450px 450px
+
+   Firefly spotlight:
+   Search for "Firefly spotlight" in style.css
+   • Radius: change  circle 220px
+   • Brightness: change  0.14  (inner glow) and  0.05  (outer glow)
+
+──── CHANGE THE "HELLO, I AM" HOVER GLOW ────
+
+   CSS:  Search for  .home-greeting:hover
+   • Colour: change  color: #00FFFF  (currently Cleanroom Cyan)
+   • Glow: change  text-shadow  rgba values
+
+──── CHANGE THE SWAPPED BIO TEXT ────
+
+   File:  index.html
+   Search for  id="bio-third"
+
+   The third <p> tag has two data attributes:
+   • data-bio-pro="..."   — text shown in Professional mode
+   • data-bio-casual="..." — text shown in Casual mode
+   Edit the text inside the quotes. Use &lt;strong&gt; for bold.
+
+──── CHANGE THE SWAPPED STATUS TEXT ────
+
+   File:  js/main.js
+   Search for  "Easter Egg"
+
+   The status text and LED are swapped in the greeting click handler:
+   • Professional text: search for  "Architecting mixed-signal"
+   • Casual text: search for  "F1 Grand Prix"
+   Edit the strings directly.
+
+──── CHANGE THE STATUS LED COLOUR ────
+
+   CSS:  Search for  .status-led  → green LED defaults
+         Search for  .status-led.casual-red  → red LED for casual
+   Change the  background  and  box-shadow  RGB values.
+
+──── AMBER TEXT SELECTION ────
+
+   CSS:  Search for  ::selection
+   Change  background: #FFBF00  to any colour you like.
+
+⚠️  After any CSS/JS edit, bump the cache version (see top of this file).
+
+
+================================================================================
+N. TAB CURSOR GLOWS (Journal / Photography / CV)
+================================================================================
+
+Each of these tabs has a subtle radial gradient following the mouse.
+The colours are different per tab:
+
+   TAB            COLOUR        CSS SELECTOR
+   ────────────   ───────────   ──────────────────────────────────────
+   Journal        Sepia         body[data-view="writing"] #tab-cursor-glow
+   Photography    Cool White    body[data-view="photography"] #tab-cursor-glow
+   CV             Laser Blue    body[data-view="cv"] #tab-cursor-glow
+
+──── CHANGE A TAB'S GLOW COLOUR ────
+
+1. Open  css/style.css
+2. Search for  "Tab Cursor Glow"
+3. Find the tab you want to change
+4. Edit the  --tcg-r, --tcg-g, --tcg-b  values (0–255)
+
+   Example — to make Journal glow cyan:
+     --tcg-r: 0; --tcg-g: 255; --tcg-b: 255;
+
+──── CHANGE GLOW RADIUS OR BRIGHTNESS ────
+
+   Search for  #tab-cursor-glow  (the base rule)
+   • Radius: change  circle 220px
+   • Inner opacity: change  0.08
+   • Outer opacity: change  0.02
+
+⚠️  After any CSS edit, bump the CSS cache version.
+
+
+================================================================================
 QUICK DEPLOY COMMAND (copy-paste this every time)
 ================================================================================
 
@@ -519,9 +645,10 @@ WHERE THINGS LIVE (file map)
 
   index.html                  ← MAIN FILE — Home, Projects, Writing, Photos, CV
   css/style.css               ← All visual styles
-  js/main.js                  ← Animations, tab switching, gallery loader
+  js/main.js                  ← Animations, tab switching, gallery loader, theme toggle
   assets/
-    botanical-bg.png          ← Home page wallpaper overlay
+    botanical-bg.png          ← Casual theme wallpaper
+    ic-layout.svg             ← Professional theme X-ray cursor pattern
     smith-chart.svg           ← CV background Smith Chart
     gallery/                  ← Photos (flat folder)
     gallery/photos.json       ← Photo manifest (filename + caption)
@@ -538,13 +665,23 @@ DESIGN REFERENCE
 ================================================================================
 
   Logo:        कृष्ण ⏚  (click for grounding pulse → scrolls home)
-  Home bg:     Deep Space radial gradient + botanical wallpaper (fades out)
+
+  HOME — Professional (default):
+    Background:  Deep Obsidian (#0A0A0A) + floating champagne gradient orb
+    Cursor:      X-ray IC layout reveal (220px, champagne gold traces)
+    Selection:   Photolithography Amber (#FFBF00)
+
+  HOME — Casual (Easter egg, click "HELLO, I AM"):
+    Background:  Deep Space (#0f172a) + botanical floral wallpaper (12%)
+    Cursor:      Firefly golden spotlight (220px, warm gold)
+    Status LED:  Red (pulsing)
+
   Projects bg: Rich Black (#0A0A0B) + Gold dot grid (20%) + cursor glow
   Sub-pages:   Same dot grid + domain-specific cursor glow
                → Gold (Analog), Cyan (Cleanroom), Red (TCAD)
-  Writing bg:  Rich Black (#0A0A0B) + ruled lines + gold margin + vignette
-  Photography: Rich Black (#0A0A0B)
-  CV bg:       Rich Black (#0A0A0B) + Smith Chart arcs (Silver/Slate, 9%)
+  Writing bg:  Rich Black (#0A0A0B) + ruled lines + gold margin + Sepia cursor
+  Photography: Rich Black (#0A0A0B) + Cool White cursor
+  CV bg:       Rich Black (#0A0A0B) + Smith Chart arcs (9%) + Laser Blue cursor
   Nav:         Glassmorphism pill, always visible at top
   Gold accent: #d4af37
   Text body:   #e0e0e0
