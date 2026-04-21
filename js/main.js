@@ -231,13 +231,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  /* ---------- Cursor Effects (Projects flashlight + Home X-ray/Firefly) ---------- */
+  /* ---------- Cursor Effects (all views) ---------- */
   document.addEventListener('mousemove', (e) => {
-    const view = body.getAttribute('data-view');
-    if (view === 'projects' || view === 'home') {
-      document.documentElement.style.setProperty('--mouse-x', e.clientX + 'px');
-      document.documentElement.style.setProperty('--mouse-y', e.clientY + 'px');
-    }
+    document.documentElement.style.setProperty('--mouse-x', e.clientX + 'px');
+    document.documentElement.style.setProperty('--mouse-y', e.clientY + 'px');
   });
 
   document.addEventListener('mouseleave', () => {
@@ -247,9 +244,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ---------- Easter Egg: "HELLO, I AM" Theme Toggle ---------- */
   const greeting = document.querySelector('.home-greeting');
+  const bioThird = document.getElementById('bio-third');
+  const statusText = document.getElementById('status-text');
+  const statusLed = document.getElementById('status-led');
+
   if (greeting) {
     greeting.addEventListener('click', () => {
-      body.classList.toggle('theme-casual');
+      const isCasual = body.classList.toggle('theme-casual');
+
+      // Swap third bio paragraph
+      if (bioThird) {
+        bioThird.innerHTML = isCasual
+          ? bioThird.getAttribute('data-bio-casual')
+          : bioThird.getAttribute('data-bio-pro');
+      }
+
+      // Swap status text + LED colour
+      if (statusText) {
+        statusText.innerHTML = isCasual
+          ? 'Currently: Waiting for lights out at the next <strong>F1 Grand Prix</strong>.'
+          : 'Currently: Architecting mixed-signal ICs and characterizing nanoscale devices <strong>@ UPenn</strong>';
+      }
+      if (statusLed) {
+        statusLed.classList.toggle('casual-red', isCasual);
+      }
     });
   }
 

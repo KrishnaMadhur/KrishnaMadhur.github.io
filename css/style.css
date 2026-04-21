@@ -160,20 +160,19 @@ body:not([data-view="home"])::before {
   75%      { transform: translate(-48%, -52%) scale(1.03); }
 }
 
-/* ── X-Ray cursor grid (Professional theme) ── */
+/* ── X-Ray cursor — IC layout pattern (Professional theme) ── */
 #xray-grid {
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 1;
-  background-image:
-    linear-gradient(rgba(212, 175, 55, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(212, 175, 55, 0.04) 1px, transparent 1px);
-  background-size: 24px 24px;
-  -webkit-mask-image: radial-gradient(circle 100px at var(--mouse-x, -200px) var(--mouse-y, -200px),
-    rgba(0,0,0,0.7) 0%, transparent 100%);
-  mask-image: radial-gradient(circle 100px at var(--mouse-x, -200px) var(--mouse-y, -200px),
-    rgba(0,0,0,0.7) 0%, transparent 100%);
+  background-image: url('../assets/ic-layout.svg');
+  background-size: 200px 200px;
+  background-repeat: repeat;
+  -webkit-mask-image: radial-gradient(circle 280px at var(--mouse-x, -400px) var(--mouse-y, -400px),
+    rgba(0,0,0,0.6) 0%, transparent 100%);
+  mask-image: radial-gradient(circle 280px at var(--mouse-x, -400px) var(--mouse-y, -400px),
+    rgba(0,0,0,0.6) 0%, transparent 100%);
   opacity: 0;
   transition: opacity 0.5s ease;
 }
@@ -188,9 +187,9 @@ body[data-view="home"]:not(.theme-casual) #xray-grid {
   inset: 0;
   pointer-events: none;
   z-index: 1;
-  background: radial-gradient(circle 180px at var(--mouse-x, -200px) var(--mouse-y, -200px),
-    rgba(212, 175, 55, 0.12) 0%,
-    rgba(212, 175, 55, 0.04) 40%,
+  background: radial-gradient(circle 300px at var(--mouse-x, -400px) var(--mouse-y, -400px),
+    rgba(212, 175, 55, 0.14) 0%,
+    rgba(212, 175, 55, 0.05) 40%,
     transparent 100%);
   opacity: 0;
   transition: opacity 0.8s ease;
@@ -225,6 +224,41 @@ body[data-view="home"].theme-casual {
 /* Hide the gradient orb in casual mode */
 body[data-view="home"].theme-casual::before {
   opacity: 0;
+}
+
+/* ── Tab Cursor Glow (Journal / Photography / CV) ── */
+#tab-cursor-glow {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  --tcg-r: 0;
+  --tcg-g: 0;
+  --tcg-b: 0;
+  background: radial-gradient(circle 300px at var(--mouse-x, -400px) var(--mouse-y, -400px),
+    rgba(var(--tcg-r), var(--tcg-g), var(--tcg-b), 0.08) 0%,
+    rgba(var(--tcg-r), var(--tcg-g), var(--tcg-b), 0.02) 50%,
+    transparent 100%);
+}
+
+/* Sepia for Journal */
+body[data-view="writing"] #tab-cursor-glow {
+  --tcg-r: 245; --tcg-g: 245; --tcg-b: 220;
+  opacity: 1;
+}
+
+/* Cool White for Photography */
+body[data-view="photography"] #tab-cursor-glow {
+  --tcg-r: 224; --tcg-g: 247; --tcg-b: 250;
+  opacity: 1;
+}
+
+/* Laser Blue for CV */
+body[data-view="cv"] #tab-cursor-glow {
+  --tcg-r: 0; --tcg-g: 123; --tcg-b: 255;
+  opacity: 1;
 }
 
 body[data-view="projects"] {
@@ -575,8 +609,8 @@ body[data-view="cv"]::after {
 }
 
 .home-greeting:hover {
-  color: #FFBF00;
-  text-shadow: 0 0 12px rgba(255, 191, 0, 0.4);
+  color: #00FFFF;
+  text-shadow: 0 0 14px rgba(0, 255, 255, 0.5);
 }
 
 .home-name {
@@ -709,19 +743,35 @@ body[data-view="cv"]::after {
   box-shadow: 0 0 6px rgba(34, 197, 94, 0.6);
   animation: pulse-led 2s ease-in-out infinite;
   flex-shrink: 0;
+  transition: background 0.4s ease, box-shadow 0.4s ease;
 }
 
 @keyframes pulse-led {
-
-  0%,
-  100% {
+  0%, 100% {
     opacity: 1;
     box-shadow: 0 0 6px rgba(34, 197, 94, 0.6);
   }
-
   50% {
     opacity: 0.5;
     box-shadow: 0 0 2px rgba(34, 197, 94, 0.3);
+  }
+}
+
+/* Red LED for casual theme */
+.status-led.casual-red {
+  background: #ef4444;
+  box-shadow: 0 0 6px rgba(239, 68, 68, 0.6);
+  animation: pulse-led-red 2s ease-in-out infinite;
+}
+
+@keyframes pulse-led-red {
+  0%, 100% {
+    opacity: 1;
+    box-shadow: 0 0 6px rgba(239, 68, 68, 0.6);
+  }
+  50% {
+    opacity: 0.5;
+    box-shadow: 0 0 2px rgba(239, 68, 68, 0.3);
   }
 }
 

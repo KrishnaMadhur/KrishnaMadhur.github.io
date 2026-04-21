@@ -8,7 +8,7 @@
   <meta name="description"
     content="Researcher in nanotechnology, ferroelectric devices, MEMS fabrication, and analog IC design. MSE Electrical Engineering at the University of Pennsylvania." />
   <meta name="author" content="Krishna Madhur Akella" />
-  <link rel="stylesheet" href="css/style.css?v=5" />
+  <link rel="stylesheet" href="css/style.css?v=6" />
 </head>
 
 <body data-view="home">
@@ -17,6 +17,7 @@
   <div id="xray-grid"></div>
   <div id="firefly-spotlight"></div>
   <div id="floral-bg"></div>
+  <div id="tab-cursor-glow"></div>
 
   <!-- ====== GLASSMORPHISM NAVIGATION ====== -->
   <nav class="navbar">
@@ -61,17 +62,19 @@
           understand the physics of the transistor beneath it.
         </p>
 
-        <p class="home-bio float-up">
+        <p class="home-bio float-up" id="bio-third"
+          data-bio-pro="This deep-tech research is grounded in rigorous industry execution. Having previously architected robust evaluation hardware at &lt;strong&gt;Silicon Laboratories&lt;/strong&gt; and optimized designs at &lt;strong&gt;Cadence&lt;/strong&gt;, I am now focused on pushing the limits of semiconductor scaling and high-performance analog systems."
+          data-bio-casual="I don't really turn the engineering brain off when I leave the lab. I just point it at different targets — and that looks like overanalyzing &lt;strong&gt;F1 aerodynamics&lt;/strong&gt;, decoding the scientific principles embedded in &lt;strong&gt;Hindu mythology&lt;/strong&gt;, or dissecting the latest &lt;strong&gt;tech drops&lt;/strong&gt;.">
           This deep-tech research is grounded in rigorous industry execution. Having previously
           architected robust evaluation hardware at <strong>Silicon Laboratories</strong> and optimized
           designs at <strong>Cadence</strong>, I am now focused on pushing the limits of semiconductor
           scaling and high-performance analog systems.
         </p>
 
-        <!-- Pulsing green LED status -->
+        <!-- Pulsing LED status -->
         <div class="status-indicator float-up">
-          <span class="status-led"></span>
-          <span class="status-text">Currently: Characterizing AlScN devices <strong>@ Singh Center</strong></span>
+          <span class="status-led" id="status-led"></span>
+          <span class="status-text" id="status-text">Currently: Architecting mixed-signal ICs and characterizing nanoscale devices <strong>@ UPenn</strong></span>
         </div>
 
         <p class="home-section-label float-up">Selected Work</p>
@@ -455,7 +458,7 @@
     <img src="" alt="Full size" />
   </div>
 
-  <script src="js/main.js?v=9"></script>
+  <script src="js/main.js?v=10"></script>
 </body>
 
 </html>
