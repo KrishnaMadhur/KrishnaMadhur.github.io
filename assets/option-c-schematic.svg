@@ -1,219 +1,225 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 340" fill="none">
-  <!-- Two-Stage Miller-Compensated CMOS Op-Amp + Bias Circuit -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 320" fill="none">
+  <!--
+    Two-Stage Miller-Compensated CMOS Op-Amp
+    M1/M2 = NMOS diff pair, M3/M4 = PMOS mirror load
+    M5 = NMOS tail, M6 = PMOS 2nd stage, M7 = NMOS load
+    M8 = NMOS bias, Cc = Miller cap, Rz = nulling R
+    
+    MOSFET convention:
+      NMOS: gate left, channel bar right with 3px gap, 
+            drain exits top-right, source exits bottom-right
+            Arrow on source line pointing RIGHT (into channel)
+      PMOS: same layout but circle on gate line
+  -->
+
+  <defs>
+    <!-- NMOS symbol: origin at channel center, drain up, source down -->
+    <g id="nmos">
+      <line x1="-12" y1="0" x2="-4" y2="0" stroke-width="0.7"/><!-- gate input -->
+      <line x1="-4" y1="-9" x2="-4" y2="9" stroke-width="0.8"/><!-- gate bar -->
+      <line x1="-1" y1="-7" x2="-1" y2="-2" stroke-width="0.9"/><!-- channel top -->
+      <line x1="-1" y1="-1" x2="-1" y2="2" stroke-width="0.9"/><!-- channel mid -->
+      <line x1="-1" y1="3" x2="-1" y2="7" stroke-width="0.9"/><!-- channel bot -->
+      <line x1="-1" y1="-7" x2="6" y2="-7" stroke-width="0.7"/><!-- drain horiz -->
+      <line x1="-1" y1="7" x2="6" y2="7" stroke-width="0.7"/><!-- source horiz -->
+      <!-- Arrow on source pointing left (into channel) -->
+      <polygon points="-1,5 2,7 -1,9" fill="#d4af37" stroke="none" opacity="0.35"/>
+    </g>
+
+    <!-- PMOS symbol: same but circle on gate -->
+    <g id="pmos">
+      <line x1="-12" y1="0" x2="-7" y2="0" stroke-width="0.7"/><!-- gate input -->
+      <circle cx="-5.5" cy="0" r="1.5" stroke-width="0.5" fill="none"/><!-- PMOS circle -->
+      <line x1="-4" y1="-9" x2="-4" y2="9" stroke-width="0.8"/><!-- gate bar -->
+      <line x1="-1" y1="-7" x2="-1" y2="-2" stroke-width="0.9"/><!-- channel top -->
+      <line x1="-1" y1="-1" x2="-1" y2="2" stroke-width="0.9"/><!-- channel mid -->
+      <line x1="-1" y1="3" x2="-1" y2="7" stroke-width="0.9"/><!-- channel bot -->
+      <line x1="-1" y1="-7" x2="6" y2="-7" stroke-width="0.7"/><!-- source horiz (PMOS: source on top) -->
+      <line x1="-1" y1="7" x2="6" y2="7" stroke-width="0.7"/><!-- drain horiz -->
+    </g>
+
+    <!-- Capacitor symbol: origin at center, terminals top and bottom -->
+    <g id="cap">
+      <line x1="0" y1="-8" x2="0" y2="-2" stroke-width="0.6"/>
+      <line x1="-5" y1="-2" x2="5" y2="-2" stroke-width="0.8"/>
+      <line x1="-5" y1="2" x2="5" y2="2" stroke-width="0.8"/>
+      <line x1="0" y1="2" x2="0" y2="8" stroke-width="0.6"/>
+    </g>
+
+    <!-- Resistor symbol: origin at center, terminals top and bottom -->
+    <g id="res">
+      <line x1="0" y1="-10" x2="0" y2="-7" stroke-width="0.6"/>
+      <polyline points="0,-7 3,-5 -3,-3 3,-1 -3,1 3,3 -3,5 0,7" stroke-width="0.5" fill="none"/>
+      <line x1="0" y1="7" x2="0" y2="10" stroke-width="0.6"/>
+    </g>
+
+    <!-- Ground symbol -->
+    <g id="gnd">
+      <line x1="0" y1="0" x2="0" y2="4" stroke-width="0.6"/>
+      <line x1="-4" y1="4" x2="4" y2="4" stroke-width="0.6"/>
+      <line x1="-2.5" y1="6.5" x2="2.5" y2="6.5" stroke-width="0.5"/>
+      <line x1="-1" y1="9" x2="1" y2="9" stroke-width="0.4"/>
+    </g>
+  </defs>
+
   <g stroke="#d4af37" opacity="0.32">
 
-    <!-- ═══════════════════════════════════════════════════
-         VDD RAIL
-         ═══════════════════════════════════════════════════ -->
-    <line x1="0" y1="18" x2="420" y2="18" stroke-width="2" opacity="0.2"/>
+    <!-- ══════ VDD RAIL ══════ -->
+    <line x1="0" y1="15" x2="400" y2="15" stroke-width="1.8" opacity="0.18"/>
 
-    <!-- ═══════════════════════════════════════════════════
-         GND RAIL
-         ═══════════════════════════════════════════════════ -->
-    <line x1="0" y1="322" x2="420" y2="322" stroke-width="2" opacity="0.2"/>
+    <!-- ══════ M3 (PMOS, left load) ══════ -->
+    <!-- Placed at (100, 55) — source up to VDD, drain down to node A -->
+    <use href="#pmos" x="100" y="55"/>
+    <!-- M3 source (top, at 106,48) to VDD -->
+    <line x1="106" y1="48" x2="106" y2="15" stroke-width="0.6"/>
+    <!-- M3 drain (bottom, at 106,62) down to node A at y=80 -->
+    <line x1="106" y1="62" x2="106" y2="80" stroke-width="0.6"/>
 
-    <!-- ═══════════════════════════════════════════════════
-         FIRST STAGE — Differential Pair + Active Load
-         ═══════════════════════════════════════════════════ -->
+    <!-- ══════ M4 (PMOS, right load) ══════ -->
+    <!-- Placed at (190, 55) -->
+    <use href="#pmos" x="190" y="55"/>
+    <!-- M4 source (top, at 196,48) to VDD -->
+    <line x1="196" y1="48" x2="196" y2="15" stroke-width="0.6"/>
+    <!-- M4 drain (bottom, at 196,62) down to node B at y=80 -->
+    <line x1="196" y1="62" x2="196" y2="80" stroke-width="0.6"/>
 
-    <!-- M3 (PMOS load, left) — drain=node A, source=VDD -->
-    <!-- Gate vertical -->
-    <line x1="88" y1="60" x2="88" y2="85" stroke-width="0.7"/>
-    <!-- Gate input line -->
-    <line x1="68" y1="72" x2="84" y2="72" stroke-width="0.7"/>
-    <!-- Gate circle (PMOS) -->
-    <circle cx="86" cy="72" r="2" stroke-width="0.6"/>
-    <!-- Channel bar -->
-    <line x1="93" y1="58" x2="93" y2="88" stroke-width="1"/>
-    <!-- Source to VDD -->
-    <line x1="93" y1="58" x2="93" y2="18" stroke-width="0.7"/>
-    <!-- Drain down -->
-    <line x1="93" y1="88" x2="93" y2="120" stroke-width="0.7"/>
+    <!-- M3-M4 current mirror: gates tied together, M3 diode-connected -->
+    <!-- M3 gate input at (88,55) → wire down to node A (106,80) -->
+    <line x1="88" y1="55" x2="88" y2="80" stroke-width="0.5"/>
+    <line x1="88" y1="80" x2="106" y2="80" stroke-width="0.5"/>
+    <!-- M4 gate input at (178,55) → wire up, across to M3 gate wire -->
+    <line x1="178" y1="55" x2="178" y2="40" stroke-width="0.5"/>
+    <line x1="88" y1="40" x2="178" y2="40" stroke-width="0.5"/>
+    <line x1="88" y1="40" x2="88" y2="55" stroke-width="0.5"/>
 
-    <!-- M4 (PMOS load, right) — mirror of M3 -->
-    <line x1="198" y1="60" x2="198" y2="85" stroke-width="0.7"/>
-    <line x1="178" y1="72" x2="194" y2="72" stroke-width="0.7"/>
-    <circle cx="196" cy="72" r="2" stroke-width="0.6"/>
-    <line x1="203" y1="58" x2="203" y2="88" stroke-width="1"/>
-    <line x1="203" y1="58" x2="203" y2="18" stroke-width="0.7"/>
-    <line x1="203" y1="88" x2="203" y2="120" stroke-width="0.7"/>
+    <!-- ══════ M1 (NMOS, left diff input) ══════ -->
+    <!-- Placed at (100, 110) — drain up to node A, source down to tail -->
+    <use href="#nmos" x="100" y="110"/>
+    <!-- M1 drain (at 106,103) up to node A at y=80 -->
+    <line x1="106" y1="103" x2="106" y2="80" stroke-width="0.6"/>
+    <!-- M1 source (at 106,117) down to tail node at y=140 -->
+    <line x1="106" y1="117" x2="106" y2="140" stroke-width="0.6"/>
+    <!-- M1 gate input (at 88,110) ← Vin- signal from left -->
+    <line x1="50" y1="110" x2="88" y2="110" stroke-width="0.6"/>
 
-    <!-- M3-M4 gate connection (current mirror) -->
-    <line x1="68" y1="72" x2="68" y2="100" stroke-width="0.6"/>
-    <line x1="68" y1="100" x2="93" y2="100" stroke-width="0.6"/>
-    <!-- M3 diode connection: gate to drain -->
-    <line x1="178" y1="72" x2="178" y2="100" stroke-width="0.6"/>
-    <line x1="68" y1="72" x2="68" y2="50" stroke-width="0.6"/>
-    <line x1="68" y1="50" x2="178" y2="50" stroke-width="0.6"/>
-    <line x1="178" y1="50" x2="178" y2="72" stroke-width="0.6"/>
+    <!-- ══════ M2 (NMOS, right diff input) ══════ -->
+    <!-- Placed at (190, 110) -->
+    <use href="#nmos" x="190" y="110"/>
+    <!-- M2 drain (at 196,103) up to node B at y=80 -->
+    <line x1="196" y1="103" x2="196" y2="80" stroke-width="0.6"/>
+    <!-- M2 source (at 196,117) down to tail node at y=140 -->
+    <line x1="196" y1="117" x2="196" y2="140" stroke-width="0.6"/>
+    <!-- M2 gate input (at 178,110) ← Vin+ signal from right -->
+    <line x1="230" y1="110" x2="178" y2="110" stroke-width="0.6"/>
 
-    <!-- M1 (NMOS input, left) — Vin- -->
-    <line x1="88" y1="140" x2="88" y2="165" stroke-width="0.7"/>
-    <line x1="55" y1="152" x2="88" y2="152" stroke-width="0.7"/>
-    <!-- Channel bar -->
-    <line x1="93" y1="138" x2="93" y2="168" stroke-width="1"/>
-    <!-- Drain up to M3 -->
-    <line x1="93" y1="138" x2="93" y2="120" stroke-width="0.7"/>
-    <!-- Source down to tail -->
-    <line x1="93" y1="168" x2="93" y2="195" stroke-width="0.7"/>
-    <!-- NMOS arrow -->
-    <polygon points="93,165 97,168 93,171" fill="#d4af37" opacity="0.3" stroke="none"/>
+    <!-- Tail node: M1 source + M2 source join at y=140 -->
+    <line x1="106" y1="140" x2="150" y2="140" stroke-width="0.6"/>
+    <line x1="196" y1="140" x2="150" y2="140" stroke-width="0.6"/>
 
-    <!-- M2 (NMOS input, right) — Vin+ -->
-    <line x1="198" y1="140" x2="198" y2="165" stroke-width="0.7"/>
-    <line x1="230" y1="152" x2="198" y2="152" stroke-width="0.7"/>
-    <line x1="203" y1="138" x2="203" y2="168" stroke-width="1"/>
-    <line x1="203" y1="138" x2="203" y2="120" stroke-width="0.7"/>
-    <line x1="203" y1="168" x2="203" y2="195" stroke-width="0.7"/>
-    <polygon points="203,165 207,168 203,171" fill="#d4af37" opacity="0.3" stroke="none"/>
+    <!-- ══════ M5 (NMOS, tail current source) ══════ -->
+    <!-- Placed at (144, 165) -->
+    <use href="#nmos" x="144" y="165"/>
+    <!-- M5 drain (at 150,158) up to tail node at y=140 -->
+    <line x1="150" y1="158" x2="150" y2="140" stroke-width="0.6"/>
+    <!-- M5 source (at 150,172) down to GND -->
+    <line x1="150" y1="172" x2="150" y2="195" stroke-width="0.6"/>
+    <use href="#gnd" x="150" y="195"/>
 
-    <!-- Tail node connection M1-M2 sources -->
-    <line x1="93" y1="195" x2="148" y2="195" stroke-width="0.7"/>
-    <line x1="203" y1="195" x2="148" y2="195" stroke-width="0.7"/>
+    <!-- ══════ SECOND STAGE ══════ -->
 
-    <!-- M5 (NMOS tail current source) -->
-    <line x1="143" y1="205" x2="143" y2="230" stroke-width="0.7"/>
-    <line x1="118" y1="218" x2="143" y2="218" stroke-width="0.7"/>
-    <line x1="148" y1="203" x2="148" y2="233" stroke-width="1"/>
-    <line x1="148" y1="203" x2="148" y2="195" stroke-width="0.7"/>
-    <line x1="148" y1="233" x2="148" y2="260" stroke-width="0.7"/>
-    <polygon points="148,230 152,233 148,236" fill="#d4af37" opacity="0.3" stroke="none"/>
-    <!-- M5 source to GND -->
-    <line x1="148" y1="260" x2="148" y2="322" stroke-width="0.7"/>
+    <!-- ══════ M6 (PMOS, 2nd stage gain) ══════ -->
+    <!-- Placed at (280, 65) -->
+    <use href="#pmos" x="280" y="65"/>
+    <!-- M6 source (top, at 286,58) to VDD -->
+    <line x1="286" y1="58" x2="286" y2="15" stroke-width="0.6"/>
+    <!-- M6 drain (bottom, at 286,72) down to output node y=100 -->
+    <line x1="286" y1="72" x2="286" y2="100" stroke-width="0.6"/>
+    <!-- M6 gate (at 268,65) driven from node B -->
+    <line x1="196" y1="80" x2="240" y2="80" stroke-width="0.5"/>
+    <line x1="240" y1="80" x2="240" y2="65" stroke-width="0.5"/>
+    <line x1="240" y1="65" x2="268" y2="65" stroke-width="0.5"/>
 
-    <!-- Input labels — Vin- and Vin+ signal lines -->
-    <line x1="20" y1="152" x2="55" y2="152" stroke-width="0.6"/>
-    <line x1="230" y1="152" x2="260" y2="152" stroke-width="0.6"/>
+    <!-- ══════ M7 (NMOS, 2nd stage load) ══════ -->
+    <!-- Placed at (280, 135) -->
+    <use href="#nmos" x="280" y="135"/>
+    <!-- M7 drain (at 286,128) up to output node y=100 -->
+    <line x1="286" y1="128" x2="286" y2="100" stroke-width="0.6"/>
+    <!-- M7 source (at 286,142) down to GND -->
+    <line x1="286" y1="142" x2="286" y2="165" stroke-width="0.6"/>
+    <use href="#gnd" x="286" y="165"/>
 
-    <!-- ═══════════════════════════════════════════════════
-         SECOND STAGE — Common-Source Amplifier
-         ═══════════════════════════════════════════════════ -->
+    <!-- Output node → Vout line -->
+    <line x1="286" y1="100" x2="330" y2="100" stroke-width="0.6"/>
 
-    <!-- M6 (PMOS gain, second stage) -->
-    <line x1="290" y1="80" x2="290" y2="105" stroke-width="0.7"/>
-    <line x1="270" y1="92" x2="286" y2="92" stroke-width="0.7"/>
-    <circle cx="288" cy="92" r="2" stroke-width="0.6"/>
-    <line x1="295" y1="78" x2="295" y2="108" stroke-width="1"/>
-    <line x1="295" y1="78" x2="295" y2="18" stroke-width="0.7"/>
-    <line x1="295" y1="108" x2="295" y2="150" stroke-width="0.7"/>
+    <!-- ══════ MILLER COMPENSATION (Rz + Cc) ══════ -->
+    <!-- Rz from node B (y=80) going down -->
+    <line x1="220" y1="80" x2="220" y2="90" stroke-width="0.5"/>
+    <use href="#res" x="220" y="100"/>
+    <!-- Cc below resistor -->
+    <use href="#cap" x="220" y="120"/>
+    <!-- Bottom of Cc to output node -->
+    <line x1="220" y1="128" x2="220" y2="140" stroke-width="0.5"/>
+    <line x1="220" y1="140" x2="310" y2="140" stroke-width="0.5"/>
+    <line x1="310" y1="140" x2="310" y2="100" stroke-width="0.5"/>
 
-    <!-- M6 gate driven from first stage output (drain of M4/M2 node) -->
-    <line x1="203" y1="120" x2="250" y2="120" stroke-width="0.6"/>
-    <line x1="250" y1="120" x2="250" y2="92" stroke-width="0.6"/>
-    <line x1="250" y1="92" x2="270" y2="92" stroke-width="0.6"/>
+    <!-- ══════ BIAS CIRCUIT (M8) ══════ -->
+    <!-- M8 (NMOS, diode-connected bias) at (350, 220) -->
+    <use href="#nmos" x="350" y="220"/>
+    <!-- M8 drain (at 356,213) up -->
+    <line x1="356" y1="213" x2="356" y2="190" stroke-width="0.6"/>
+    <!-- Rbias above M8 to VDD -->
+    <use href="#res" x="356" y="180"/>
+    <line x1="356" y1="170" x2="356" y2="15" stroke-width="0.6"/>
+    <!-- M8 source (at 356,227) to GND -->
+    <line x1="356" y1="227" x2="356" y2="250" stroke-width="0.6"/>
+    <use href="#gnd" x="356" y="250"/>
+    <!-- M8 diode: gate (338,220) ties to drain (356,190) -->
+    <line x1="338" y1="220" x2="338" y2="190" stroke-width="0.5"/>
+    <line x1="338" y1="190" x2="356" y2="190" stroke-width="0.5"/>
 
-    <!-- M7 (NMOS current source load, second stage) -->
-    <line x1="290" y1="200" x2="290" y2="225" stroke-width="0.7"/>
-    <line x1="270" y1="212" x2="290" y2="212" stroke-width="0.7"/>
-    <line x1="295" y1="198" x2="295" y2="228" stroke-width="1"/>
-    <line x1="295" y1="198" x2="295" y2="150" stroke-width="0.7"/>
-    <line x1="295" y1="228" x2="295" y2="322" stroke-width="0.7"/>
-    <polygon points="295,225 299,228 295,231" fill="#d4af37" opacity="0.3" stroke="none"/>
+    <!-- Bias mirror bus: M8 gate → M5 gate + M7 gate -->
+    <line x1="338" y1="220" x2="338" y2="260" stroke-width="0.4"/>
+    <line x1="132" y1="260" x2="338" y2="260" stroke-width="0.4"/>
+    <!-- Up to M5 gate -->
+    <line x1="132" y1="165" x2="132" y2="260" stroke-width="0.4"/>
+    <!-- Up to M7 gate -->
+    <line x1="268" y1="135" x2="268" y2="260" stroke-width="0.4"/>
 
-    <!-- Output node (Vout) — from junction of M6/M7 -->
-    <line x1="295" y1="150" x2="350" y2="150" stroke-width="0.7"/>
-    <line x1="350" y1="150" x2="370" y2="150" stroke-width="0.7"/>
+    <!-- ══════ OUTPUT LOAD (CL) ══════ -->
+    <line x1="330" y1="100" x2="350" y2="100" stroke-width="0.5"/>
+    <line x1="350" y1="100" x2="350" y2="112" stroke-width="0.5"/>
+    <use href="#cap" x="350" y="120"/>
+    <line x1="350" y1="128" x2="350" y2="140" stroke-width="0.5"/>
+    <use href="#gnd" x="350" y="140"/>
 
-    <!-- ═══════════════════════════════════════════════════
-         MILLER COMPENSATION — Cc + Rz
-         ═══════════════════════════════════════════════════ -->
+    <!-- ══════ VDD SUPPLY DECOUPLING ══════ -->
+    <line x1="35" y1="15" x2="35" y2="26" stroke-width="0.5"/>
+    <use href="#cap" x="35" y="34"/>
+    <line x1="35" y1="42" x2="35" y2="50" stroke-width="0.5"/>
+    <use href="#gnd" x="35" y="50"/>
 
-    <!-- Rz (nulling resistor) — between first stage output and Cc -->
-    <line x1="240" y1="120" x2="240" y2="135" stroke-width="0.6"/>
-    <!-- Zigzag -->
-    <polyline points="240,135 244,138 236,142 244,146 236,150 240,153" stroke-width="0.6"/>
-    <line x1="240" y1="153" x2="240" y2="165" stroke-width="0.6"/>
-
-    <!-- Cc (Miller capacitor) -->
-    <line x1="233" y1="165" x2="247" y2="165" stroke-width="0.8"/>
-    <line x1="233" y1="170" x2="247" y2="170" stroke-width="0.8"/>
-    <!-- Bottom plate to output -->
-    <line x1="240" y1="170" x2="240" y2="185" stroke-width="0.6"/>
-    <line x1="240" y1="185" x2="330" y2="185" stroke-width="0.6"/>
-    <line x1="330" y1="185" x2="330" y2="150" stroke-width="0.6"/>
-
-    <!-- ═══════════════════════════════════════════════════
-         BIAS CIRCUIT — Current Mirror
-         ═══════════════════════════════════════════════════ -->
-
-    <!-- M8 (NMOS bias, sets Ibias) -->
-    <line x1="370" y1="230" x2="370" y2="255" stroke-width="0.7"/>
-    <line x1="350" y1="242" x2="370" y2="242" stroke-width="0.7"/>
-    <line x1="375" y1="228" x2="375" y2="258" stroke-width="1"/>
-    <line x1="375" y1="258" x2="375" y2="322" stroke-width="0.7"/>
-    <polygon points="375,255 379,258 375,261" fill="#d4af37" opacity="0.3" stroke="none"/>
-    <!-- M8 drain up -->
-    <line x1="375" y1="228" x2="375" y2="200" stroke-width="0.7"/>
-
-    <!-- Ibias resistor to VDD -->
-    <line x1="375" y1="200" x2="375" y2="185" stroke-width="0.6"/>
-    <polyline points="375,185 379,180 371,175 379,170 371,165 379,160 375,155" stroke-width="0.5"/>
-    <line x1="375" y1="155" x2="375" y2="18" stroke-width="0.7"/>
-
-    <!-- M8 diode-connected: gate to drain -->
-    <line x1="350" y1="242" x2="350" y2="210" stroke-width="0.6"/>
-    <line x1="350" y1="210" x2="375" y2="210" stroke-width="0.6"/>
-
-    <!-- Bias mirror connection: M8 gate to M5 gate and M7 gate -->
-    <line x1="350" y1="242" x2="350" y2="280" stroke-width="0.6"/>
-    <line x1="118" y1="280" x2="350" y2="280" stroke-width="0.5"/>
-    <line x1="118" y1="218" x2="118" y2="280" stroke-width="0.6"/>
-    <!-- Also to M7 gate -->
-    <line x1="270" y1="212" x2="270" y2="280" stroke-width="0.6"/>
-
-    <!-- ═══════════════════════════════════════════════════
-         OUTPUT LOAD CAPACITOR (CL)
-         ═══════════════════════════════════════════════════ -->
-    <line x1="370" y1="150" x2="395" y2="150" stroke-width="0.6"/>
-    <line x1="395" y1="150" x2="395" y2="180" stroke-width="0.6"/>
-    <line x1="388" y1="180" x2="402" y2="180" stroke-width="0.8"/>
-    <line x1="388" y1="185" x2="402" y2="185" stroke-width="0.8"/>
-    <line x1="395" y1="185" x2="395" y2="322" stroke-width="0.6"/>
-
-    <!-- ═══════════════════════════════════════════════════
-         BYPASS / DECOUPLING CAPACITOR (Cbypass near VDD)
-         ═══════════════════════════════════════════════════ -->
-    <line x1="30" y1="18" x2="30" y2="35" stroke-width="0.5"/>
-    <line x1="24" y1="35" x2="36" y2="35" stroke-width="0.7"/>
-    <line x1="24" y1="39" x2="36" y2="39" stroke-width="0.7"/>
-    <line x1="30" y1="39" x2="30" y2="55" stroke-width="0.5"/>
-    <!-- Cbypass bottom to a local GND tap -->
-    <line x1="28" y1="55" x2="32" y2="55" stroke-width="0.5"/>
-    <line x1="29" y1="58" x2="31" y2="58" stroke-width="0.4"/>
-
-    <!-- ═══════════════════════════════════════════════════
-         EXTRA: ESD DIODES (at inputs)
-         ═══════════════════════════════════════════════════ -->
-    <!-- Diode at Vin- to VDD -->
-    <line x1="40" y1="152" x2="40" y2="130" stroke-width="0.4" opacity="0.5"/>
-    <line x1="35" y1="130" x2="45" y2="130" stroke-width="0.5" opacity="0.5"/>
-    <polygon points="35,126 45,126 40,130" fill="none" stroke-width="0.4" opacity="0.5"/>
-    <line x1="40" y1="126" x2="40" y2="18" stroke-width="0.4" opacity="0.3"/>
-    <!-- Diode at Vin- to GND -->
-    <line x1="40" y1="152" x2="40" y2="175" stroke-width="0.4" opacity="0.5"/>
-    <polygon points="35,175 45,175 40,179" fill="none" stroke-width="0.4" opacity="0.5"/>
-    <line x1="35" y1="179" x2="45" y2="179" stroke-width="0.5" opacity="0.5"/>
-    <line x1="40" y1="179" x2="40" y2="322" stroke-width="0.4" opacity="0.3"/>
+    <!-- ══════ INPUT SIGNAL LINES ══════ -->
+    <line x1="15" y1="110" x2="50" y2="110" stroke-width="0.5"/>
+    <line x1="230" y1="110" x2="260" y2="110" stroke-width="0.5"/>
 
   </g>
 
-  <!-- ═══════════════════════════════════════════════════
-       JUNCTION DOTS (wire connection points)
-       ═══════════════════════════════════════════════════ -->
+  <!-- ══════ JUNCTION DOTS ══════ -->
   <g fill="#d4af37" opacity="0.25">
-    <circle cx="93" cy="120" r="1.5"/>
-    <circle cx="203" cy="120" r="1.5"/>
-    <circle cx="148" cy="195" r="1.5"/>
-    <circle cx="295" cy="150" r="1.5"/>
-    <circle cx="330" cy="150" r="1.5"/>
-    <circle cx="240" cy="120" r="1.5"/>
-    <circle cx="370" cy="150" r="1.5"/>
-    <circle cx="350" cy="242" r="1.5"/>
-    <circle cx="350" cy="210" r="1.5"/>
-    <circle cx="118" cy="280" r="1.5"/>
-    <circle cx="270" cy="280" r="1.5"/>
-    <circle cx="350" cy="280" r="1.5"/>
-    <circle cx="375" cy="210" r="1.5"/>
-    <circle cx="40" cy="152" r="1.5"/>
+    <circle cx="106" cy="80" r="1.5"/><!-- node A -->
+    <circle cx="196" cy="80" r="1.5"/><!-- node B -->
+    <circle cx="150" cy="140" r="1.5"/><!-- tail -->
+    <circle cx="286" cy="100" r="1.5"/><!-- output -->
+    <circle cx="220" cy="80" r="1.5"/><!-- Rz tap from node B -->
+    <circle cx="310" cy="100" r="1.5"/><!-- Cc to output -->
+    <circle cx="330" cy="100" r="1.5"/><!-- CL tap -->
+    <circle cx="338" cy="220" r="1.5"/><!-- M8 gate/diode -->
+    <circle cx="338" cy="190" r="1.5"/><!-- M8 diode junction -->
+    <circle cx="356" cy="190" r="1.5"/><!-- M8 drain -->
+    <circle cx="132" cy="260" r="1.5"/><!-- bias bus to M5 -->
+    <circle cx="268" cy="260" r="1.5"/><!-- bias bus to M7 -->
+    <circle cx="338" cy="260" r="1.5"/><!-- bias bus from M8 -->
+    <circle cx="88" cy="55" r="1.5"/><!-- M3 gate -->
+    <circle cx="88" cy="40" r="1.5"/><!-- mirror top -->
   </g>
 </svg>
