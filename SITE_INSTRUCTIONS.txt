@@ -657,7 +657,7 @@ WHERE THINGS LIVE (file map)
   writing/posts/              ← One .html file per blog post
   writing/posts/_template.html ← Copy this for new posts
   reports/                    ← PDF reports
-  AKM_Industry_Resume.pdf     ← Resume
+  Krishna_Akella_CV.pdf       ← Resume / CV
 
 
 ================================================================================
