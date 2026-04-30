@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MEMS Vibratory Gyroscope — Krishna Madhur Akella</title>
+    <meta name="description"
+        content="Fully decoupled, mode-split tuning-fork vibratory MEMS gyroscope designed for 5μm SOI DRIE process." />
+    <link rel="stylesheet" href="../css/style.css?v=6" />
+</head>
+
+<body class="project-detail" data-glow="cyan">
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">कृष्ण ⏚</a>
+            <div class="nav-tabs">
+                <a href="../index.html#home" class="nav-tab">Home</a>
+                <a href="../index.html#projects" class="nav-tab active">Projects</a>
+                <a href="../index.html#writing" class="nav-tab">Writing</a>
+                <a href="../index.html#photography" class="nav-tab">Photography</a>
+                <a href="../index.html#cv" class="nav-tab">CV</a>
+            </div>
+            <button class="nav-hamburger" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <main class="detail-page">
+        <a href="../index.html#projects" class="detail-back">← Back to Projects</a>
+
+        <h1 class="detail-title">Tuning-Fork Vibratory MEMS Gyroscope</h1>
+        <p class="detail-meta">ESE 5290 · MEMS Design · 5 μm SOI DRIE · Spring 2026</p>
+
+        <div class="detail-body">
+            <p>
+                Architected and numerically synthesized a fully decoupled, mode-split tuning-fork
+                vibratory <strong>MEMS gyroscope</strong>. Designed for a
+                <strong>5 μm Silicon-on-Insulator (SOI) DRIE process</strong>, this project heavily
+                focuses on mitigating real-world fabrication variances—such as critical dimension (CD)
+                over-etch and out-of-plane stress curling—using active electrostatic spring softening
+                and symmetric suspension topologies to guarantee a phase-stable, wideband response.
+            </p>
+
+            <h2>Key Results</h2>
+            <ul>
+                <li><strong>Kinematic Optimization</strong> — Architected a precise 100 Hz frequency
+                    split (f<sub>drive</sub> = 15.0 kHz, f<sub>sense</sub> = 15.1 kHz) using a
+                    200-finger differential comb array to extract a robust 123 pA motional current
+                    at 1°/sec rotation, exceeding target resolution.</li>
+                <li><strong>Process Integration</strong> — Engineered a custom Poly-Si anchor plug
+                    module within the fabrication flow to completely seal the underlying BOX layer,
+                    preventing catastrophic structural undercut during the isotropic vapor HF release
+                    phase.</li>
+                <li><strong>Yield &amp; Error Mitigation</strong> — Modeled active post-fabrication
+                    electrostatic spring tuning (via a 15V DC bias) to perfectly counteract up to an
+                    18% mechanical stiffness reduction caused by inherent DRIE Bosch process sidewall
+                    over-etching.</li>
+            </ul>
+
+            <h2>Report</h2>
+            <p>
+                <a href="../reports/ESE5290_Gyroscope.pdf" class="detail-report-link"
+                    data-report="../reports/ESE5290_Gyroscope.pdf">
+                    📄 View Final Report (PDF)
+                </a>
+            </p>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 Krishna Madhur Akella</p>
+    </footer>
+
+    <div id="pdf-modal" class="pdf-modal" style="display:none;">
+        <div class="pdf-modal-overlay"></div>
+        <div class="pdf-modal-content">
+            <button class="pdf-modal-close" aria-label="Close">&times;</button>
+            <iframe id="pdf-viewer" src="" title="Report Preview"></iframe>
+        </div>
+    </div>
+
+    <script>
+        const hamburger = document.querySelector('.nav-hamburger');
+        const navTabs = document.querySelector('.nav-tabs');
+        if (hamburger) { hamburger.addEventListener('click', () => { hamburger.classList.toggle('open'); navTabs.classList.toggle('open'); }); }
+        const pdfModal = document.getElementById('pdf-modal');
+        const pdfViewer = document.getElementById('pdf-viewer');
+        document.querySelectorAll('[data-report]').forEach(link => {
+            link.addEventListener('click', e => { e.preventDefault(); pdfViewer.src = link.getAttribute('data-report') + '#toolbar=0&navpanes=0'; pdfModal.style.display = 'flex'; document.body.style.overflow = 'hidden'; });
+        });
+        document.querySelector('.pdf-modal-close').addEventListener('click', () => { pdfModal.style.display = 'none'; pdfViewer.src = ''; document.body.style.overflow = ''; });
+        document.querySelector('.pdf-modal-overlay').addEventListener('click', () => { pdfModal.style.display = 'none'; pdfViewer.src = ''; document.body.style.overflow = ''; });
+    
+        // Lab Bench cursor glow
+        document.addEventListener('mousemove', (e) => {
+            document.documentElement.style.setProperty('--mouse-x', e.clientX + 'px');
+            document.documentElement.style.setProperty('--mouse-y', e.clientY + 'px');
+        });
+        document.addEventListener('mouseleave', () => {
+            document.documentElement.style.setProperty('--mouse-x', '-9999px');
+            document.documentElement.style.setProperty('--mouse-y', '-9999px');
+        });
+    </script>
+</body>
+
+</html>
