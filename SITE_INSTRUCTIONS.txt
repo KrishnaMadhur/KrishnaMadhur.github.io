@@ -14,8 +14,8 @@ HOW TO MAKE CHANGES IN 3 STEPS:
    After editing  css/style.css  or  js/main.js , you MUST bump the version
    number in index.html so the browser loads the new file:
 
-     CSS:  <link rel="stylesheet" href="css/style.css?v=7" />
-           → change  ?v=7  to  ?v=8 , then  ?v=9 , etc.
+     CSS:  <link rel="stylesheet" href="css/style.css?v=8" />
+           → change  ?v=8  to  ?v=9 , then  ?v=10 , etc.
 
      JS:   <script src="js/main.js?v=11">
            → change  ?v=11  to  ?v=12 , then  ?v=13 , etc.
