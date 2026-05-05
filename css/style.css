@@ -776,21 +776,9 @@ body[data-view="cv"]::after {
 }
 
 /* Journal container — gold margin as structural divider */
-.journal-container {
+/* ── Brainwaves container (replaces journal) ── */
+.brainwaves-container {
   position: relative;
-  padding-left: 120px;
-}
-
-.journal-container::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 90px;
-  width: 2px;
-  height: 100%;
-  background: rgba(197, 160, 89, 0.25);
-  z-index: 0;
-  pointer-events: none;
 }
 
 /* ===========================================
@@ -892,105 +880,147 @@ body[data-view="writing"] .view-subtitle {
   color: var(--gold);
 }
 
-/* ===========================================
-   JOURNAL VIEW — "The Lab Notebook"
-   =========================================== */
-.journal-section {
-  margin-bottom: 3rem;
-  padding-bottom: 2.5rem;
-  border-bottom: 1px solid rgba(212, 175, 55, 0.15);
-}
-
-.journal-section:last-child {
+/* ── Project Category Section Headers ── */
+.project-category {
+  padding: 2.5rem 0 0.75rem;
   border-bottom: none;
-  padding-bottom: 0;
 }
 
-.journal-section-title {
+.project-category:first-child {
+  padding-top: 0;
+}
+
+.project-category-title {
   font-family: var(--font-serif);
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 600;
-  color: var(--writing-accent);
-  margin-bottom: 1.2rem;
+  color: var(--gold);
   letter-spacing: 0.02em;
+  margin-bottom: 0.25rem;
 }
 
-.journal-category {
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  color: var(--gold);
-  font-weight: 600;
-  margin-top: 1.5rem;
-  margin-bottom: 0.6rem;
-}
-
-.journal-category:first-of-type {
-  margin-top: 0;
-}
-
-.journal-entry {
-  display: grid;
-  grid-template-columns: 80px 1fr;
-  gap: 0;
-  align-items: baseline;
-  margin-bottom: 2rem;
-  text-decoration: none;
-  color: inherit;
-  transition: padding-left var(--transition);
-  position: relative;
-}
-
-a.journal-entry:hover {
-  padding-left: 6px;
-}
-
-.journal-entry:last-of-type {
-  margin-bottom: 0;
-}
-
-.journal-meta {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: var(--gold);
-  text-align: right;
-  padding-right: 1.2rem;
-  position: relative;
-  left: -30px;
-  white-space: nowrap;
-}
-
-.journal-content {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.journal-entry-title {
-  font-size: 1.25rem;
-  color: #EAEAEA;
-  font-weight: 600;
-}
-
-.journal-entry-desc {
+.project-category-sub {
   font-size: 0.82rem;
-  color: rgba(255, 255, 255, 0.4);
-  line-height: 1.5;
-}
-
-.journal-entry-author {
-  font-size: 0.85rem;
-  color: #9CA3AF;
+  color: rgba(255, 255, 255, 0.3);
   font-style: italic;
+  font-weight: 300;
 }
 
-.journal-verdict {
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
-  color: #D4AF37;
-  font-style: normal;
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
+/* ===========================================
+   BRAINWAVES VIEW — Mood Board
+   =========================================== */
+
+/* Bluish-black background with interference pattern */
+#writing.view {
+  background: #080b12;
+  position: relative;
+  overflow: hidden;
+}
+
+#writing.view::before {
+  content: '';
+  position: absolute;
+  inset: -50%;
+  width: 200%;
+  height: 200%;
+  background:
+    radial-gradient(ellipse 600px 400px at 30% 40%, rgba(40, 80, 160, 0.06) 0%, transparent 70%),
+    radial-gradient(ellipse 500px 350px at 70% 60%, rgba(60, 100, 180, 0.05) 0%, transparent 70%),
+    radial-gradient(ellipse 400px 300px at 50% 30%, rgba(80, 120, 200, 0.04) 0%, transparent 60%);
+  animation: brainwavesDrift 30s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(80px);
+}
+
+#writing.view::after {
+  content: '';
+  position: absolute;
+  inset: -50%;
+  width: 200%;
+  height: 200%;
+  background:
+    radial-gradient(ellipse 500px 300px at 60% 50%, rgba(50, 90, 170, 0.05) 0%, transparent 65%),
+    radial-gradient(ellipse 350px 250px at 35% 70%, rgba(70, 110, 190, 0.04) 0%, transparent 60%);
+  animation: brainwavesDrift2 25s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(100px);
+}
+
+@keyframes brainwavesDrift {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  33%      { transform: translate(-3%, 2%) rotate(1deg); }
+  66%      { transform: translate(2%, -1%) rotate(-0.5deg); }
+}
+
+@keyframes brainwavesDrift2 {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  50%      { transform: translate(4%, -3%) rotate(-1deg); }
+}
+
+#writing .container {
+  position: relative;
+  z-index: 1;
+}
+
+/* Mood board grid — masonry-like with varied card sizes */
+.brainwaves-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 180px;
+  gap: 0.75rem;
+}
+
+.bw-card {
+  position: relative;
+  border-radius: 6px;
+  overflow: hidden;
+  cursor: default;
+  transition: transform 0.3s ease;
+}
+
+.bw-card:hover {
+  transform: scale(1.02);
+}
+
+.bw-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: filter 0.3s ease;
+}
+
+.bw-card:hover img {
+  filter: brightness(0.75);
+}
+
+/* Varied sizes for organic mood board feel */
+.bw-card-tall {
+  grid-row: span 2;
+}
+
+.bw-card-wide {
+  grid-column: span 2;
+}
+
+/* Caption overlay — same as photography tab */
+.bw-card-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 12px 16px;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.75));
+  color: var(--white);
+  font-size: 0.78rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.bw-card:hover .bw-card-caption {
+  opacity: 1;
 }
 
 /* ===========================================
@@ -1631,21 +1661,10 @@ body.writing-detail .detail-tag {
    RESPONSIVE
    =========================================== */
 @media (max-width: 768px) {
-  .journal-container {
-    padding-left: 80px;
-  }
-
-  .journal-container::before {
-    left: 60px;
-  }
-
-  .journal-meta {
-    left: -20px;
-    font-size: 0.65rem;
-  }
-
-  .journal-entry {
-    grid-template-columns: 60px 1fr;
+  /* Brainwaves grid responsive */
+  .brainwaves-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 150px;
   }
 
   /* Timeline mobile — ensure readable text */

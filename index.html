@@ -8,7 +8,7 @@
   <meta name="description"
     content="Researcher in nanotechnology, ferroelectric devices, MEMS fabrication, and analog IC design. MSE Electrical Engineering at the University of Pennsylvania." />
   <meta name="author" content="Krishna Madhur Akella" />
-  <link rel="stylesheet" href="css/style.css?v=7" />
+  <link rel="stylesheet" href="css/style.css?v=8" />
 </head>
 
 <body data-view="home">
@@ -26,7 +26,7 @@
       <div class="nav-tabs">
         <button class="nav-tab active" data-view="home">Home</button>
         <button class="nav-tab" data-view="projects">Projects</button>
-        <button class="nav-tab" data-view="writing">Journal</button>
+        <button class="nav-tab" data-view="writing">Brainwaves</button>
         <button class="nav-tab" data-view="photography">Photography</button>
         <button class="nav-tab" data-view="cv">CV</button>
       </div>
@@ -95,7 +95,7 @@
             <span class="sw-arrow">→</span>
           </a>
           <a href="projects/semiconductor-memory.html" class="selected-work-item float-up" data-sw-casual style="display:none;">
-            <span class="sw-title">Semiconductor Memory Design</span>
+            <span class="sw-title">Robust Compute-in-Memory for Edge Healthcare</span>
             <span class="sw-desc">ESE 5760 — Advanced memory architectures</span>
             <span class="sw-arrow">→</span>
           </a>
@@ -135,18 +135,11 @@
 
       <div class="projects-list stagger-children">
 
-        <a href="projects/semiconductor-memory.html" class="project-row float-up">
-          <div>
-            <h3 class="project-row-title">Semiconductor Memory Design</h3>
-            <p class="project-row-desc">Advanced semiconductor memory architecture design and analysis
-              for high-density, low-power applications.</p>
-          </div>
-          <div class="project-row-meta">
-            <p class="project-row-tools">ESE 5760</p>
-            <p class="project-row-date">Spring 2026</p>
-            <p class="project-row-arrow">→</p>
-          </div>
-        </a>
+        <!-- ═══ CATEGORY: Device Physics & TCAD ═══ -->
+        <div class="project-category float-up">
+          <h2 class="project-category-title">Device Physics &amp; TCAD</h2>
+          <p class="project-category-sub">The foundational layer: understanding and simulating the electron.</p>
+        </div>
 
         <a href="projects/alscn-ferroelectrics.html" class="project-row float-up">
           <div>
@@ -161,6 +154,25 @@
             <p class="project-row-arrow">→</p>
           </div>
         </a>
+
+        <a href="projects/device-modelling.html" class="project-row float-up">
+          <div>
+            <h3 class="project-row-title">Device Modelling &amp; Simulation</h3>
+            <p class="project-row-desc">Modelled planar 2D SOI-FET and 3D 14nm FinFET, achieving 3% performance
+              improvement over baseline. Awarded "Research Grade: Excellent" at OUR Conference.</p>
+          </div>
+          <div class="project-row-meta">
+            <p class="project-row-tools">Synopsys Sentaurus TCAD</p>
+            <p class="project-row-date">Aug 2021 – Aug 2022</p>
+            <p class="project-row-arrow">→</p>
+          </div>
+        </a>
+
+        <!-- ═══ CATEGORY: Cleanroom Integration & Process Technology ═══ -->
+        <div class="project-category float-up">
+          <h2 class="project-category-title">Cleanroom Integration &amp; Process Technology</h2>
+          <p class="project-category-sub">The physical layer: translating theoretical models into manufacturable silicon.</p>
+        </div>
 
         <a href="projects/mems-cantilever.html" class="project-row float-up">
           <div>
@@ -227,6 +239,25 @@
           </div>
         </a>
 
+        <!-- ═══ CATEGORY: Mixed-Signal & Analog IC Design ═══ -->
+        <div class="project-category float-up">
+          <h2 class="project-category-title">Mixed-Signal &amp; Analog IC Design</h2>
+          <p class="project-category-sub">The systems layer: architecting layout-aware circuits that leverage the physics.</p>
+        </div>
+
+        <a href="projects/semiconductor-memory.html" class="project-row float-up">
+          <div>
+            <h3 class="project-row-title">Robust Compute-in-Memory for Edge Healthcare</h3>
+            <p class="project-row-desc">Advanced semiconductor memory architecture design and analysis
+              for high-density, low-power applications.</p>
+          </div>
+          <div class="project-row-meta">
+            <p class="project-row-tools">ESE 5760</p>
+            <p class="project-row-date">Spring 2026</p>
+            <p class="project-row-arrow">→</p>
+          </div>
+        </a>
+
         <a href="projects/tia-optical-receiver.html" class="project-row float-up">
           <div>
             <h3 class="project-row-title">Wideband Transimpedance Amplifier (TIA) for Optical Receivers</h3>
@@ -253,19 +284,6 @@
           </div>
         </a>
 
-        <a href="projects/device-modelling.html" class="project-row float-up">
-          <div>
-            <h3 class="project-row-title">Device Modelling &amp; Simulation</h3>
-            <p class="project-row-desc">Modelled planar 2D SOI-FET and 3D 14nm FinFET, achieving 3% performance
-              improvement over baseline. Awarded "Research Grade: Excellent" at OUR Conference.</p>
-          </div>
-          <div class="project-row-meta">
-            <p class="project-row-tools">Synopsys Sentaurus TCAD</p>
-            <p class="project-row-date">Aug 2021 – Aug 2022</p>
-            <p class="project-row-arrow">→</p>
-          </div>
-        </a>
-
         <a href="projects/sensor-board.html" class="project-row float-up">
           <div>
             <h3 class="project-row-title">Universal Sensor Board Design</h3>
@@ -284,88 +302,36 @@
   </div>
 
   <!-- ============================================================
-       JOURNAL — "The Lab Notebook" · Matte Slate + Gold Margin
+       BRAINWAVES — Mood Board · Bluish-Black + Interference
        ============================================================ -->
   <div id="writing" class="view">
-    <div class="container journal-container">
+    <div class="container brainwaves-container">
       <div class="view-header float-up">
-        <h1 class="view-title">Journal</h1>
-        <p class="view-subtitle">A living record of engineering problems, research papers, and literary consumption.</p>
+        <h1 class="view-title">Brainwaves</h1>
+        <p class="view-subtitle">Thoughts, tangents, and telemetry.</p>
       </div>
 
-      <!-- ── Field Notes ── -->
-      <div class="journal-section float-up">
-        <h2 class="journal-section-title">Field Notes</h2>
-
-        <a href="writing/posts/sample-post.html" class="journal-entry">
-          <span class="journal-meta">2026</span>
-          <span class="journal-content">
-            <span class="journal-entry-title">Coming Soon</span>
-            <span class="journal-entry-desc">Articles, reviews, and musings are on their way. Stay tuned.</span>
-          </span>
-        </a>
-      </div>
-
-      <!-- ── The Bookshelf ── -->
-      <div class="journal-section float-up">
-        <h2 class="journal-section-title">The Bookshelf</h2>
-
-        <p class="journal-category">Textbooks</p>
-        <div class="journal-entry">
-          <span class="journal-meta">2026</span>
-          <span class="journal-content">
-            <span class="journal-entry-title">Semiconductor Physics and Devices</span>
-            <span class="journal-entry-author">Donald A. Neamen · <span
-                class="journal-verdict">[Reference]</span></span>
-          </span>
+      <!-- Mood Board -->
+      <div class="brainwaves-grid float-up">
+        <div class="bw-card bw-card-tall">
+          <img src="assets/brainwaves/razavi.png" alt="Fundamentals of Microelectronics" />
+          <div class="bw-card-caption">Fundamentals of Microelectronics — Behzad Razavi · Must Read</div>
         </div>
-        <div class="journal-entry">
-          <span class="journal-meta">2025</span>
-          <span class="journal-content">
-            <span class="journal-entry-title">CMOS VLSI Design: A Circuits and Systems Perspective</span>
-            <span class="journal-entry-author">Weste &amp; Harris · <span class="journal-verdict">[Essential
-                Reading]</span></span>
-          </span>
+        <div class="bw-card">
+          <img src="assets/brainwaves/newey.png" alt="How to Build a Car" />
+          <div class="bw-card-caption">How to Build a Car — Adrian Newey · Must Read</div>
         </div>
-        <div class="journal-entry">
-          <span class="journal-meta">2025</span>
-          <span class="journal-content">
-            <span class="journal-entry-title">Fundamentals of Microelectronics</span>
-            <span class="journal-entry-author">Behzad Razavi · <span class="journal-verdict">[Must Read]</span></span>
-          </span>
+        <div class="bw-card bw-card-wide">
+          <img src="assets/brainwaves/weste-harris.png" alt="CMOS VLSI Design" />
+          <div class="bw-card-caption">CMOS VLSI Design — Weste &amp; Harris · Essential Reading</div>
         </div>
-
-        <p class="journal-category">Research Papers</p>
-        <div class="journal-entry">
-          <span class="journal-meta">2023</span>
-          <span class="journal-content">
-            <span class="journal-entry-title">Ferroelectric Al₁₋ₓScₓN for Future Nanoelectronics</span>
-            <span class="journal-entry-author">IEEE TED · <span class="journal-verdict">[Reference]</span></span>
-          </span>
+        <div class="bw-card">
+          <img src="assets/brainwaves/neamen.png" alt="Semiconductor Physics and Devices" />
+          <div class="bw-card-caption">Semiconductor Physics and Devices — Donald A. Neamen · Reference</div>
         </div>
-        <div class="journal-entry">
-          <span class="journal-meta">2022</span>
-          <span class="journal-content">
-            <span class="journal-entry-title">MEMS Resonators: A Review</span>
-            <span class="journal-entry-author">J. MEMS · <span class="journal-verdict">[Reference]</span></span>
-          </span>
-        </div>
-
-        <p class="journal-category">Engineering &amp; Beyond</p>
-        <div class="journal-entry">
-          <span class="journal-meta">2024</span>
-          <span class="journal-content">
-            <span class="journal-entry-title">How to Build a Car</span>
-            <span class="journal-entry-author">Adrian Newey · <span class="journal-verdict">[Must Read]</span></span>
-          </span>
-        </div>
-        <div class="journal-entry">
-          <span class="journal-meta">2024</span>
-          <span class="journal-content">
-            <span class="journal-entry-title">The Design of Everyday Things</span>
-            <span class="journal-entry-author">Don Norman · <span class="journal-verdict">[Essential
-                Reading]</span></span>
-          </span>
+        <div class="bw-card bw-card-tall">
+          <img src="assets/brainwaves/norman.png" alt="The Design of Everyday Things" />
+          <div class="bw-card-caption">The Design of Everyday Things — Don Norman · Essential Reading</div>
         </div>
       </div>
     </div>
