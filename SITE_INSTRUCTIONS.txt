@@ -14,11 +14,11 @@ HOW TO MAKE CHANGES IN 3 STEPS:
    After editing  css/style.css  or  js/main.js , you MUST bump the version
    number in index.html so the browser loads the new file:
 
-     CSS:  <link rel="stylesheet" href="css/style.css?v=6" />
-           → change  ?v=6  to  ?v=7 , then  ?v=8 , etc.
+     CSS:  <link rel="stylesheet" href="css/style.css?v=7" />
+           → change  ?v=7  to  ?v=8 , then  ?v=9 , etc.
 
-     JS:   <script src="js/main.js?v=10">
-           → change  ?v=10  to  ?v=11 , then  ?v=12 , etc.
+     JS:   <script src="js/main.js?v=11">
+           → change  ?v=11  to  ?v=12 , then  ?v=13 , etc.
 
    If you skip this step, the browser will keep showing old styles/behaviour.
 
@@ -39,7 +39,12 @@ File:  index.html
    • Status LED text        → search for  "status-text"
      (e.g. "Characterizing AlScN..." → whatever you're working on now)
    • Selected Work items    → search for  "selected-work-item"
+     (These are clickable <a> links. Professional and casual versions
+      use data-sw-pro / data-sw-casual attributes to toggle visibility.)
    • Contact links          → search for  "home-links"
+     (Icons: Gmail envelope, LinkedIn logo, GitHub octocat.
+      Hover glows: red, blue, purple respectively.
+      Edit SVG paths or change hover colours in style.css → ".home-link-email")
 
 ──── EDITING THE BIO TEXT ────
 
@@ -271,6 +276,9 @@ Current reports:
    • reports/ESE5360_MEMS-Report_GrpA.pdf       ← linked in mems-cantilever.html
    • reports/ESE5360_DSA-Report_GrpA.pdf        ← linked in dsa.html
    • reports/ESE5360_Graphene-Report_GrpB.pdf   ← linked in graphene-transistor.html
+   • reports/ESE5290_Gyroscope.pdf              ← linked in mems-gyroscope.html
+   • reports/ESE5760-Report.pdf                 ← linked in semiconductor-memory.html
+   • reports/ESE5760_Poster.pdf                 ← poster in semiconductor-memory.html
 
 
 ================================================================================

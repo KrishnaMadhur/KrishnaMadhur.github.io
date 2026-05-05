@@ -268,6 +268,19 @@ document.addEventListener('DOMContentLoaded', () => {
       if (statusLed) {
         statusLed.classList.toggle('casual-red', isCasual);
       }
+
+      // Swap Selected Work items
+      document.querySelectorAll('[data-sw-pro]').forEach(el => {
+        // TIA has both attributes — always visible
+        if (!el.hasAttribute('data-sw-casual')) {
+          el.style.display = isCasual ? 'none' : '';
+        }
+      });
+      document.querySelectorAll('[data-sw-casual]').forEach(el => {
+        if (!el.hasAttribute('data-sw-pro')) {
+          el.style.display = isCasual ? '' : 'none';
+        }
+      });
     });
   }
 

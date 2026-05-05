@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Semiconductor Memory Design — Krishna Madhur Akella</title>
+    <meta name="description"
+        content="ESE 5760 Semiconductor Memory design project — analysis and implementation of advanced memory architectures." />
+    <link rel="stylesheet" href="../css/style.css?v=6" />
+</head>
+
+<body class="project-detail" data-glow="gold">
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">कृष्ण ⏚</a>
+            <div class="nav-tabs">
+                <a href="../index.html#home" class="nav-tab">Home</a>
+                <a href="../index.html#projects" class="nav-tab active">Projects</a>
+                <a href="../index.html#writing" class="nav-tab">Writing</a>
+                <a href="../index.html#photography" class="nav-tab">Photography</a>
+                <a href="../index.html#cv" class="nav-tab">CV</a>
+            </div>
+            <button class="nav-hamburger" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <main class="detail-page">
+        <a href="../index.html#projects" class="detail-back">← Back to Projects</a>
+
+        <h1 class="detail-title">Semiconductor Memory Design</h1>
+        <p class="detail-meta">ESE 5760 · Semiconductor Memory · Spring 2026</p>
+
+        <div class="detail-body">
+            <p>
+                Advanced semiconductor memory design project covering the analysis, modelling,
+                and implementation of modern memory architectures for high-density, low-power
+                applications.
+            </p>
+
+            <h2>Report</h2>
+            <p>
+                <a href="../reports/ESE5760-Report.pdf" class="detail-report-link"
+                    data-report="../reports/ESE5760-Report.pdf">
+                    📄 View Final Report (PDF)
+                </a>
+            </p>
+
+            <h2>Poster</h2>
+            <p>
+                <a href="../reports/ESE5760_Poster.pdf" class="detail-report-link"
+                    data-report="../reports/ESE5760_Poster.pdf">
+                    🖼️ View Poster (PDF)
+                </a>
+            </p>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 Krishna Madhur Akella</p>
+    </footer>
+
+    <div id="pdf-modal" class="pdf-modal" style="display:none;">
+        <div class="pdf-modal-overlay"></div>
+        <div class="pdf-modal-content">
+            <button class="pdf-modal-close" aria-label="Close">&times;</button>
+            <iframe id="pdf-viewer" src="" title="Report Preview"></iframe>
+        </div>
+    </div>
+
+    <script>
+        const hamburger = document.querySelector('.nav-hamburger');
+        const navTabs = document.querySelector('.nav-tabs');
+        if (hamburger) { hamburger.addEventListener('click', () => { hamburger.classList.toggle('open'); navTabs.classList.toggle('open'); }); }
+        const pdfModal = document.getElementById('pdf-modal');
+        const pdfViewer = document.getElementById('pdf-viewer');
+        document.querySelectorAll('[data-report]').forEach(link => {
+            link.addEventListener('click', e => { e.preventDefault(); pdfViewer.src = link.getAttribute('data-report') + '#toolbar=0&navpanes=0'; pdfModal.style.display = 'flex'; document.body.style.overflow = 'hidden'; });
+        });
+        document.querySelector('.pdf-modal-close').addEventListener('click', () => { pdfModal.style.display = 'none'; pdfViewer.src = ''; document.body.style.overflow = ''; });
+        document.querySelector('.pdf-modal-overlay').addEventListener('click', () => { pdfModal.style.display = 'none'; pdfViewer.src = ''; document.body.style.overflow = ''; });
+    
+        // Lab Bench cursor glow
+        document.addEventListener('mousemove', (e) => {
+            document.documentElement.style.setProperty('--mouse-x', e.clientX + 'px');
+            document.documentElement.style.setProperty('--mouse-y', e.clientY + 'px');
+        });
+        document.addEventListener('mouseleave', () => {
+            document.documentElement.style.setProperty('--mouse-x', '-9999px');
+            document.documentElement.style.setProperty('--mouse-y', '-9999px');
+        });
+    </script>
+</body>
+
+</html>
