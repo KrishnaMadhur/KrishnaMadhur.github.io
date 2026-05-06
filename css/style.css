@@ -1233,6 +1233,16 @@ body[data-view="photography"] .tag-btn.active {
   opacity: 0.8;
 }
 
+.cv-label-sub {
+  font-size: 0.6rem;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0.02em;
+  opacity: 0.55;
+  display: block;
+  margin-top: 0.2rem;
+}
+
 /* Right column — entries */
 .cv-entries {
   display: flex;
