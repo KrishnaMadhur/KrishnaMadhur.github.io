@@ -260,6 +260,51 @@ body[data-view="writing"] {
   color: var(--white);
 }
 
+/* Brainwaves — slow drifting interference blobs */
+body[data-view="writing"]::before {
+  content: '';
+  position: fixed;
+  top: -25%;
+  left: -25%;
+  width: 150%;
+  height: 150%;
+  background:
+    radial-gradient(ellipse 600px 400px at 25% 35%, rgba(40, 80, 180, 0.18) 0%, transparent 70%),
+    radial-gradient(ellipse 500px 350px at 75% 65%, rgba(60, 100, 200, 0.14) 0%, transparent 70%),
+    radial-gradient(ellipse 400px 300px at 50% 25%, rgba(80, 120, 220, 0.10) 0%, transparent 60%);
+  animation: brainwavesDrift 30s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(60px);
+}
+
+body[data-view="writing"]::after {
+  content: '';
+  position: fixed;
+  top: -25%;
+  left: -25%;
+  width: 150%;
+  height: 150%;
+  background:
+    radial-gradient(ellipse 500px 300px at 65% 45%, rgba(50, 90, 190, 0.15) 0%, transparent 65%),
+    radial-gradient(ellipse 350px 250px at 30% 75%, rgba(70, 110, 210, 0.12) 0%, transparent 60%);
+  animation: brainwavesDrift2 25s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(70px);
+}
+
+@keyframes brainwavesDrift {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  33%      { transform: translate(-5%, 3%) rotate(1.5deg); }
+  66%      { transform: translate(4%, -2%) rotate(-1deg); }
+}
+
+@keyframes brainwavesDrift2 {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  50%      { transform: translate(5%, -4%) rotate(-1.5deg); }
+}
+
 body[data-view="photography"] {
   background-color: var(--mood-photography);
   color: var(--white);
@@ -283,7 +328,7 @@ body[data-view="cv"]::after {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  opacity: 0.09;
+  opacity: 0.15;
   pointer-events: none;
   z-index: 0;
   -webkit-mask-image: radial-gradient(ellipse at center, transparent 20%, black 65%);
@@ -884,53 +929,10 @@ body[data-view="writing"] .view-subtitle {
    BRAINWAVES VIEW — Mood Board
    =========================================== */
 
-/* Bluish-black background with interference pattern */
+/* Brainwaves view — container */
 #writing.view {
-  background: #080b12;
+  background: transparent;
   position: relative;
-  overflow: hidden;
-}
-
-#writing.view::before {
-  content: '';
-  position: absolute;
-  inset: -50%;
-  width: 200%;
-  height: 200%;
-  background:
-    radial-gradient(ellipse 600px 400px at 30% 40%, rgba(40, 80, 160, 0.06) 0%, transparent 70%),
-    radial-gradient(ellipse 500px 350px at 70% 60%, rgba(60, 100, 180, 0.05) 0%, transparent 70%),
-    radial-gradient(ellipse 400px 300px at 50% 30%, rgba(80, 120, 200, 0.04) 0%, transparent 60%);
-  animation: brainwavesDrift 30s ease-in-out infinite;
-  pointer-events: none;
-  z-index: 0;
-  filter: blur(80px);
-}
-
-#writing.view::after {
-  content: '';
-  position: absolute;
-  inset: -50%;
-  width: 200%;
-  height: 200%;
-  background:
-    radial-gradient(ellipse 500px 300px at 60% 50%, rgba(50, 90, 170, 0.05) 0%, transparent 65%),
-    radial-gradient(ellipse 350px 250px at 35% 70%, rgba(70, 110, 190, 0.04) 0%, transparent 60%);
-  animation: brainwavesDrift2 25s ease-in-out infinite;
-  pointer-events: none;
-  z-index: 0;
-  filter: blur(100px);
-}
-
-@keyframes brainwavesDrift {
-  0%, 100% { transform: translate(0, 0) rotate(0deg); }
-  33%      { transform: translate(-3%, 2%) rotate(1deg); }
-  66%      { transform: translate(2%, -1%) rotate(-0.5deg); }
-}
-
-@keyframes brainwavesDrift2 {
-  0%, 100% { transform: translate(0, 0) rotate(0deg); }
-  50%      { transform: translate(4%, -3%) rotate(-1deg); }
 }
 
 #writing .container {
@@ -1144,6 +1146,30 @@ body[data-view="photography"] .tag-btn.active {
    =========================================== */
 
 /* Hero download button */
+/* Two-column CV layout */
+.cv-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  margin-top: 1rem;
+}
+
+.cv-col {
+  min-width: 0;
+}
+
+.cv-section-title {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--gold);
+  letter-spacing: 0.02em;
+  margin-bottom: 1.2rem;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+}
+
 .cv-download {
   text-align: center;
   margin-bottom: 4rem;
@@ -1645,6 +1671,11 @@ body.writing-detail .detail-tag {
 
   .tl-sub-role {
     font-size: max(0.82rem, 13px);
+  }
+
+  .cv-columns {
+    grid-template-columns: 1fr;
+    gap: 2rem;
   }
 
   .cv-timeline {

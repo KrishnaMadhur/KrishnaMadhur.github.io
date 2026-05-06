@@ -1,6 +1,6 @@
 ================================================================================
   WEBSITE MAINTENANCE GUIDE — krishnamadhur.github.io
-  Last Updated: March 25, 2026
+  Last Updated: May 5, 2026
 ================================================================================
 
 HOW TO MAKE CHANGES IN 3 STEPS:
@@ -14,8 +14,8 @@ HOW TO MAKE CHANGES IN 3 STEPS:
    After editing  css/style.css  or  js/main.js , you MUST bump the version
    number in index.html so the browser loads the new file:
 
-     CSS:  <link rel="stylesheet" href="css/style.css?v=8" />
-           → change  ?v=8  to  ?v=9 , then  ?v=10 , etc.
+     CSS:  <link rel="stylesheet" href="css/style.css?v=10" />
+           → change  ?v=10  to  ?v=11 , then  ?v=12 , etc.
 
      JS:   <script src="js/main.js?v=11">
            → change  ?v=11  to  ?v=12 , then  ?v=13 , etc.
@@ -73,56 +73,58 @@ B. UPDATE THE CV
 
 File:  index.html
 
+The CV tab uses a TWO-COLUMN layout:
+   LEFT column  → Research Experience + Cleanroom Experience
+   RIGHT column → Education + Professional Experience
+
+Each column uses the same timeline component (.cv-timeline, .tl-entry, etc.)
+Sections are separated by  <h2 class="cv-section-title">  headings.
+
 1. Cmd+F to find the text you want to update.
-   Everything in the CV is plain text — edit directly.
-
    Searchable markers:
-   • Education entries     → search for  "cv-edu-item"
-   • Experience entries    → search for  "cv-exp-item"
-   • Each bullet point     →  <li>text here</li>
-   • Skills tags           → search for  "cv-skill-tag"
-   • Leadership entries    → search for  "cv-leadership-item"
+   • Section headings     → search for  "cv-section-title"
+   • Left column          → search for  "cv-col-left"
+   • Right column         → search for  "cv-col-right"
+   • Timeline entries     → each org is a  .tl-entry  with .tl-org, .tl-dates, .tl-sub
+   • Active (current) orgs use class  tl-active  for the gold pulsing dot
 
-   To ADD a new education entry, copy-paste an existing  <div class="cv-edu-item">
-   block and edit the text inside.
-   
-   To ADD a new skill tag, add:  <span class="cv-skill-tag">New Skill</span>
+   To ADD a new entry: copy an existing .tl-entry block, paste it within
+   the appropriate .cv-timeline, and edit the text.
 
-2. Save, deploy.
+2. Background: Smith chart SVG at 15% opacity (body[data-view="cv"]::after).
+   Increase/decrease in style.css → search for "smith-chart".
+
+3. Save, deploy.
 
 
 ================================================================================
-C. ADD A NEW BLOG POST
+C. ADD CONTENT TO BRAINWAVES TAB
 ================================================================================
 
-Step 1: Create the post file
-   a. Go to:  writing/posts/
-   b. Duplicate  _template.html
-   c. Rename it (e.g.  my-article.html)
+The Brainwaves tab (formerly Journal) displays a mood board of book covers
+and other images with hover-reveal captions.
 
-Step 2: Edit the new file
-   Find and replace these placeholders:
-   • TITLE HERE           → your post title
-   • TAG HERE             → one of: Technical  /  Books  /  Personal
-   • DATE HERE            → e.g.  March 2026
-   • The paragraph text   → your actual article
+File:  index.html
+Search for:  "brainwaves-grid"
 
-Step 3: Add a card to the Writing tab
-   a. Open  index.html
-   b. Search for  "writing-list"
-   c. Add this block inside that section:
+To add a new item:
+   <div class="bw-card">
+     <img src="assets/brainwaves/filename.jpg" alt="Description" />
+     <div class="bw-card-caption">Title — Author · Verdict</div>
+   </div>
 
-       <a href="writing/posts/my-article.html" class="writing-card float-up"
-          data-tag="technical">
-         <p class="writing-card-tag">Technical</p>
-         <h3 class="writing-card-title">Your Title Here</h3>
-         <p class="writing-card-excerpt">One line summary.</p>
-         <p class="writing-card-date">March 2026</p>
-       </a>
+Size modifiers (for organic mood board feel):
+   • bw-card                → 1×1 standard tile
+   • bw-card bw-card-tall   → spans 2 rows (portrait books)
+   • bw-card bw-card-wide   → spans 2 columns (landscape items)
 
-   Change data-tag to match: technical / books / personal
+Images go in:  assets/brainwaves/
+Background: bluish-black (#080b12) with animated interference patterns
+            (body[data-view="writing"]::before/::after in style.css).
 
-Step 4: Deploy.
+Tagline: "Thoughts, tangents, and telemetry."
+
+Step: Add image to assets/brainwaves/, add HTML block above, deploy.
 
 
 ================================================================================
