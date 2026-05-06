@@ -14,8 +14,8 @@ HOW TO MAKE CHANGES IN 3 STEPS:
    After editing  css/style.css  or  js/main.js , you MUST bump the version
    number in index.html so the browser loads the new file:
 
-     CSS:  <link rel="stylesheet" href="css/style.css?v=10" />
-           → change  ?v=10  to  ?v=11 , then  ?v=12 , etc.
+     CSS:  <link rel="stylesheet" href="css/style.css?v=11" />
+           → change  ?v=11  to  ?v=12 , then  ?v=13 , etc.
 
      JS:   <script src="js/main.js?v=11">
            → change  ?v=11  to  ?v=12 , then  ?v=13 , etc.
@@ -73,23 +73,26 @@ B. UPDATE THE CV
 
 File:  index.html
 
-The CV tab uses a TWO-COLUMN layout:
-   LEFT column  → Research Experience + Cleanroom Experience
-   RIGHT column → Education + Professional Experience
+The CV tab uses a 30/70 OFFSET layout:
+   LEFT column (30%)  → Sticky category label (e.g., "EDUCATION", "RESEARCH")
+   RIGHT column (70%) → Clean floating entry blocks
 
-Each column uses the same timeline component (.cv-timeline, .tl-entry, etc.)
-Sections are separated by  <h2 class="cv-section-title">  headings.
+Sections appear in order: Education, Research, Cleanroom, Professional.
+Each section is a  <div class="cv-section">  containing:
+   • <div class="cv-label">  (left — sticky header)
+   • <div class="cv-entries">  (right — entry list)
 
 1. Cmd+F to find the text you want to update.
    Searchable markers:
-   • Section headings     → search for  "cv-section-title"
-   • Left column          → search for  "cv-col-left"
-   • Right column         → search for  "cv-col-right"
-   • Timeline entries     → each org is a  .tl-entry  with .tl-org, .tl-dates, .tl-sub
-   • Active (current) orgs use class  tl-active  for the gold pulsing dot
+   • Category labels       → search for  "cv-label-text"
+   • Institution names     → search for  "cv-org"  (gold, inline with date)
+   • Date                  → search for  "cv-date"  (muted grey, right-aligned)
+   • Role title            → search for  "cv-role"  (crisp white)
+   • Description           → search for  "cv-desc"  (muted, italic, max 2 sentences)
+   • Active dot (current)  → add class  cv-dot-active  to  <span class="cv-dot">
 
-   To ADD a new entry: copy an existing .tl-entry block, paste it within
-   the appropriate .cv-timeline, and edit the text.
+   To ADD a new entry, copy an existing .cv-entry block, paste it within
+   the appropriate .cv-entries div, and edit the text.
 
 2. Background: Smith chart SVG at 15% opacity (body[data-view="cv"]::after).
    Increase/decrease in style.css → search for "smith-chart".

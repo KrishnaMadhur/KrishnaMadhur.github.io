@@ -1160,10 +1160,8 @@ body[data-view="photography"] .tag-btn.active {
 
 .cv-section-title {
   font-family: var(--font-serif);
-  font-size: 1.05rem;
   font-weight: 600;
   color: var(--gold);
-  letter-spacing: 0.02em;
   margin-bottom: 1.2rem;
   text-transform: uppercase;
   font-size: 0.75rem;
@@ -1206,133 +1204,104 @@ body[data-view="photography"] .tag-btn.active {
   transform: translateY(3px);
 }
 
-/* Timeline container */
-.cv-timeline {
-  position: relative;
-  padding-left: 40px;
-  margin-top: 2rem;
-}
-
-/* Continuous dotted vertical line — circuit trace */
-.cv-timeline::before {
-  content: '';
-  position: absolute;
-  left: 8px;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: repeating-linear-gradient(to bottom,
-      #334155 0px,
-      #334155 6px,
-      transparent 6px,
-      transparent 12px);
-}
-
-/* Timeline entry (org node) */
-.tl-entry {
-  position: relative;
+/* ── 30/70 Offset CV Layout ── */
+.cv-section {
+  display: grid;
+  grid-template-columns: 0.3fr 0.7fr;
+  gap: 2rem;
   margin-bottom: 4rem;
 }
 
-.tl-entry:last-child {
+.cv-section:last-of-type {
   margin-bottom: 0;
 }
 
-/* Default hollow node */
-.tl-dot {
-  position: absolute;
-  left: -36px;
-  top: 6px;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  border: 2px solid #334155;
-  background: transparent;
-  box-shadow: inset 0 0 4px rgba(226, 232, 240, 0.3);
-  transition: all 0.3s ease;
+/* Left column — sticky category label */
+.cv-label {
+  position: sticky;
+  top: calc(var(--nav-height) + 2rem);
+  align-self: start;
 }
 
-/* Active node — Solid Gold fill for "current" stop */
-.tl-active .tl-dot {
-  border-color: #FCD34D;
-  background: #FCD34D;
-  box-shadow: 0 0 10px rgba(252, 211, 77, 0.3);
-  animation: node-pulse-gold 2.5s ease-in-out infinite;
-}
-
-@keyframes node-pulse-gold {
-
-  0%,
-  100% {
-    box-shadow: inset 0 0 4px rgba(252, 211, 77, 0.5), 0 0 10px rgba(252, 211, 77, 0.2);
-  }
-
-  50% {
-    box-shadow: inset 0 0 6px rgba(252, 211, 77, 0.7), 0 0 18px rgba(252, 211, 77, 0.35);
-  }
-}
-
-/* Organisation name — Champagne */
-.tl-org {
-  font-family: var(--font-serif);
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: #FCD34D;
-  margin-bottom: 0.15rem;
-}
-
-/* Date range — faint silver */
-.tl-dates {
+.cv-label-text {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: #64748B;
-  letter-spacing: 0.04em;
-  margin-bottom: 0.75rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--gold);
+  opacity: 0.8;
 }
 
-/* Branch container — nested roles */
-.tl-branches {
-  padding-left: 16px;
-  border-left: 1px solid rgba(51, 65, 85, 0.5);
-  margin-left: 0;
+/* Right column — entries */
+.cv-entries {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
 }
 
-/* Sub-entry (a role within the org) */
-.tl-sub {
-  padding: 0.5rem 0 0.5rem 12px;
+/* Individual entry — clean floating block */
+.cv-entry {
   position: relative;
 }
 
-.tl-sub+.tl-sub {
-  border-top: 1px solid rgba(51, 65, 85, 0.25);
-}
-
-/* Branch connector dash */
-.tl-sub::before {
-  content: '';
-  position: absolute;
-  left: -16px;
-  top: 1.1rem;
-  width: 12px;
-  height: 1px;
-  background: rgba(51, 65, 85, 0.5);
-}
-
-/* Sub-role title */
-.tl-sub-role {
-  font-family: var(--font-mono);
-  font-size: 0.82rem;
-  color: #94A3B8;
-  letter-spacing: 0.02em;
+/* Header line: dot + org + date */
+.cv-entry-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   margin-bottom: 0.3rem;
 }
 
-/* One-liner description — Starlight */
-.tl-oneliner {
-  font-size: 0.9rem;
-  color: #CBD5E1;
-  font-style: italic;
+/* Minimalist gold dot */
+.cv-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #4B5563;
+  flex-shrink: 0;
+}
+
+.cv-dot-active {
+  background: #FCD34D;
+  box-shadow: 0 0 6px rgba(252, 211, 77, 0.4);
+}
+
+/* Institution name — gold */
+.cv-org {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #FCD34D;
+  margin: 0;
+}
+
+/* Date — muted grey, inline */
+.cv-date {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: #64748B;
+  letter-spacing: 0.03em;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+/* Role title — crisp white */
+.cv-role {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: #E2E8F0;
+  margin-bottom: 0.2rem;
+  padding-left: 14px;
+}
+
+/* Description — muted, smaller */
+.cv-desc {
+  font-size: 0.8rem;
+  color: #94A3B8;
   line-height: 1.6;
+  font-style: italic;
+  padding-left: 14px;
 }
 
 /* ===========================================
@@ -1664,28 +1633,20 @@ body.writing-detail .detail-tag {
     grid-auto-rows: 150px;
   }
 
-  /* Timeline mobile — ensure readable text */
-  .tl-oneliner {
-    font-size: max(0.9rem, 14px);
-  }
 
-  .tl-sub-role {
-    font-size: max(0.82rem, 13px);
-  }
 
   .cv-columns {
     grid-template-columns: 1fr;
     gap: 2rem;
   }
 
-  .cv-timeline {
-    padding-left: 30px;
+  .cv-section {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
   }
 
-  .tl-dot {
-    left: -26px;
-    width: 10px;
-    height: 10px;
+  .cv-label {
+    position: static;
   }
 
   .nav-hamburger {
