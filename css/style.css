@@ -256,34 +256,8 @@ body[data-view="projects"]::after {
 }
 
 body[data-view="writing"] {
-  background-color: var(--mood-writing);
-  color: var(--writing-text);
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
-  background-size: 100% 32px;
-  background-position: 0 0;
-}
-
-/* Film grain noise overlay */
-body[data-view="writing"]::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  opacity: 0.04;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size: 200px 200px;
-}
-
-/* Vignette — darken corners, focus center */
-body[data-view="writing"]::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  background: radial-gradient(ellipse at center, transparent 50%, rgba(0, 0, 0, 0.35) 100%);
+  background-color: #080b12;
+  color: var(--white);
 }
 
 body[data-view="photography"] {
@@ -1574,13 +1548,10 @@ body.project-detail::after {
   transition: opacity 0.3s ease;
 }
 
-/* Writing detail pages (dark slate + notebook lines) */
+/* Writing detail pages (bluish-black) */
 body.writing-detail {
-  background-color: var(--mood-writing);
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-  background-size: 100% 32px;
-  color: var(--writing-text);
+  background-color: #080b12;
+  color: var(--white);
 }
 
 body.writing-detail .detail-body {
@@ -1711,8 +1682,8 @@ body.writing-detail .detail-tag {
   }
 
   body[data-view="writing"] .nav-tabs {
-    background: var(--mood-writing);
-    border-left-color: rgba(0, 0, 0, 0.08);
+    background: #080b12;
+    border-left-color: rgba(255, 255, 255, 0.08);
   }
 
   .nav-tabs.open {
