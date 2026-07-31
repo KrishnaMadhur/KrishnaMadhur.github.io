@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  /* ---------- (Tag filters removed — Journal uses vertical scroll) ---------- */
+  /* ---------- (Tag filters removed — Brainwaves uses vertical scroll) ---------- */
 
   /* ---------- PDF Preview Modal ---------- */
   const pdfModal = document.getElementById('pdf-modal');

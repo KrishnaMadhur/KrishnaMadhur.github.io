@@ -200,7 +200,7 @@ body[data-view="home"].theme-casual::before {
   opacity: 0;
 }
 
-/* ── Tab Cursor Glow (Journal / Photography / CV) ── */
+/* ── Tab Cursor Glow (Brainwaves / Photography / CV) ── */
 #tab-cursor-glow {
   position: fixed;
   inset: 0;
@@ -217,7 +217,7 @@ body[data-view="home"].theme-casual::before {
     transparent 100%);
 }
 
-/* Sepia for Journal */
+/* Sepia for Brainwaves */
 body[data-view="writing"] #tab-cursor-glow {
   --tcg-r: 245; --tcg-g: 245; --tcg-b: 220;
   opacity: 1;
@@ -794,7 +794,7 @@ body[data-view="cv"]::after {
   color: rgba(255, 255, 255, 0.6);
 }
 
-/* Journal container — gold margin as structural divider */
+/* Brainwaves container — gold margin as structural divider */
 /* ── Brainwaves container (replaces journal) ── */
 .brainwaves-container {
   position: relative;

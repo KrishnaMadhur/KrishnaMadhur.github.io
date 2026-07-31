@@ -14,8 +14,8 @@ HOW TO MAKE CHANGES IN 3 STEPS:
    After editing  css/style.css  or  js/main.js , you MUST bump the version
    number in index.html so the browser loads the new file:
 
-     CSS:  <link rel="stylesheet" href="css/style.css?v=11" />
-           → change  ?v=11  to  ?v=12 , then  ?v=13 , etc.
+     CSS:  <link rel="stylesheet" href="css/style.css?v=12" />
+           → change  ?v=12  to  ?v=13 , then  ?v=14 , etc.
 
      JS:   <script src="js/main.js?v=11">
            → change  ?v=11  to  ?v=12 , then  ?v=13 , etc.
@@ -458,7 +458,7 @@ controls each tab:
                             • 0.18 = glow brightness. 
                             • 220px = glow radius.
 
-── WRITING TAB ───────────────────────────────────────────────────────────────
+── BRAINWAVES TAB ────────────────────────────────────────────────────────────
   Search for:   body[data-view="writing"]
 
   Background colour:        var(--mood-writing) — currently Rich Black #0A0A0B
@@ -612,7 +612,7 @@ with IC layout X-ray cursor). Clicking "HELLO, I AM" toggles to "Casual"
 
 
 ================================================================================
-N. TAB CURSOR GLOWS (Journal / Photography / CV)
+N. TAB CURSOR GLOWS (Brainwaves / Photography / CV)
 ================================================================================
 
 Each of these tabs has a subtle radial gradient following the mouse.
@@ -620,7 +620,7 @@ The colours are different per tab:
 
    TAB            COLOUR        CSS SELECTOR
    ────────────   ───────────   ──────────────────────────────────────
-   Journal        Sepia         body[data-view="writing"] #tab-cursor-glow
+   Brainwaves     Sepia         body[data-view="writing"] #tab-cursor-glow
    Photography    Cool White    body[data-view="photography"] #tab-cursor-glow
    CV             Laser Blue    body[data-view="cv"] #tab-cursor-glow
 
@@ -631,7 +631,7 @@ The colours are different per tab:
 3. Find the tab you want to change
 4. Edit the  --tcg-r, --tcg-g, --tcg-b  values (0–255)
 
-   Example — to make Journal glow cyan:
+   Example — to make Brainwaves glow cyan:
      --tcg-r: 0; --tcg-g: 255; --tcg-b: 255;
 
 ──── CHANGE GLOW RADIUS OR BRIGHTNESS ────
@@ -692,7 +692,7 @@ DESIGN REFERENCE
   Projects bg: Rich Black (#0A0A0B) + Gold dot grid (20%) + cursor glow
   Sub-pages:   Same dot grid + domain-specific cursor glow
                → Gold (Analog), Cyan (Cleanroom), Red (TCAD)
-  Writing bg:  Rich Black (#0A0A0B) + ruled lines + gold margin + Sepia cursor
+  Brainwaves bg: Rich Black (#0A0A0B) + ruled lines + gold margin + Sepia cursor
   Photography: Rich Black (#0A0A0B) + Cool White cursor
   CV bg:       Rich Black (#0A0A0B) + Smith Chart arcs (9%) + Laser Blue cursor
   Nav:         Glassmorphism pill, always visible at top
