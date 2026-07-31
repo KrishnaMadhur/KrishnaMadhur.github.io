@@ -8,6 +8,11 @@
     <meta name="description"
         content="ESE 5760 Semiconductor Memory design project — analysis and implementation of advanced memory architectures." />
     <link rel="stylesheet" href="../css/style.css?v=6" />
+    <meta property="og:title" content="Robust Compute-in-Memory for Edge Healthcare — Krishna Madhur Akella" />
+    <meta property="og:description" content="Compute-in-memory architecture for energy-efficient edge healthcare inference." />
+    <meta property="og:image" content="https://krishnamadhur.github.io/assets/og-preview.jpg" />
+    <meta property="og:url" content="https://krishnamadhur.github.io/projects/semiconductor-memory.html" />
+    <meta name="twitter:card" content="summary_large_image" />
 </head>
 
 <body class="project-detail" data-glow="gold">
@@ -36,10 +41,30 @@
 
         <div class="detail-body">
             <p>
-                Advanced semiconductor memory design project covering the analysis, modelling,
-                and implementation of modern memory architectures for high-density, low-power
-                applications.
+                Designed and analysed a robust compute-in-memory (CiM) architecture targeting
+                edge healthcare inference workloads as part of the ESE 5760 (Advanced VLSI)
+                course at the University of Pennsylvania. The project investigates how SRAM-based
+                analog MAC (multiply-accumulate) operations can enable energy-efficient neural
+                network inference directly in memory, eliminating the von Neumann bottleneck.
             </p>
+
+            <h2>Architecture</h2>
+            <p>
+                The CiM macro is built around a modified 6T SRAM bitcell array that performs
+                analog dot-product computation on stored weights. Bit-line charge sharing
+                implements multi-bit MAC operations, while peripheral sense amplifiers and
+                ADCs digitize the analog output for downstream processing. Design-for-robustness
+                techniques — including redundancy, ECC, and voltage guardbanding — ensure reliable
+                operation under process variation and low-voltage conditions typical of edge devices.
+            </p>
+
+            <h2>Key Results</h2>
+            <ul>
+                <li><strong>Inference Accuracy</strong> — maintained classification accuracy within 1–2% of ideal software baseline under realistic process corners</li>
+                <li><strong>Energy Efficiency</strong> — analog CiM MAC operations achieved significant energy reduction vs. conventional digital datapath</li>
+                <li><strong>Robustness Analysis</strong> — Monte Carlo simulations quantified BER sensitivity to Vt mismatch and supply noise</li>
+                <li><strong>Application Mapping</strong> — demonstrated viability for lightweight healthcare classifiers (ECG arrhythmia detection) at the edge</li>
+            </ul>
 
             <h2>Report</h2>
             <p>
