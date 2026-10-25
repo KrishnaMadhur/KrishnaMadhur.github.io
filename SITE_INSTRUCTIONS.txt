@@ -1,702 +1,174 @@
-================================================================================
-  WEBSITE MAINTENANCE GUIDE — krishnamadhur.github.io
-  Last Updated: May 5, 2026
-================================================================================
-
-HOW TO MAKE CHANGES IN 3 STEPS:
-  1. Edit the file (instructions below)
-  2. Open Terminal and run:
-       cd /Users/krishnamadhurakella/Developer/KrishnaMadhur.github.io
-       git add -A && git commit -m "what you changed" && git push origin main
-  3. Wait ~2 minutes → live at https://krishnamadhur.github.io
-
-⚠️  IMPORTANT — CACHE BUSTING
-   After editing  css/style.css  or  js/main.js , you MUST bump the version
-   number in index.html so the browser loads the new file:
-
-     CSS:  <link rel="stylesheet" href="css/style.css?v=12" />
-           → change  ?v=12  to  ?v=13 , then  ?v=14 , etc.
-
-     JS:   <script src="js/main.js?v=11">
-           → change  ?v=11  to  ?v=12 , then  ?v=13 , etc.
-
-   If you skip this step, the browser will keep showing old styles/behaviour.
-
-
-================================================================================
-A. UPDATE ANY TEXT ON THE HOME PAGE
-================================================================================
-
-File:  index.html
-
-1. Open index.html and use Cmd+F to find the text you want to change.
-
-2. Edit it directly. Searchable markers:
-   • Your name              → search for  "home-name"
-   • Tagline (sub-header)   → search for  "home-tagline"
-     (Currently: "The Bridge Between Atoms and Systems.")
-   • Bio paragraphs         → search for  "home-bio"
-   • Status LED text        → search for  "status-text"
-     (e.g. "Characterizing AlScN..." → whatever you're working on now)
-   • Selected Work items    → search for  "selected-work-item"
-     (These are clickable <a> links. Professional and casual versions
-      use data-sw-pro / data-sw-casual attributes to toggle visibility.)
-   • Contact links          → search for  "home-links"
-     (Icons: Gmail envelope, LinkedIn logo, GitHub octocat.
-      Hover glows: red, blue, purple respectively.
-      Edit SVG paths or change hover colours in style.css → ".home-link-email")
-
-──── EDITING THE BIO TEXT ────
-
-The bio is split into 3 separate <p class="home-bio"> paragraphs.
-Each one animates in independently (float-up). Edit the text between
-the <p> and </p> tags.
-
-   To make a word bold:  wrap it in  <strong>word</strong>
-   To remove bold:       delete the  <strong>  and  </strong>  tags
-   To add a line break:  insert  <br />  where you want the break
-
-   Example:
-     <p class="home-bio float-up">
-       I work at <strong>Penn</strong> on ferroelectric devices.
-     </p>
-
-   To add a 4th paragraph, copy one of the existing <p> blocks and
-   paste it after the last one. Keep the  class="home-bio float-up".
-
-3. Save, deploy.
-
-
-================================================================================
-B. UPDATE THE CV
-================================================================================
-
-File:  index.html
-
-The CV tab uses a 30/70 OFFSET layout:
-   LEFT column (30%)  → Sticky category label (e.g., "EDUCATION", "RESEARCH")
-   RIGHT column (70%) → Clean floating entry blocks
-
-Sections appear in order: Education, Research, Cleanroom, Professional.
-Each section is a  <div class="cv-section">  containing:
-   • <div class="cv-label">  (left — sticky header)
-   • <div class="cv-entries">  (right — entry list)
-
-1. Cmd+F to find the text you want to update.
-   Searchable markers:
-   • Category labels       → search for  "cv-label-text"
-   • Institution names     → search for  "cv-org"  (gold, inline with date)
-   • Date                  → search for  "cv-date"  (muted grey, right-aligned)
-   • Role title            → search for  "cv-role"  (crisp white)
-   • Description           → search for  "cv-desc"  (muted, italic, max 2 sentences)
-   • Active dot (current)  → add class  cv-dot-active  to  <span class="cv-dot">
-
-   To ADD a new entry, copy an existing .cv-entry block, paste it within
-   the appropriate .cv-entries div, and edit the text.
-
-2. Background: Smith chart SVG at 15% opacity (body[data-view="cv"]::after).
-   Increase/decrease in style.css → search for "smith-chart".
-
-3. Save, deploy.
-
-
-================================================================================
-C. ADD CONTENT TO BRAINWAVES TAB
-================================================================================
-
-The Brainwaves tab (formerly Journal) displays a mood board of book covers
-and other images with hover-reveal captions.
-
-File:  index.html
-Search for:  "brainwaves-grid"
-
-To add a new item:
-   <div class="bw-card">
-     <img src="assets/brainwaves/filename.jpg" alt="Description" />
-     <div class="bw-card-caption">Title — Author · Verdict</div>
-   </div>
-
-Size modifiers (for organic mood board feel):
-   • bw-card                → 1×1 standard tile
-   • bw-card bw-card-tall   → spans 2 rows (portrait books)
-   • bw-card bw-card-wide   → spans 2 columns (landscape items)
-
-Images go in:  assets/brainwaves/
-Background: bluish-black (#080b12) with animated interference patterns
-            (body[data-view="writing"]::before/::after in style.css).
-
-Tagline: "Thoughts, tangents, and telemetry."
-
-Step: Add image to assets/brainwaves/, add HTML block above, deploy.
-
-
-================================================================================
-D. ADD A NEW PROJECT
-================================================================================
-
-Step 1: Create the project detail page
-   a. Go to:  projects/
-   b. Duplicate any existing project file (e.g.  dsa.html)
-   c. Rename it (e.g.  new-project.html)
-   d. Open the new file and edit these parts:
-
-      IN THE <head>:
-      • <title> tag                → your project title
-      • <meta name="description"> → one-line summary
-
-      IN THE <main> BODY:
-      • <span class="detail-tag">   → lab/platform name
-      • <h1 class="detail-title">   → project heading
-      • <p class="detail-meta">     → date (e.g. "Spring 2026")
-
-      IN THE <div class="detail-body">:
-      • <h2> tags                   → section headings
-      • <p> tags                    → paragraph text
-      • <ul><li> tags               → bullet-point lists
-      • <img> tags                  → inline images (see Section E2)
-      • Report link                 → see Section F
-      • Further Reading links       → at the bottom
-
-Step 2: Add a project card to the Projects tab
-   a. Open  index.html
-   b. Search for  "projects-list"
-   c. Add this block inside that section:
-
-       <a href="projects/new-project.html" class="project-row float-up">
-         <div>
-           <h3 class="project-row-title">Project Title</h3>
-           <p class="project-row-desc">Short description of what you built.</p>
-         </div>
-         <div class="project-row-meta">
-           <p class="project-row-tools">Tool / Platform</p>
-           <p class="project-row-date">Season Year</p>
-           <p class="project-row-arrow">→</p>
-         </div>
-       </a>
-
-Step 3: Deploy.
-
-
-================================================================================
-E. EDIT AN EXISTING PROJECT
-================================================================================
-
-──── E1. EDIT TEXT ────
-
-1. Open the project's .html file in the  projects/  folder.
-
-2. Edit the content directly:
-   • Title          →  <h1 class="detail-title">
-   • Date/tools     →  <p class="detail-meta">
-   • Body text      →  everything inside  <div class="detail-body">
-   • Add a section  →  <h2>New Section</h2> <p>Your paragraph.</p>
-
-3. Save, deploy.
-
-──── E2. ADD INLINE IMAGES TO A PROJECT PAGE ────
-
-1. Put your image file in:  assets/project-images/
-   (Create this folder if it doesn't exist yet.)
-
-2. In the project's .html file, add this where you want the image:
-
-       <img src="../assets/project-images/your-image.jpg" alt="Description" />
-
-   ⚠️  The  ../  prefix is needed because project pages are inside  projects/.
-   ⚠️  Use descriptive alt text for accessibility.
-
-3. Save, deploy.
-
-──── E3. EDIT THE PROJECT CARD ON THE MAIN PAGE ────
-
-The project card is what appears on the Projects tab (the row with title,
-description, tools, and date). To change it:
-
-1. Open  index.html
-2. Search for the project title text (e.g. "Directed Self-Assembly")
-3. Edit the text inside  <h3 class="project-row-title">  and
-   <p class="project-row-desc">
-
-4. Save, deploy.
-
-──── E4. REMOVE A PROJECT ────
-
-1. Delete the project's .html file from  projects/
-2. Open  index.html  and delete the entire  <a href="projects/..." class="project-row">
-   block for that project.
-3. Save, deploy.
-
-Current project files:
-   • projects/alscn-ferroelectrics.html ← AlScN Ferroelectric Devices
-   • projects/mems-cantilever.html      ← MEMS Cantilever Beams & Comb Drives
-   • projects/dsa.html                  ← Directed Self-Assembly (DSA)
-   • projects/graphene-transistor.html  ← Graphene FET (GFET)
-   • projects/cdse-quantum-dots.html    ← CdSe Quantum Dot Synthesis
-   • projects/tia-optical-receiver.html ← Wideband TIA
-   • projects/sram-array.html           ← SRAM Array
-   • projects/device-modelling.html     ← Device Modelling
-   • projects/sensor-board.html         ← Sensor Board
-
-
-================================================================================
-F. ADD OR UPDATE A PROJECT REPORT (PDF)
-================================================================================
-
-Step 1: Put the PDF in:  reports/
-
-Step 2: Open the project's .html file in  projects/
-
-Step 3: Look for the Report section.
-   • If it exists (already visible), change the filename in BOTH places.
-   • If it is COMMENTED OUT (wrapped in <!-- -->), remove those markers.
-   • If it doesn't exist at all, add this block before  </div>  (end of detail-body):
-
-       <h2>Report</h2>
-       <p>
-           <a href="../reports/YOUR-REPORT.pdf" class="detail-report-link"
-               data-report="../reports/YOUR-REPORT.pdf">
-               📄 View Report (PDF)
-           </a>
-       </p>
-
-   ⚠️  Replace  YOUR-REPORT.pdf  in BOTH the  href  and  data-report  attributes.
-       They must be identical.
-
-   Example: For "ESE5360_DSA-Report_GrpA.pdf", it becomes:
-       href="../reports/ESE5360_DSA-Report_GrpA.pdf"
-       data-report="../reports/ESE5360_DSA-Report_GrpA.pdf"
-
-HOW TO UNCOMMENT A REPORT SECTION:
-   If the report block looks like this:
-       <!--
-       <h2>Report</h2>
-       ...
-       -->
-   Delete the  <!--  at the top and the  -->  at the bottom.
-   Then update the filename. Save, deploy.
-
-Step 4: Deploy.
-
-Current reports:
-   • reports/ESE5360_MEMS-Report_GrpA.pdf       ← linked in mems-cantilever.html
-   • reports/ESE5360_DSA-Report_GrpA.pdf        ← linked in dsa.html
-   • reports/ESE5360_Graphene-Report_GrpB.pdf   ← linked in graphene-transistor.html
-   • reports/ESE5290_Gyroscope.pdf              ← linked in mems-gyroscope.html
-   • reports/ESE5760-Report.pdf                 ← linked in semiconductor-memory.html
-   • reports/ESE5760_Poster.pdf                 ← poster in semiconductor-memory.html
-
-
-================================================================================
-G. ADD PHOTOS TO THE GALLERY
-================================================================================
-
-The Photography tab auto-populates from  assets/gallery/photos.json.
-
-Step 1: Copy your photo into:  assets/gallery/
-   Any format works (jpg, jpeg, png, webp).
-
-Step 2: Open:  assets/gallery/photos.json
-
-Step 3: Add one entry per photo:
-
-   [
-     {"file": "LocustWalk.jpeg", "caption": "Locust Walk, University of Pennsylvania"},
-     {"file": "your-new-photo.jpg", "caption": "Caption shown on hover"}
-   ]
-
-   ⚠️  "file" must match the exact filename (case-sensitive).
-   ⚠️  "caption" is what appears when you hover over the photo.
-   ⚠️  Last entry must NOT have a trailing comma.
-
-Step 4: Deploy.
-
-   To REMOVE a photo: delete its line from photos.json (and optionally
-   delete the file from  assets/gallery/).
-
-
-================================================================================
-H. TWEAK THE LOGO GROUNDING PULSE
-================================================================================
-
-File:  js/main.js
-Search for:  "// 2. Canvas shockwave"
-
-   WHAT                  LOOK FOR                 WHAT IT CONTROLS
-   ────────────────────  ───────────────────────  ────────────────────────────
-   Speed                 const duration = 5000    Milliseconds. 3000 = snappy,
-                                                  8000 = cinematic.
-
-   Ring brightness       ringOpacity * 0.75       Ring stroke opacity (0–1).
-
-   Colour wash glow      ringOpacity * 0.12       Fill wash behind the ring.
-                                                  Try 0.25 for stronger,
-                                                  0.05 for barely-there.
-
-   Glow width            radius * 0.55            How far inward the fill extends.
-                                                  Try 0.8 for wider.
-
-   Ring thickness        2 - progress * 1.2       Change "2" to 3 or 4 for thicker.
-
-   Start colour          rgba(0, 229, 255, ...)   Cyan at click.
-   End colour            rgba(212, 175, 55, ...)  Gold at fade-out.
-                                                  Replace with any RGB values.
-
-⚠️  After editing main.js, bump the JS cache version (see top of this file).
-
-
-================================================================================
-I. CHANGE THE LAB BENCH CURSOR GLOW ON PROJECT SUB-PAGES
-================================================================================
-
-Each project sub-page has a gold dot grid background and a "flashlight"
-cursor glow. The glow colour changes based on the engineering domain:
-
-   DOMAIN                 GLOW COLOUR         VALUE ON <body>
-   ────────────────────   ─────────────────   ──────────────────────
-   Analog / Mixed-Signal  Champagne Gold      data-glow="gold"
-   Cleanroom / Nanofab    Electric Cyan       data-glow="cyan"
-   TCAD / Device Physics  Deep Laser Red      data-glow="red"
-
-Current assignments:
-   • Gold:  tia-optical-receiver, sram-array, sensor-board
-   • Cyan:  mems-cantilever, dsa, graphene-transistor, cdse-quantum-dots
-   • Red:   alscn-ferroelectrics, device-modelling
-
-──── CHANGE A PROJECT'S GLOW COLOUR ────
-
-1. Open the project's .html file in  projects/
-2. Find the <body> tag (near line 13). It looks like:
-       <body class="project-detail" data-glow="cyan">
-3. Change  data-glow="cyan"  to  data-glow="gold"  or  data-glow="red"
-4. Save, deploy.
-
-──── ADD A CUSTOM GLOW COLOUR ────
-
-1. Open  css/style.css
-2. Search for  "Domain glow colour overrides"
-3. Add a new block like this:
-
-       /* My Custom Domain — Neon Green */
-       body.project-detail[data-glow="green"] {
-         --glow-r: 0;
-         --glow-g: 255;
-         --glow-b: 100;
-       }
-
-4. Use it by setting  data-glow="green"  on the project's <body> tag.
-5. Bump CSS cache version, deploy.
-
-──── CHANGE THE GLOW BRIGHTNESS OR RADIUS ────
-
-File:  css/style.css
-Search for:  "Cursor flashlight glow on project sub-pages"
-
-   • 0.18  →  glow brightness (raise for stronger, lower for subtler)
-   • 220px →  glow radius (bigger = wider spotlight)
-
-⚠️  After any CSS edit, bump the CSS cache version (see top of this file).
-⚠️  After any change to sub-page HTML, remember to also bump the CSS
-    version inside the sub-page's <link> tag if you changed it.
-
-
-================================================================================
-J. TESTING LOCALLY (before deploying)
-================================================================================
-
-Open your browser and go to:
-   http://localhost:8000
-
-If the server is not running:
-   cd /Users/krishnamadhurakella/Developer/KrishnaMadhur.github.io
-   python3 -m http.server 8000
-
-If changes don't appear:
-   • Try Cmd+Shift+R (hard refresh)
-   • Or open DevTools (Cmd+Opt+I) → Network tab → check "Disable cache" → refresh
-   • Or open in an incognito window
-
-
-================================================================================
-K. CHANGE BACKGROUND COLOURS & IMAGES
-================================================================================
-
-File:  css/style.css
-Search for:  "MOOD ZONE BACKGROUNDS"
-
-All tab backgrounds live near the top of the file. Here is what
-controls each tab:
-
-── HOME TAB ──────────────────────────────────────────────────────────────────
-  Search for:   body[data-view="home"]
-
-  Background colour:        var(--mood-home) in the background-color line.
-                            Or use a direct hex, e.g.  background-color: #0f172a;
-                            The CSS variables are at the very top of the
-                            file — search for  :root {
-
-  Radial gradient:          Change  var(--mood-home-center) and var(--mood-home)
-                            in the background-image line.
-                            These are the center and edge colours.
-
-  Botanical wallpaper:      Search for  body::before
-                            • opacity: 0.12  → raise/lower for more/less
-                            • Image file: assets/botanical-bg.png
-                            • To replace, swap the file, keep the same name
-
-── PROJECTS TAB ──────────────────────────────────────────────────────────────
-  Search for:   body[data-view="projects"]
-
-  Background colour:        var(--mood-projects) — currently Rich Black #0A0A0B
-
-  Dot grid:                 radial-gradient(rgba(212, 175, 55, 0.20) ...
-                            • 0.20 = dot opacity. Raise = brighter.
-                            • (212, 175, 55) = dot colour (Gold). Change RGB.
-                            • 1px = dot size. Try 1.5px for bigger dots.
-                            • 20px 20px = spacing. Smaller = denser grid.
-
-  Flashlight cursor glow:   Search for  body[data-view="projects"]::after
-                            • 0.18 = glow brightness. 
-                            • 220px = glow radius.
-
-── BRAINWAVES TAB ────────────────────────────────────────────────────────────
-  Search for:   body[data-view="writing"]
-
-  Background colour:        var(--mood-writing) — currently Rich Black #0A0A0B
-
-  Ruled lines:              rgba(255, 255, 255, 0.07)
-                            • 0.07 = line visibility. Raise for darker lines.
-                            • 32px = line spacing.
-
-── PHOTOGRAPHY TAB ───────────────────────────────────────────────────────────
-  Search for:   body[data-view="photography"]
-
-  Background colour:        var(--mood-photography) — currently Rich Black #0A0A0B
-
-── CV TAB ────────────────────────────────────────────────────────────────────
-  Search for:   body[data-view="cv"]
-
-  Background colour:        var(--mood-cv) — currently Rich Black #0A0A0B
-
-  Smith Chart:              Search for  body[data-view="cv"]::after
-                            • opacity: 0.09  → raise/lower for visibility
-                            • SVG file: assets/smith-chart.svg
-                            • SVG stroke colour: open the SVG, change the
-                              stroke="#9CA3AF" value. Currently Silver/Slate.
-                            • Mask (center fade-out):
-                              mask-image: radial-gradient(ellipse at center,
-                                transparent 20%, black 65%);
-                              "transparent 20%" = invisible zone radius.
-                              "black 65%" = fully visible zone.
-                              Raise "20%" to hide more of the center.
-
-── CHANGING THE SHARED BASE COLOUR ───────────────────────────────────────────
-  All non-Home tabs use a CSS variable. To change them all at once:
-  1. Open  css/style.css
-  2. Search for  :root {
-  3. Change the four  --mood-*  values to your new colour:
-       --mood-projects: #0A0A0B;
-       --mood-writing: #0A0A0B;
-       --mood-photography: #0A0A0B;
-       --mood-cv: #0A0A0B;
-  4. Bump CSS cache version, deploy.
-
-⚠️  After any CSS edit, bump the CSS cache version (see top of this file).
-
-
-================================================================================
-L. CHANGE THE FLUTE FOOTER DIVIDER
-================================================================================
-
-File:  index.html
-Search for:  "flute-divider" or the <svg> near the footer.
-
-The flute is an inline SVG using a linear gradient from Silver to Teal.
-To change colours:
-   • Search for  <stop offset=  inside the flute SVG
-   • The first stop is the start colour, the second is the end colour
-   • Change the  stop-color="#..."  values
-
-To resize: adjust the  width  attribute on the <svg> tag.
-
-
-================================================================================
-M. HOMEPAGE THEME SYSTEM (Professional ↔ Casual Easter Egg)
-================================================================================
-
-The homepage has TWO themes. The default is "Professional" (dark obsidian
-with IC layout X-ray cursor). Clicking "HELLO, I AM" toggles to "Casual"
-(floral wallpaper with firefly golden spotlight).
-
-──── HOW THE TOGGLE WORKS ────
-
-   Clicking "HELLO, I AM" adds/removes  .theme-casual  on the <body>.
-   This swaps:
-     • Background: obsidian → Deep Space blue + floral wallpaper
-     • Cursor effect: X-ray IC layout → Firefly golden spotlight
-     • Third bio paragraph: professional → casual text
-     • Status LED: green → red
-     • Status text: engineering → F1 Grand Prix
-
-──── CHANGE THE PROFESSIONAL THEME BACKGROUND ────
-
-   The X-ray cursor reveals a CMOS op-amp schematic pattern.
-   File: assets/option-c-schematic.svg
-   CSS:  Search for "X-Ray cursor" in style.css
-
-   • To REPLACE the pattern: swap the SVG file, keep the same name.
-     Or change the  background-image: url(...)  line.
-   • Tile size: change  background-size: 420px 340px
-   • Reveal radius: change  circle 180px  (bigger = wider flashlight)
-   • Reveal opacity: change  rgba(0,0,0,0.6)  (higher = sharper edge)
-
-   Floating gradient orb:
-   Search for "Floating champagne gradient orb"
-   • Colour: change the  rgba(212, 175, 55, ...)  values
-   • Size: change  width: 60vmax  /  height: 60vmax
-   • Speed: change  20s  in the  animation  line (lower = faster)
-   • Blur: change  filter: blur(60px)
-
-──── CHANGE THE CASUAL THEME BACKGROUND ────
-
-   Floral wallpaper:
-   File: assets/botanical-bg.png
-   CSS:  Search for "Floral background" in style.css
-
-   • To REPLACE: swap the PNG file, keep the same name.
-   • Opacity: change  opacity: 0.12  (higher = more visible)
-   • Tile size: change  background-size: 450px 450px
-
-   Firefly spotlight:
-   Search for "Firefly spotlight" in style.css
-   • Radius: change  circle 180px
-   • Brightness: change  0.14  (inner glow) and  0.05  (outer glow)
-
-──── CHANGE THE "HELLO, I AM" HOVER GLOW ────
-
-   CSS:  Search for  .home-greeting:hover
-   • Colour: change  color: #00FFFF  (currently Cleanroom Cyan)
-   • Glow: change  text-shadow  rgba values
-
-──── CHANGE THE SWAPPED BIO TEXT ────
-
-   File:  index.html
-   Search for  id="bio-third"
-
-   The third <p> tag has two data attributes:
-   • data-bio-pro="..."   — text shown in Professional mode
-   • data-bio-casual="..." — text shown in Casual mode
-   Edit the text inside the quotes. Use &lt;strong&gt; for bold.
-
-──── CHANGE THE SWAPPED STATUS TEXT ────
-
-   File:  js/main.js
-   Search for  "Easter Egg"
-
-   The status text and LED are swapped in the greeting click handler:
-   • Professional text: search for  "Architecting mixed-signal"
-   • Casual text: search for  "F1 Grand Prix"
-   Edit the strings directly.
-
-──── CHANGE THE STATUS LED COLOUR ────
-
-   CSS:  Search for  .status-led  → green LED defaults
-         Search for  .status-led.casual-red  → red LED for casual
-   Change the  background  and  box-shadow  RGB values.
-
-──── AMBER TEXT SELECTION ────
-
-   CSS:  Search for  ::selection
-   Change  background: #FFBF00  to any colour you like.
-
-⚠️  After any CSS/JS edit, bump the cache version (see top of this file).
-
-
-================================================================================
-N. TAB CURSOR GLOWS (Brainwaves / Photography / CV)
-================================================================================
-
-Each of these tabs has a subtle radial gradient following the mouse.
-The colours are different per tab:
-
-   TAB            COLOUR        CSS SELECTOR
-   ────────────   ───────────   ──────────────────────────────────────
-   Brainwaves     Sepia         body[data-view="writing"] #tab-cursor-glow
-   Photography    Cool White    body[data-view="photography"] #tab-cursor-glow
-   CV             Laser Blue    body[data-view="cv"] #tab-cursor-glow
-
-──── CHANGE A TAB'S GLOW COLOUR ────
-
-1. Open  css/style.css
-2. Search for  "Tab Cursor Glow"
-3. Find the tab you want to change
-4. Edit the  --tcg-r, --tcg-g, --tcg-b  values (0–255)
-
-   Example — to make Brainwaves glow cyan:
-     --tcg-r: 0; --tcg-g: 255; --tcg-b: 255;
-
-──── CHANGE GLOW RADIUS OR BRIGHTNESS ────
-
-   Search for  #tab-cursor-glow  (the base rule)
-   • Radius: change  circle 180px
-   • Inner opacity: change  0.08
-   • Outer opacity: change  0.02
-
-⚠️  After any CSS edit, bump the CSS cache version.
-
-
-================================================================================
-QUICK DEPLOY COMMAND (copy-paste this every time)
-================================================================================
-
-   cd /Users/krishnamadhurakella/Developer/KrishnaMadhur.github.io
-   git add -A && git commit -m "describe what you changed" && git push origin main
-
-
-================================================================================
-WHERE THINGS LIVE (file map)
-================================================================================
-
-  index.html                  ← MAIN FILE — Home, Projects, Writing, Photos, CV
-  css/style.css               ← All visual styles
-  js/main.js                  ← Animations, tab switching, gallery loader, theme toggle
-  assets/
-    botanical-bg.png          ← Casual theme wallpaper
-    ic-layout.svg → option-c-schematic.svg
-    smith-chart.svg           ← CV background Smith Chart
-    gallery/                  ← Photos (flat folder)
-    gallery/photos.json       ← Photo manifest (filename + caption)
-    project-images/           ← Inline images for project pages
-  projects/                   ← One .html file per project (9 files)
-  writing/posts/              ← One .html file per blog post
-  writing/posts/_template.html ← Copy this for new posts
-  reports/                    ← PDF reports
-  Krishna_Akella_CV.pdf       ← Resume / CV
-
-
-================================================================================
-DESIGN REFERENCE
-================================================================================
-
-  Logo:        कृष्ण ⏚  (click for grounding pulse → scrolls home)
-
-  HOME — Professional (default):
-    Background:  Deep Obsidian (#0A0A0A) + floating champagne gradient orb
-    Cursor:      X-ray op-amp schematic reveal (180px, champagne gold traces)
-    Selection:   Photolithography Amber (#FFBF00)
-
-  HOME — Casual (Easter egg, click "HELLO, I AM"):
-    Background:  Deep Space (#0f172a) + botanical floral wallpaper (12%)
-    Cursor:      Firefly golden spotlight (180px, warm gold)
-    Status LED:  Red (pulsing)
-
-  Projects bg: Rich Black (#0A0A0B) + Gold dot grid (20%) + cursor glow
-  Sub-pages:   Same dot grid + domain-specific cursor glow
-               → Gold (Analog), Cyan (Cleanroom), Red (TCAD)
-  Brainwaves bg: Rich Black (#0A0A0B) + ruled lines + gold margin + Sepia cursor
-  Photography: Rich Black (#0A0A0B) + Cool White cursor
-  CV bg:       Rich Black (#0A0A0B) + Smith Chart arcs (9%) + Laser Blue cursor
-  Nav:         Glassmorphism pill, always visible at top
-  Gold accent: #d4af37
-  Text body:   #e0e0e0
-
-================================================================================
+WEBSITE MAINTENANCE GUIDE — krishnamadhur.github.io
+Updated October 25, 2026
+
+LOCATION AND PUBLICATION
+Checkout: /Users/krishnamadhurakella/Developer/KrishnaMadhur.github.io
+Hosting: existing GitHub Pages site. Local changes do not change the live site
+until committed and pushed. Review the local preview and obtain owner approval
+before publishing. Do not migrate hosting or rewrite Git history as routine work.
+
+CONTENT POLICY
+- Serve both engineering recruiting and academic research audiences.
+- Preserve employer names, professional roles, dates, and supported achievements.
+- Identify measured, simulated, extracted, and estimated results explicitly.
+- Ongoing fellowship/thesis work is active work; do not describe it as merely proposed.
+- Do not invent results, first-person essays, plots, or confidentiality permissions.
+- No public resume or report PDFs, PDF embeds, or download buttons.
+- Keep original PDFs and raw reference material in _reference/ only.
+- A visible image can be saved or captured; never promise download prevention.
+
+PRIVATE MATERIALS — START HERE
+_reference/ is ignored by Git and blocked by scripts/preview.py. It must never
+be included in a deployment artifact. Do not add .nojekyll to expose underscore
+folders without reviewing the publishing workflow. Git ignore is not access control.
+
+Run once (safe to repeat; existing notes are not overwritten):
+  node scripts/prepare-reference.mjs
+
+Each project packet contains notes.md plus figures/, data/, and reports/.
+Fill in rough notes; PDFs/slides/raw plots are fine. Label each file PUBLIC,
+PRIVATE REFERENCE, or DO NOT PUBLISH. Only reviewed public derivatives belong
+in assets/project-images/. Never link to _reference/ from a public page.
+
+Project packets (14):
+  alscn-ferroelectrics       TCAD, PUND, model/measurement and thermal evidence
+  sot-mram-dtco             GSF scope, stack, write path, model-input provenance
+  ito-izo-thesis            TFT geometry, leakage/noise, reliability and modeling
+  cntfet-lbnl               completed internship, NEGF, Verilog-A and device tests
+  device-modelling         SOI/FinFET structures, sweeps and baseline comparisons
+  tia-optical-receiver      specs, topology, simulated gain/BW/noise/power
+  sram-array               sizing, timing, SNM, power and area
+  semiconductor-memory     actual 2T2R architecture, training and nonideality data
+  sensor-board             board architecture, bring-up and permitted artifacts
+  graphene-transistor      process, microfluidics and electrical/pH data
+  mems-cantilever          fabrication, resonance, displacement and snap-in
+  mems-gyroscope           design, modes, tuning, assumptions and status
+  dsa                      templates, pitch/domain measurements and defects
+  cdse-quantum-dots         synthesis, spectra, STEM and size extraction
+
+Individual notes.md files contain the detailed project-specific requests.
+_reference/brainwaves/notes.md collects personal essay/book-note drafts.
+_reference/reports/ contains the former public PDFs, retained locally.
+_reference/original-assets/ preserves image originals before optimization.
+
+PUBLIC FILE MAP
+  index.html                 Home, Projects, Brainwaves, Photography, HTML CV
+  css/style.css              Original mood-zone styles and animation definitions
+  css/refresh.css            Refreshed layout, readable type, responsive behavior
+  js/main.js                 Shared navigation, theme, gallery and grounding pulse
+  projects/*.html            Eleven existing project pages
+  assets/project-images/     Reviewed, publication-approved figures only
+  assets/gallery/photos.json Photo filename/caption manifest
+  assets/gallery/            Sanitized display copies
+  assets/brainwaves/         Reading-board display images
+  assets/favicon.svg         Ground-symbol favicon
+  assets/og-preview.jpg       Existing social preview (preserved)
+  robots.txt, sitemap.xml     Crawl guidance and canonical public URLs
+  cv/index.html              Redirect to HTML CV
+
+The three new current-research project packets are private preparation folders,
+not completed public case studies. Add their pages after evidence/wording review.
+
+HOME AND CURRENT ROLES
+Edit index.html:
+  home-name / home-tagline    Name and tagline
+  home-intro                 Concise professional introduction and email action
+  bio-third                  Professional default; data-bio-casual is off-duty copy
+  current-work               Three current Penn roles in the right column
+  status-text                Single source of truth for professional status
+  selected-work              Public project cards; preserve valid links
+
+The desktop home grid places current-work alongside the greeting, name and bio.
+Email, project navigation, LinkedIn and GitHub share one action row. Home overrides
+the old full-viewport section minimum and large footer padding so the sine-wave
+signature/footer sit higher. Keep mobile content readable rather than forcing it
+to fit one screen. The greeting arrow was removed; its theme button remains.
+
+The professional bio/status are captured from the HTML on page load. Returning
+from casual mode restores those originals; do not maintain duplicate strings in JS.
+Keep the current roles/CV accurate: LBNL internship ended August 2026; current work
+includes Singh GSF, research with Deep Jariwala, and the master's thesis with Radway.
+
+THEMES AND EFFECTS
+Default: professional obsidian/champagne, schematic X-ray cursor reveal.
+Greeting button: toggles off-duty botanical blue, warm firefly glow, F1 status,
+alternate selected-work cards and the upbeat off-duty line. It supports Enter/Space.
+Project pages: gold/cyan/red domain glows controlled by body[data-glow].
+CV: Smith chart. Brainwaves: existing blue interference background.
+Krishna logo: original canvas wave, cyan → champagne, duration 3000 ms.
+No floating orb is present.
+Reduced-motion preference removes the wave, tilt, tracking and CSS animation.
+Touch devices omit cursor tracking. Keep work pages professional in both modes.
+
+FOOTER LINK
+Only the word Madhur links to https://www.srushtimadhure.com/ in a new tab.
+.madhure-e reveals an e on hover or keyboard focus, producing Madhure.
+Touch devices show the e permanently because hover does not exist there.
+The explicit accessible label identifies Srushti and the new-tab behavior.
+Keep the full Krishna Madhur Akella name unchanged elsewhere.
+
+PROJECT PAGE STRUCTURE
+Use a public title, short role/date/status line, problem, constraints, personal
+contribution, design decisions, results with test conditions, and limitations.
+Add 2–4 approved figures with captions/units/credits; do not expose original reports.
+Use the shared navigation, stylesheets and js/main.js rather than duplicating inline
+scripts. Keep canonical URLs and the sitemap synchronized when adding pages.
+
+BRAINWAVES
+The five existing reading-board items remain. Captions are always visible.
+Add original notes from the owner's drafts: what changed their thinking, a concrete
+connection to their work, and a useful takeaway. Do not fabricate personal opinions.
+No fake article links or unfinished placeholders on the public site.
+
+PHOTOGRAPHY AND MEDIA
+Add a JPEG display copy under assets/gallery/ and an entry in photos.json:
+  {"file":"photo.jpeg", "caption":"Descriptive caption"}
+Use exact filename case and valid JSON (no trailing comma on the last entry).
+Run with Python + Pillow:
+  python3 scripts/optimize-media.py
+This preserves private originals, corrects orientation, resizes to <=1600 px,
+removes metadata, compresses the JPEG, and verifies EXIF is empty. It does not
+watermark photographs. A watermark placement requires a separately reviewed sample.
+The lightbox is keyboard-operable, restores focus, and supports Escape.
+Do not block right-click as a substitute for actual privacy protection.
+
+LOCAL PREVIEW AND VALIDATION
+  python3 scripts/preview.py --port 8123
+Open http://127.0.0.1:8123
+This server blocks private/hidden paths, reports, PDF requests and directory listings.
+Do not use python -m http.server at the repository root: it can serve private files.
+
+  python3 scripts/validate-site.py
+  node --check js/main.js
+
+Manual review: desktop and narrow mobile layouts; menu open/close and Escape;
+keyboard focus; Back/Forward twice; direct #projects/#cv refresh; project return
+links; both greeting themes and status restoration; grounding wave; reduced motion;
+gallery dialog open/close/focus; Madhur link focus/hover and actual destination.
+
+CACHE VERSIONS
+After stylesheet or JS changes, use one version across every public page:
+  node scripts/cache-version.mjs 20261025-2
+This synchronizes css/style.css, css/refresh.css and js/main.js URLs.
+
+SAFE PUBLISHING — AFTER OWNER APPROVAL
+  git status --short
+  git diff --stat
+  git diff --check
+  git check-ignore _reference/alscn-ferroelectrics/notes.md
+  git ls-files _reference
+The last command must return no files. Review report removals and changed images.
+Stage explicit reviewed paths (include removals deliberately); do not use git add -A.
+Inspect git diff --cached before committing and pushing to origin main.
+Check the live Pages deployment and actual URLs after pushing.
+
+HISTORICAL EXPOSURE
+Moving PDFs locally and removing them from the next commit does not remove earlier
+GitHub commits, cached URLs, forks or existing copies. The current live site remains
+unchanged until publishing. History rewriting is a separate operation requiring an
+explicit decision and backup. robots.txt is crawler guidance, not authorization.
+
+REMAINING CONTENT WORK
+Collect project evidence, approve the first three case studies and new research
+pages, and supply Brainwaves writing. Review a photograph watermark sample before
+applying it across the gallery. Keep these tasks distinct from completed UI fixes.

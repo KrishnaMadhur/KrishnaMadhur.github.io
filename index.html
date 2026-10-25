@@ -6,9 +6,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Krishna Madhur Akella</title>
   <meta name="description"
-    content="Researcher in nanotechnology, ferroelectric devices, MEMS fabrication, and analog IC design. MSE Electrical Engineering at the University of Pennsylvania." />
+    content="Electrical engineer at Penn working across semiconductor devices, compact modeling, mixed-signal circuits, and hardware. Previously at LBNL, Silicon Laboratories, and Cadence." />
   <meta name="author" content="Krishna Madhur Akella" />
-  <link rel="stylesheet" href="css/style.css?v=12" />
+  <link rel="stylesheet" href="css/style.css?v=20261025-2" />
+  <link rel="stylesheet" href="css/refresh.css?v=20261025-2" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Noto+Sans+Devanagari:wght@400;700&amp;family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="canonical" href="https://krishnamadhur.github.io/" />
   <meta property="og:title" content="Krishna Madhur Akella — The Bridge Between Atoms and Systems" />
   <meta property="og:description" content="Hardware engineer and graduate student fellow at UPenn, working at the intersection of solid-state device physics and mixed-signal IC design." />
   <meta property="og:image" content="https://krishnamadhur.github.io/assets/og-preview.jpg" />
@@ -17,6 +23,7 @@
 </head>
 
 <body data-view="home">
+  <a class="skip-link" href="#home-name">Skip to content</a>
 
   <!-- Theme overlay layers -->
   <div id="xray-grid"></div>
@@ -25,15 +32,15 @@
   <div id="tab-cursor-glow"></div>
 
   <!-- ====== GLASSMORPHISM NAVIGATION ====== -->
-  <nav class="navbar">
+  <nav class="navbar" aria-label="Primary navigation">
     <div class="nav-container">
       <a href="#home" id="nav-logo" class="nav-logo">कृष्ण <span class="logo-ground">⏚</span></a>
       <div class="nav-tabs">
-        <button class="nav-tab active" data-view="home">Home</button>
-        <button class="nav-tab" data-view="projects">Projects</button>
-        <button class="nav-tab" data-view="writing">Brainwaves</button>
-        <button class="nav-tab" data-view="photography">Photography</button>
-        <button class="nav-tab" data-view="cv">CV</button>
+        <a class="nav-tab active" data-view="home" href="#home">Home</a>
+        <a class="nav-tab" data-view="projects" href="#projects">Projects</a>
+        <a class="nav-tab" data-view="writing" href="#writing">Brainwaves</a>
+        <a class="nav-tab" data-view="photography" href="#photography">Photography</a>
+        <a class="nav-tab" data-view="cv" href="#cv">CV</a>
       </div>
       <button class="nav-hamburger" aria-label="Toggle menu">
         <span></span>
@@ -50,53 +57,52 @@
     <div class="container">
       <div class="home-content">
 
-        <p class="home-greeting float-up">Hello, I am</p>
-        <h1 class="home-name float-up">Krishna Madhur Akella</h1>
+        <button type="button" class="home-greeting float-up" aria-label="Toggle the off-duty homepage" aria-pressed="false">Hello, I am</button>
+        <h1 id="home-name" tabindex="-1" class="home-name float-up">Krishna Madhur Akella</h1>
         <p class="home-tagline float-up">
           The Bridge Between Atoms and Systems.
         </p>
 
-        <p class="home-bio float-up">
-          I am a <strong>hardware engineer</strong> and <strong>graduate student fellow</strong> at the
-          <strong>University of Pennsylvania</strong> (MSE Electrical Engineering), working at the
-          intersection of <strong>solid-state device physics</strong> and <strong>mixed-signal IC design</strong>.
-        </p>
-
-        <p class="home-bio float-up">
-          My engineering philosophy is simple: you cannot design a truly great circuit unless you
-          understand the physics of the transistor beneath it.
-        </p>
+        <div class="home-overview">
+        <div class="home-intro">
+        <p class="home-bio float-up">I’m an <strong>electrical engineer</strong> connecting semiconductor device physics with <strong>compact modeling, mixed-signal circuits, and hardware</strong>. I’m pursuing my MSE in Electrical Engineering at the <strong>University of Pennsylvania</strong>, expected May 2027.</p>
 
         <p class="home-bio float-up" id="bio-third"
-          data-bio-pro="This deep-tech research is grounded in rigorous industry execution. Having previously architected robust evaluation hardware at &lt;strong&gt;Silicon Laboratories&lt;/strong&gt; and optimized designs at &lt;strong&gt;Cadence&lt;/strong&gt;, I am now focused on pushing the limits of semiconductor scaling and high-performance analog systems."
-          data-bio-casual="I don't really turn the engineering brain off when I leave the lab. I just point it at different targets and that looks like overanalyzing <strong>F1 aerodynamics</strong>, decoding the scientific principles embedded in <strong>Hindu mythology</strong>, or dissecting the latest <strong>tech drops</strong>.">
-          This deep-tech research is grounded in rigorous industry execution. Having previously
-          architected robust evaluation hardware at <strong>Silicon Laboratories</strong> and optimized
-          designs at <strong>Cadence</strong>, I am now focused on pushing the limits of semiconductor
-          scaling and high-performance analog systems.
+          data-bio-casual="Off duty, the engineering brain stays on: &lt;strong&gt;F1 aerodynamics&lt;/strong&gt;, photography, books, and the occasional deep dive into a new piece of tech. Different rabbit holes. Same curiosity.">
+          Previously at <strong>LBNL</strong>, <strong>Silicon Laboratories</strong>, and <strong>Cadence</strong>. My work spans CNT-FET transport, 21 mixed-signal evaluation boards, and device-level simulation.
         </p>
 
         <!-- Pulsing LED status -->
         <div class="status-indicator float-up">
           <span class="status-led" id="status-led"></span>
-          <span class="status-text" id="status-text">Currently: Modeling photosensitivity in CNT-FETs <strong>@ LBNL</strong> · AlScN ferroelectrics <strong>@ UPenn</strong></span>
+          <span class="status-text" id="status-text">Currently: device research, fellowship, and master’s thesis <strong>@ Penn</strong></span>
         </div>
+        <div class="intro-actions float-up"><a class="contact-action" href="mailto:krishna8@seas.upenn.edu">Email me <span aria-hidden="true">↗</span></a><a class="text-action" href="#projects" data-view-link="projects">Explore my work <span aria-hidden="true">↓</span></a><a class="text-action" href="https://linkedin.com/in/akrishnamadhur" target="_blank" rel="noopener">LinkedIn</a><a class="text-action" href="https://github.com/KrishnaMadhur" target="_blank" rel="noopener">GitHub</a></div>
+        </div>
+        <aside class="current-work float-up" aria-labelledby="current-work-title">
+          <h2 id="current-work-title">Currently at Penn</h2>
+          <div><p class="role-label">Graduate Student Fellow</p><h3>Singh Center for Nanotechnology</h3><p>SOT-MRAM device modeling and design–technology co-optimization.</p></div>
+          <div><p class="role-label">Research Assistant · Deep Jariwala</p><h3>AlScN ferroelectric devices</h3><p>Sentaurus TCAD and electrical characterization.</p></div>
+          <div><p class="role-label">Master’s thesis · Robert Radway</p><h3>ITO/IZO thin-film transistors</h3><p>Device reliability, characterization, and compact modeling.</p></div>
+        </aside>
+        </div>
+        <div class="off-duty-note" hidden><span>OFF THE CLOCK</span><p>Race weekends. Camera walks. One more chapter.</p><a href="#writing" data-view-link="writing">Follow the tangents ↗</a></div>
 
         <p class="home-section-label float-up">Selected Work</p>
         <div class="selected-work stagger-children" id="selected-work">
           <a href="projects/alscn-ferroelectrics.html" class="selected-work-item float-up" data-sw-pro>
             <span class="sw-title">AlScN Ferroelectric Devices</span>
-            <span class="sw-desc">Modelling &amp; characterization via Synopsys TCAD &amp; Keithley SCS-4200</span>
+            <span class="sw-desc">Device physics · Ongoing research<br>TCAD modeling and electrical characterization.</span>
             <span class="sw-arrow">→</span>
           </a>
           <a href="projects/tia-optical-receiver.html" class="selected-work-item float-up" data-sw-pro data-sw-casual>
             <span class="sw-title">Wideband TIA for Optical Receivers</span>
-            <span class="sw-desc">519 kΩ gain, 311 MHz BW, 3.5 mW — Cadence Virtuoso 45nm</span>
+            <span class="sw-desc">Analog IC design · 45 nm CMOS<br>519 kΩ gain · 311 MHz bandwidth · 3.5 mW simulated power.</span>
             <span class="sw-arrow">→</span>
           </a>
           <a href="projects/graphene-transistor.html" class="selected-work-item float-up" data-sw-pro>
             <span class="sw-title">Graphene Field-Effect Transistor</span>
-            <span class="sw-desc">CVD-grown graphene FET fabrication on SiO₂/Si substrates</span>
+            <span class="sw-desc">Fabrication &amp; characterization<br>CVD-grown graphene devices on SiO₂/Si.</span>
             <span class="sw-arrow">→</span>
           </a>
           <a href="projects/semiconductor-memory.html" class="selected-work-item float-up" data-sw-casual style="display:none;">
@@ -111,18 +117,6 @@
           </a>
         </div>
 
-        <p class="home-section-label float-up">Contact</p>
-        <div class="home-links float-up">
-          <a href="mailto:krishna8@seas.upenn.edu" class="home-link home-link-email" title="Email">
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-          </a>
-          <a href="https://linkedin.com/in/akrishnamadhur" target="_blank" rel="noopener" class="home-link home-link-linkedin" title="LinkedIn">
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M19 3a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14m-.5 15.5v-5.3a3.26 3.26 0 00-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 011.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 001.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 00-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
-          </a>
-          <a href="https://github.com/KrishnaMadhur" target="_blank" rel="noopener" class="home-link home-link-github" title="GitHub">
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 2A10 10 0 002 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0012 2z"/></svg>
-          </a>
-        </div>
 
       </div>
     </div>
@@ -135,7 +129,7 @@
     <div class="container">
       <div class="view-header float-up">
         <h1 class="view-title">Projects</h1>
-        <p class="view-subtitle">Research &amp; engineering work — hover to interact, click to explore</p>
+        <p class="view-subtitle">Device physics, circuit design, and hands-on engineering.</p>
       </div>
 
       <div class="projects-list stagger-children">
@@ -319,23 +313,23 @@
       <!-- Mood Board -->
       <div class="brainwaves-grid float-up">
         <div class="bw-card bw-card-tall">
-          <img src="assets/brainwaves/razavi.jpg" alt="Fundamentals of Microelectronics" />
+          <img src="assets/brainwaves/razavi.jpg" alt="Fundamentals of Microelectronics" loading="lazy" decoding="async" />
           <div class="bw-card-caption">Fundamentals of Microelectronics — Behzad Razavi · Must Read</div>
         </div>
         <div class="bw-card">
-          <img src="assets/brainwaves/newey.jpg" alt="How to Build a Car" />
+          <img src="assets/brainwaves/newey.jpg" alt="How to Build a Car" loading="lazy" decoding="async" />
           <div class="bw-card-caption">How to Build a Car — Adrian Newey · Must Read</div>
         </div>
         <div class="bw-card">
-          <img src="assets/brainwaves/weste-harris.jpg" alt="CMOS VLSI Design" />
+          <img src="assets/brainwaves/weste-harris.jpg" alt="CMOS VLSI Design" loading="lazy" decoding="async" />
           <div class="bw-card-caption">CMOS VLSI Design — Weste &amp; Harris · Essential Reading</div>
         </div>
         <div class="bw-card">
-          <img src="assets/brainwaves/neamen.jpg" alt="Semiconductor Physics and Devices" />
+          <img src="assets/brainwaves/neamen.jpg" alt="Semiconductor Physics and Devices" loading="lazy" decoding="async" />
           <div class="bw-card-caption">Semiconductor Physics and Devices — Donald A. Neamen · Reference</div>
         </div>
         <div class="bw-card bw-card-tall">
-          <img src="assets/brainwaves/norman.jpg" alt="The Design of Everyday Things" />
+          <img src="assets/brainwaves/norman.jpg" alt="The Design of Everyday Things" loading="lazy" decoding="async" />
           <div class="bw-card-caption">The Design of Everyday Things — Don Norman · Essential Reading</div>
         </div>
       </div>
@@ -349,9 +343,10 @@
     <div class="container">
       <div class="view-header float-up">
         <h1 class="view-title">Photography</h1>
-        <p class="view-subtitle">Moments captured through the lens</p>
+        <p class="view-subtitle">Photographs from campus, travel, and everyday life.</p>
       </div>
 
+      <p class="photo-rights">Photographs © Krishna Madhur Akella. All rights reserved. Reuse requires written permission.</p>
       <div id="gallery-grid" class="gallery-grid float-up">
         <!-- JS populates this from assets/gallery/photos.json -->
       </div>
@@ -386,8 +381,8 @@
               <h3 class="cv-org">University of Pennsylvania</h3>
               <span class="cv-date">2025 – Present</span>
             </div>
-            <p class="cv-role">MSE Electrical Engineering · Expected 2027</p>
-            <p class="cv-desc">Concentration in Nanotechnology &amp; Semiconductors along with Mixed Signal &amp; RFIC Design.</p>
+            <p class="cv-role">MSE Electrical Engineering · Expected May 2027</p>
+            <p class="cv-desc">Concentrations: Nanotechnology &amp; Semiconductors; Mixed-Signal &amp; RF Integrated Circuits.</p>
           </div>
 
           <div class="cv-entry">
@@ -412,12 +407,12 @@
 
           <div class="cv-entry">
             <div class="cv-entry-header">
-              <span class="cv-dot cv-dot-active"></span>
+              <span class="cv-dot"></span>
               <h3 class="cv-org">Lawrence Berkeley National Laboratory</h3>
               <span class="cv-date">Jul 2026 – Aug 2026</span>
             </div>
-            <p class="cv-role">Graduate Student Researcher · IC Design Team, Engineering Department</p>
-            <p class="cv-desc">Modeling photosensitivity in carbon nanotube field-effect transistors (CNT-FETs).</p>
+            <p class="cv-role">Graduate Student Researcher (Internship) · IC Design Team, Engineering Department</p>
+            <p class="cv-desc">Investigated illumination-dependent CNT-FET transport and initiated a Verilog-A compact-model framework. Internship concluded August 2026.</p>
           </div>
 
           <div class="cv-entry">
@@ -437,7 +432,7 @@
               <span class="cv-date">May 2022 – Sep 2022</span>
             </div>
             <p class="cv-role">Hardware Engineering Intern</p>
-            <p class="cv-desc">Worked with 3nm LVTH MOSFET and characterized SerDes PHY schematics in the Memory Interface Group.</p>
+            <p class="cv-desc">Characterized 3 nm low-threshold-voltage MOSFET behavior and analyzed SerDes PHY schematics in the Memory Interface Group.</p>
           </div>
 
         </div>
@@ -451,12 +446,24 @@
         <div class="cv-entries">
 
           <div class="cv-entry">
+            <div class="cv-entry-header"><span class="cv-dot cv-dot-active"></span><h3 class="cv-org">Singh Center for Nanotechnology</h3><span class="cv-date">Aug 2026 – Present</span></div>
+            <p class="cv-role">Graduate Student Fellow · SOT-MRAM Device Modeling &amp; DTCO</p>
+            <p class="cv-desc">Working on experiment-informed β-W SOT-MRAM modeling and device-to-circuit tradeoffs connecting geometry, write-path resistance, and CMOS-driver constraints.</p>
+          </div>
+
+          <div class="cv-entry">
+            <div class="cv-entry-header"><span class="cv-dot cv-dot-active"></span><h3 class="cv-org">University of Pennsylvania</h3><span class="cv-date">Aug 2026 – Present</span></div>
+            <p class="cv-role">Master’s Thesis Researcher · Prof. Robert Radway</p>
+            <p class="cv-desc">Investigating back-gated ITO/IZO TFT reliability, contact geometry, characterization, and compact modeling.</p>
+          </div>
+
+          <div class="cv-entry">
             <div class="cv-entry-header">
               <span class="cv-dot cv-dot-active"></span>
               <h3 class="cv-org">University of Pennsylvania</h3>
               <span class="cv-date">2025 – Present</span>
             </div>
-            <p class="cv-role">Device Research and Engineering Laboratory | Prof. Deep Jariwala</p>
+            <p class="cv-role">Research Assistant · Prof. Deep Jariwala’s Group</p>
             <p class="cv-desc">AlScN-based ferroelectric Diodes and FET modelling using Synopsys Sentaurus TCAD &amp; characterization using Keithley SCS-4200.</p>
           </div>
 
@@ -523,28 +530,19 @@
 
   <!-- ====== FOOTER ====== -->
   <footer class="footer">
-    <p>&copy; 2026 Krishna Madhur Akella · <a href="https://www.philadelphiaeagles.com/" target="_blank" rel="noopener" class="footer-philly">Philadelphia, PA</a> · Built with <a href="https://gssasank.com" target="_blank"
+    <p>&copy; 2026 Krishna <a class="madhure-link" href="https://www.srushtimadhure.com/" target="_blank" rel="noopener noreferrer" aria-label="Visit Srushti Madhure’s portfolio (opens in a new tab)">Madhur<span class="madhure-e" aria-hidden="true">e</span></a> Akella · <a href="https://www.philadelphiaeagles.com/" target="_blank" rel="noopener" class="footer-philly">Philadelphia, PA</a> · Built with <a href="https://gssasank.com" target="_blank"
         rel="noopener" class="footer-credit">Sasank</a> · <a
         href="https://open.spotify.com/playlist/37i9dQZF1DWZeKCadgRdKQ" target="_blank" rel="noopener"
         class="footer-spotify" title="Deep Focus">♫</a></p>
   </footer>
 
-  <!-- ====== PDF Preview Modal ====== -->
-  <div id="pdf-modal" class="pdf-modal" style="display:none;">
-    <div class="pdf-modal-overlay"></div>
-    <div class="pdf-modal-content">
-      <button class="pdf-modal-close" aria-label="Close">&times;</button>
-      <iframe id="pdf-viewer" src="" title="Report Preview"></iframe>
-    </div>
-  </div>
-
   <!-- ====== Lightbox ====== -->
-  <div id="lightbox" class="lightbox">
-    <button class="lightbox-close" aria-label="Close">&times;</button>
-    <img src="" alt="Full size" />
+  <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Photograph preview" tabindex="-1">
+    <button class="lightbox-close" aria-label="Close photograph">&times;</button>
+    <img alt="Full size" />
   </div>
 
-  <script src="js/main.js?v=11"></script>
+  <script src="js/main.js?v=20261025-2"></script>
 </body>
 
 </html>

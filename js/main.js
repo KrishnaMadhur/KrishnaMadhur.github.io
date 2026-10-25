@@ -1,377 +1,221 @@
-/* ============================================
-   Krishna Madhur Akella — Personal Website JS
-   Tab navigation, mood zone transitions,
-   3D tilt cards, float-up, tag filtering,
-   lightbox, PDF preview
-   ============================================ */
-
+/* Shared navigation, gallery, and homepage interactions. */
 document.addEventListener('DOMContentLoaded', () => {
-
-  /* ---------- Tab Navigation + Mood Zones ---------- */
-  const tabs = document.querySelectorAll('.nav-tab');
-  const views = document.querySelectorAll('.view');
   const body = document.body;
-
-  function triggerFloatUps(view) {
-    const items = view.querySelectorAll('.float-up');
-    items.forEach(el => el.classList.remove('visible'));
-    // Stagger: add visible class after a tiny delay
-    setTimeout(() => {
-      items.forEach((el, i) => {
-        setTimeout(() => el.classList.add('visible'), i * 80);
-      });
-    }, 100);
-  }
-
-  function switchView(viewId) {
-    const currentView = body.getAttribute('data-view');
-    if (currentView === viewId) return; // already on this view
-
-    // Crossfade: fade out → swap → fade in (kills the gradient flash)
-    body.classList.add('view-fading');
-
-    setTimeout(() => {
-      // Hide all views
-      views.forEach(v => v.classList.remove('active'));
-
-      // Deactivate all tabs
-      tabs.forEach(t => t.classList.remove('active'));
-
-      // Show selected view
-      const target = document.getElementById(viewId);
-      if (target) {
-        target.classList.add('active');
-        triggerFloatUps(target);
-      }
-
-      // Activate the clicked tab
-      const activeTab = document.querySelector(`.nav-tab[data-view="${viewId}"]`);
-      if (activeTab) activeTab.classList.add('active');
-
-      // Switch mood zone background
-      body.setAttribute('data-view', viewId);
-
-      // Scroll to top
-      window.scrollTo(0, 0);
-
-      // Update URL hash
-      history.pushState(null, '', `#${viewId}`);
-
-      // Fade back in
-      requestAnimationFrame(() => {
-        body.classList.remove('view-fading');
-      });
-    }, 200); // wait for fade-out to complete
-  }
-
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      const viewId = tab.getAttribute('data-view');
-      if (viewId) switchView(viewId);
-
-      // Close mobile menu
-      const hamburger = document.querySelector('.nav-hamburger');
-      const navTabs = document.querySelector('.nav-tabs');
-      if (hamburger) {
-        hamburger.classList.remove('open');
-        navTabs.classList.remove('open');
-      }
-    });
-  });
-
-  // Handle initial hash or default to home
-  const initialView = window.location.hash.replace('#', '') || 'home';
-
-  // Initial setup — no crossfade, just show the right view and trigger float-ups
-  const initialTarget = document.getElementById(initialView);
-  if (initialTarget) {
-    views.forEach(v => v.classList.remove('active'));
-    initialTarget.classList.add('active');
-    triggerFloatUps(initialTarget);
-  }
-  const initialTab = document.querySelector(`.nav-tab[data-view="${initialView}"]`);
-  if (initialTab) {
-    tabs.forEach(t => t.classList.remove('active'));
-    initialTab.classList.add('active');
-  }
-  body.setAttribute('data-view', initialView);
-  if (initialView !== 'home') history.replaceState(null, '', `#${initialView}`);
-
-  // Handle browser back/forward
-  window.addEventListener('popstate', () => {
-    const viewId = window.location.hash.replace('#', '') || 'home';
-    switchView(viewId);
-  });
-
-  /* ---------- Mobile nav toggle ---------- */
-  const hamburger = document.querySelector('.nav-hamburger');
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
+  const views = [...document.querySelectorAll('.view')];
+  const tabs = [...document.querySelectorAll('.nav-tab')];
   const navTabs = document.querySelector('.nav-tabs');
+  const hamburger = document.querySelector('.nav-hamburger');
+  if (navTabs) navTabs.id = 'primary-links';
+  hamburger?.setAttribute('aria-controls', 'primary-links');
+  hamburger?.setAttribute('aria-expanded', 'false');
 
-  if (hamburger) {
-    hamburger.addEventListener('click', () => {
-      hamburger.classList.toggle('open');
-      navTabs.classList.toggle('open');
-    });
+  function closeMenu() {
+    hamburger?.classList.remove('open');
+    navTabs?.classList.remove('open');
+    hamburger?.setAttribute('aria-expanded', 'false');
+    if (navTabs) navTabs.inert = window.matchMedia('(max-width: 768px)').matches;
   }
-
-  /* ---------- Selected Work → Projects tab ---------- */
-  document.querySelectorAll('.selected-work-item').forEach(item => {
-    item.addEventListener('click', () => {
-      switchView('projects');
-    });
+  function syncMenu() {
+    closeMenu();
+    if (navTabs && !window.matchMedia('(max-width: 768px)').matches) navTabs.inert = false;
+  }
+  syncMenu();
+  window.matchMedia('(max-width: 768px)').addEventListener('change', syncMenu);
+  hamburger?.addEventListener('click', () => {
+    const open = hamburger.getAttribute('aria-expanded') !== 'true';
+    hamburger.classList.toggle('open', open);
+    navTabs?.classList.toggle('open', open);
+    hamburger.setAttribute('aria-expanded', String(open));
+    if (navTabs) navTabs.inert = !open;
+  });
+  document.addEventListener('click', event => {
+    if (!event.target.closest('.navbar')) closeMenu();
   });
 
-  /* ---------- 3D Tilt on Project Cards ---------- */
-  document.querySelectorAll('.project-row').forEach(card => {
-    card.addEventListener('mousemove', (e) => {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-      const rotateX = ((y - centerY) / centerY) * -4;
-      const rotateY = ((x - centerX) / centerX) * 4;
-      card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.01)`;
+  function switchView(requested, {push = false, focus = false} = {}) {
+    if (!views.length) return;
+    const id = views.some(view => view.id === requested) ? requested : 'home';
+    views.forEach(view => {
+      const active = view.id === id;
+      view.classList.toggle('active', active);
+      view.setAttribute('aria-hidden', String(!active));
+      if (active) view.querySelectorAll('.float-up').forEach(el => el.classList.add('visible'));
     });
-
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = 'perspective(800px) rotateX(0) rotateY(0) scale(1)';
+    tabs.forEach(tab => {
+      const active = tab.dataset.view === id;
+      tab.classList.toggle('active', active);
+      if (active) tab.setAttribute('aria-current', 'page');
+      else tab.removeAttribute('aria-current');
     });
-  });
-
-  /* ---------- (Tag filters removed — Brainwaves uses vertical scroll) ---------- */
-
-  /* ---------- PDF Preview Modal ---------- */
-  const pdfModal = document.getElementById('pdf-modal');
-  const pdfViewer = document.getElementById('pdf-viewer');
-  const pdfClose = document.querySelector('.pdf-modal-close');
-  const pdfOverlay = document.querySelector('.pdf-modal-overlay');
-
-  function openPdfModal(src) {
-    pdfViewer.src = src + '#toolbar=0&navpanes=0';
-    pdfModal.style.display = 'flex';
-    body.style.overflow = 'hidden';
-  }
-
-  function closePdfModal() {
-    pdfModal.style.display = 'none';
-    pdfViewer.src = '';
-    body.style.overflow = '';
-  }
-
-  document.querySelectorAll('[data-report]').forEach(link => {
-    link.addEventListener('click', (e) => {
-      e.preventDefault();
-      const report = link.getAttribute('data-report');
-      if (report) openPdfModal(report);
-    });
-  });
-
-  if (pdfClose) pdfClose.addEventListener('click', closePdfModal);
-  if (pdfOverlay) pdfOverlay.addEventListener('click', closePdfModal);
-
-  /* ---------- Gallery Loader (Photography) ---------- */
-  const galleryGrid = document.getElementById('gallery-grid');
-  const galleryEmpty = document.getElementById('gallery-empty');
-  const lightbox = document.getElementById('lightbox');
-  const lightboxImg = lightbox ? lightbox.querySelector('img') : null;
-
-  // Fetch photos.json and build the gallery
-  if (galleryGrid) {
-    fetch('assets/gallery/photos.json')
-      .then(r => r.json())
-      .then(photos => {
-        if (!photos || photos.length === 0) {
-          galleryGrid.style.display = 'none';
-          if (galleryEmpty) galleryEmpty.style.display = 'block';
-          return;
-        }
-        photos.forEach(photo => {
-          const item = document.createElement('div');
-          item.className = 'gallery-item';
-          item.innerHTML = `
-            <img src="assets/gallery/${photo.file}" alt="${photo.caption || ''}" loading="lazy" />
-            <div class="gallery-item-caption">${photo.caption || ''}</div>
-          `;
-          galleryGrid.appendChild(item);
-        });
-      })
-      .catch(() => {
-        galleryGrid.style.display = 'none';
-        if (galleryEmpty) galleryEmpty.style.display = 'block';
-      });
-
-    // Event-delegated lightbox (works for dynamically added items)
-    galleryGrid.addEventListener('click', (e) => {
-      const item = e.target.closest('.gallery-item');
-      if (!item || !lightbox) return;
-      const imgSrc = item.querySelector('img').src;
-      lightboxImg.src = imgSrc;
-      lightbox.classList.add('open');
-      body.style.overflow = 'hidden';
-    });
-  }
-
-  if (lightbox) {
-    lightbox.addEventListener('click', () => {
-      lightbox.classList.remove('open');
-      body.style.overflow = '';
-      lightboxImg.src = '';
-    });
-  }
-
-  /* ---------- Escape key closes modals ---------- */
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      if (pdfModal && pdfModal.style.display === 'flex') closePdfModal();
-      if (lightbox && lightbox.classList.contains('open')) {
-        lightbox.classList.remove('open');
-        body.style.overflow = '';
-      }
+    body.dataset.view = id;
+    if (push && window.location.hash !== `#${id}`) history.pushState(null, '', `#${id}`);
+    window.scrollTo({top: 0, behavior: 'instant'});
+    closeMenu();
+    if (focus) {
+      const heading = document.querySelector(`#${id} h1`);
+      heading?.setAttribute('tabindex', '-1');
+      heading?.focus({preventScroll: true});
     }
+  }
+  tabs.forEach(tab => {
+    if (tab.dataset.view) tab.addEventListener('click', event => {
+      if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      event.preventDefault();
+      switchView(tab.dataset.view, {push: true, focus: true});
+    });
+    else tab.addEventListener('click', closeMenu);
   });
+  document.querySelectorAll('[data-view-link]').forEach(link => link.addEventListener('click', event => {
+    event.preventDefault();
+    switchView(link.dataset.viewLink, {push: true, focus: true});
+  }));
+  if (views.length) {
+    switchView(window.location.hash.slice(1));
+    window.addEventListener('popstate', () => switchView(window.location.hash.slice(1)));
+    window.addEventListener('hashchange', () => switchView(window.location.hash.slice(1)));
+  }
+  document.querySelectorAll('.project-detail .nav-tab.active').forEach(tab => tab.setAttribute('aria-current', 'page'));
 
-  /* ---------- Cursor Effects (all views) ---------- */
-  document.addEventListener('mousemove', (e) => {
-    document.documentElement.style.setProperty('--mouse-x', e.clientX + 'px');
-    document.documentElement.style.setProperty('--mouse-y', e.clientY + 'px');
+  document.querySelectorAll('.project-row').forEach(card => {
+    card.addEventListener('mousemove', event => {
+      if (reducedMotion.matches || !finePointer.matches) return;
+      const rect = card.getBoundingClientRect();
+      const x = (event.clientX - rect.left) / rect.width - .5;
+      const y = (event.clientY - rect.top) / rect.height - .5;
+      card.style.transform = `perspective(1000px) rotateX(${-y * 3}deg) rotateY(${x * 3}deg)`;
+    });
+    card.addEventListener('mouseleave', () => card.style.removeProperty('transform'));
   });
-
+  let cursorFrame;
+  document.addEventListener('mousemove', event => {
+    if (reducedMotion.matches || !finePointer.matches) return;
+    cancelAnimationFrame(cursorFrame);
+    cursorFrame = requestAnimationFrame(() => {
+      document.documentElement.style.setProperty('--mouse-x', `${event.clientX}px`);
+      document.documentElement.style.setProperty('--mouse-y', `${event.clientY}px`);
+    });
+  });
   document.addEventListener('mouseleave', () => {
     document.documentElement.style.setProperty('--mouse-x', '-9999px');
     document.documentElement.style.setProperty('--mouse-y', '-9999px');
   });
 
-  /* ---------- Easter Egg: "HELLO, I AM" Theme Toggle ---------- */
   const greeting = document.querySelector('.home-greeting');
-  const bioThird = document.getElementById('bio-third');
-  const statusText = document.getElementById('status-text');
-  const statusLed = document.getElementById('status-led');
-
-  if (greeting) {
-    greeting.addEventListener('click', () => {
-      const isCasual = body.classList.toggle('theme-casual');
-
-      // Swap third bio paragraph
-      if (bioThird) {
-        bioThird.innerHTML = isCasual
-          ? bioThird.getAttribute('data-bio-casual')
-          : bioThird.getAttribute('data-bio-pro');
-      }
-
-      // Swap status text + LED colour
-      if (statusText) {
-        statusText.innerHTML = isCasual
-          ? 'Currently: Waiting for lights out at the next <strong>F1 Grand Prix</strong>.'
-          : 'Currently: Architecting mixed-signal ICs and characterizing nanoscale devices <strong>@ UPenn</strong>';
-      }
-      if (statusLed) {
-        statusLed.classList.toggle('casual-red', isCasual);
-      }
-
-      // Swap Selected Work items
-      document.querySelectorAll('[data-sw-pro]').forEach(el => {
-        // TIA has both attributes — always visible
-        if (!el.hasAttribute('data-sw-casual')) {
-          el.style.display = isCasual ? 'none' : '';
-        }
-      });
-      document.querySelectorAll('[data-sw-casual]').forEach(el => {
-        if (!el.hasAttribute('data-sw-pro')) {
-          el.style.display = isCasual ? '' : 'none';
-        }
-      });
+  const bio = document.getElementById('bio-third');
+  const status = document.getElementById('status-text');
+  const professionalBio = bio?.innerHTML;
+  const professionalStatus = status?.innerHTML;
+  greeting?.addEventListener('click', () => {
+    const casual = body.classList.toggle('theme-casual');
+    greeting.setAttribute('aria-pressed', String(casual));
+    if (bio) bio.innerHTML = casual ? bio.dataset.bioCasual : professionalBio;
+    if (status) status.innerHTML = casual ? 'Currently: waiting for lights out at the next <strong>F1 Grand Prix</strong>.' : professionalStatus;
+    document.getElementById('status-led')?.classList.toggle('casual-red', casual);
+    const note = document.querySelector('.off-duty-note');
+    if (note) note.hidden = !casual;
+    document.querySelectorAll('[data-sw-pro], [data-sw-casual]').forEach(item => {
+      item.style.display = item.hasAttribute(casual ? 'data-sw-casual' : 'data-sw-pro') ? '' : 'none';
     });
+  });
+
+  const gallery = document.getElementById('gallery-grid');
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = lightbox?.querySelector('img');
+  const lightboxClose = lightbox?.querySelector('button');
+  let previousFocus;
+  function closeLightbox() {
+    if (!lightbox) return;
+    lightbox.classList.remove('open');
+    body.style.overflow = '';
+    lightboxImg?.removeAttribute('src');
+    previousFocus?.focus();
   }
-
-  /* ---------- Logo "Grounding Pulse" ---------- */
-  const navLogo = document.getElementById('nav-logo');
-
-  if (navLogo) {
-    navLogo.addEventListener('click', (e) => {
-      e.preventDefault();
-
-      // 1. Spark: flash the ground symbol cyan → gold
-      const ground = navLogo.querySelector('.logo-ground');
-      if (ground) {
-        ground.classList.remove('spark');
-        void ground.offsetWidth;
-        ground.classList.add('spark');
-        ground.addEventListener('animationend', () => ground.classList.remove('spark'), { once: true });
-      }
-
-      // 2. Canvas shockwave — bypasses all overflow:hidden clipping
-      const logoRect = navLogo.getBoundingClientRect();
-      const originX = logoRect.left + logoRect.width / 2;
-      const originY = logoRect.top + logoRect.height / 2;
-
-      const canvas = document.createElement('canvas');
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      Object.assign(canvas.style, {
-        position: 'fixed', top: '0', left: '0',
-        width: '100vw', height: '100vh',
-        pointerEvents: 'none', zIndex: '99999',
+  if (gallery) fetch('assets/gallery/photos.json')
+    .then(response => { if (!response.ok) throw new Error('Gallery unavailable'); return response.json(); })
+    .then(photos => {
+      if (!photos.length) throw new Error('Empty gallery');
+      photos.forEach(photo => {
+        const item = document.createElement('button');
+        item.type = 'button';
+        item.className = 'gallery-item';
+        item.setAttribute('aria-label', `View photograph: ${photo.caption || 'Untitled'}`);
+        const img = document.createElement('img');
+        img.src = `assets/gallery/${photo.file}`;
+        img.alt = photo.caption || '';
+        img.loading = 'lazy';
+        img.decoding = 'async';
+        const caption = document.createElement('span');
+        caption.className = 'gallery-item-caption';
+        caption.textContent = photo.caption || '';
+        item.append(img, caption);
+        item.addEventListener('click', () => {
+          if (!lightbox || !lightboxImg) return;
+          previousFocus = item;
+          lightboxImg.src = img.src;
+          lightboxImg.alt = img.alt;
+          lightbox.classList.add('open');
+          body.style.overflow = 'hidden';
+          lightboxClose?.focus();
+        });
+        gallery.append(item);
       });
-      document.documentElement.appendChild(canvas);
-
-      const ctx = canvas.getContext('2d');
-      const maxRadius = Math.hypot(window.innerWidth, window.innerHeight);
-      const duration = 3000; // ms — slow, dramatic pulse
-      let startTime = null;
-
-      function drawRipple(timestamp) {
-        if (!startTime) startTime = timestamp;
-        const elapsed = timestamp - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-        const eased = 1 - Math.pow(1 - progress, 2.5); // ease-out
-
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        const radius = eased * maxRadius;
-        const ringOpacity = Math.pow(1 - progress, 1.5); // fades as it expands
-
-        // Color: cyan (#00e5ff) → gold (#d4af37)
-        const cr = Math.round(0 + (212 - 0) * progress);
-        const cg = Math.round(229 + (175 - 229) * progress);
-        const cb = Math.round(255 + (55 - 255) * progress);
-
-        // --- Radial glow fill (color wash radiating outward) ---
-        const glowRadius = radius * 0.55; // glow fills inner ~55% of ring
-        const grad = ctx.createRadialGradient(
-          originX, originY, 0,
-          originX, originY, Math.max(radius, 1)
-        );
-        grad.addColorStop(0, `rgba(0,229,255,0)`);
-        grad.addColorStop(Math.max(0, 1 - glowRadius / Math.max(radius, 1)), `rgba(0,229,255,0)`);
-        grad.addColorStop(0.92, `rgba(${cr},${cg},${cb},${ringOpacity * 0.12})`);
-        grad.addColorStop(1, `rgba(${cr},${cg},${cb},0)`);
-
-        ctx.beginPath();
-        ctx.arc(originX, originY, Math.max(radius, 1), 0, Math.PI * 2);
-        ctx.fillStyle = grad;
-        ctx.fill();
-
-        // --- Outer ring stroke ---
-        ctx.beginPath();
-        ctx.arc(originX, originY, Math.max(radius, 1), 0, Math.PI * 2);
-        ctx.strokeStyle = `rgba(${cr},${cg},${cb},${ringOpacity * 0.75})`;
-        ctx.lineWidth = 2 - progress * 1.2; // from 2px → 0.8px
-        ctx.stroke();
-
-        if (progress < 1) {
-          requestAnimationFrame(drawRipple);
-        } else {
-          canvas.remove();
-        }
-      }
-
-      requestAnimationFrame(drawRipple);
-
-      // 3. Navigate home + smooth scroll
-      switchView('home');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }).catch(() => {
+      const empty = document.getElementById('gallery-empty');
+      if (empty) {empty.textContent = 'Photographs are temporarily unavailable. Please try again later.'; empty.style.display = 'block';}
     });
-  }
+  lightbox?.addEventListener('click', event => {
+    if (event.target === lightbox || event.target === lightboxClose) closeLightbox();
+  });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape') {
+      if (lightbox?.classList.contains('open')) closeLightbox();
+      if (hamburger?.getAttribute('aria-expanded') === 'true') {closeMenu(); hamburger.focus();}
+    }
+    if (event.key === 'Tab' && lightbox?.classList.contains('open')) {event.preventDefault(); lightboxClose?.focus();}
+  });
 
+  /* Krishna grounding pulse: original cyan → champagne canvas wave. */
+  const logo = document.getElementById('nav-logo');
+  logo?.addEventListener('click', event => {
+    if (!views.length) return;
+    event.preventDefault();
+    const rect = logo.getBoundingClientRect();
+    switchView('home', {push: true, focus: true});
+    if (reducedMotion.matches) return;
+    const ground = logo.querySelector('.logo-ground');
+    ground?.classList.add('spark');
+    ground?.addEventListener('animationend', () => ground.classList.remove('spark'), {once:true});
+    const canvas = document.createElement('canvas');
+    canvas.setAttribute('aria-hidden', 'true');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    Object.assign(canvas.style, {position:'fixed', inset:'0', width:'100vw', height:'100vh', pointerEvents:'none', zIndex:'99999'});
+    document.documentElement.append(canvas);
+    const ctx = canvas.getContext('2d');
+    if (!ctx) {canvas.remove(); return;}
+    const x = rect.left + rect.width / 2;
+    const y = rect.top + rect.height / 2;
+    const max = Math.hypot(canvas.width, canvas.height);
+    const duration = 3000;
+    let start;
+    function draw(time) {
+      if (!start) start = time;
+      const progress = Math.min((time - start) / duration, 1);
+      const radius = Math.max((1 - (1 - progress) ** 2.5) * max, 1);
+      const alpha = (1 - progress) ** 1.5;
+      const color = `${Math.round(212*progress)},${Math.round(229-54*progress)},${Math.round(255-200*progress)}`;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const gradient = ctx.createRadialGradient(x,y,0,x,y,radius);
+      gradient.addColorStop(0,'rgba(0,229,255,0)');
+      gradient.addColorStop(.45,'rgba(0,229,255,0)');
+      gradient.addColorStop(.92,`rgba(${color},${alpha*.12})`);
+      gradient.addColorStop(1,`rgba(${color},0)`);
+      ctx.beginPath();ctx.arc(x,y,radius,0,Math.PI*2);ctx.fillStyle=gradient;ctx.fill();
+      ctx.strokeStyle=`rgba(${color},${alpha*.75})`;ctx.lineWidth=2-progress*1.2;ctx.stroke();
+      if (progress < 1) requestAnimationFrame(draw); else canvas.remove();
+    }
+    requestAnimationFrame(draw);
+  });
 });

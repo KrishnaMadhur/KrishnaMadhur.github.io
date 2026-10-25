@@ -7,7 +7,13 @@
     <title>Robust Compute-in-Memory for Edge Healthcare — Krishna Madhur Akella</title>
     <meta name="description"
         content="ESE 5760 Semiconductor Memory design project — analysis and implementation of advanced memory architectures." />
-    <link rel="stylesheet" href="../css/style.css?v=6" />
+    <link rel="stylesheet" href="../css/style.css?v=20261025-2" />
+  <link rel="stylesheet" href="../css/refresh.css?v=20261025-2" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Noto+Sans+Devanagari:wght@400;700&amp;family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" />
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+  <link rel="canonical" href="https://krishnamadhur.github.io/projects/semiconductor-memory.html" />
     <meta property="og:title" content="Robust Compute-in-Memory for Edge Healthcare — Krishna Madhur Akella" />
     <meta property="og:description" content="Compute-in-memory architecture for energy-efficient edge healthcare inference." />
     <meta property="og:image" content="https://krishnamadhur.github.io/assets/og-preview.jpg" />
@@ -17,9 +23,9 @@
 
 <body class="project-detail" data-glow="gold">
 
-    <nav class="navbar">
+    <nav class="navbar" aria-label="Primary navigation">
         <div class="nav-container">
-            <a href="../index.html" class="nav-logo">कृष्ण ⏚</a>
+            <a href="../index.html#home" class="nav-logo">कृष्ण ⏚</a>
             <div class="nav-tabs">
                 <a href="../index.html#home" class="nav-tab">Home</a>
                 <a href="../index.html#projects" class="nav-tab active">Projects</a>
@@ -43,81 +49,33 @@
             <p>
                 Designed and analysed a robust compute-in-memory (CiM) architecture targeting
                 edge healthcare inference workloads as part of the ESE 5760 (Advanced VLSI)
-                course at the University of Pennsylvania. The project investigates how SRAM-based
-                analog MAC (multiply-accumulate) operations can enable energy-efficient neural
-                network inference directly in memory, eliminating the von Neumann bottleneck.
+                course at the University of Pennsylvania. The work connects hardware-aware neural-network
+                training with analog crossbar nonidealities and technology-level energy–delay tradeoffs.
             </p>
 
             <h2>Architecture</h2>
             <p>
-                The CiM macro is built around a modified 6T SRAM bitcell array that performs
-                analog dot-product computation on stored weights. Bit-line charge sharing
-                implements multi-bit MAC operations, while peripheral sense amplifiers and
-                ADCs digitize the analog output for downstream processing. Design-for-robustness
-                techniques — including redundancy, ECC, and voltage guardbanding — ensure reliable
-                operation under process variation and low-voltage conditions typical of edge devices.
+                Built a hardware-aware training framework in PyTorch using a 4-bit straight-through
+                estimator to map a 682k-MAC convolutional neural network onto 2T2R differential
+                crossbars. Modeled OxRAM random-telegraph noise, PCM resistance drift, and array
+                RC parasitics, with NeuroSim supporting the hardware evaluation.
             </p>
 
             <h2>Key Results</h2>
             <ul>
-                <li><strong>Inference Accuracy</strong> — maintained classification accuracy within 1–2% of ideal software baseline under realistic process corners</li>
-                <li><strong>Energy Efficiency</strong> — analog CiM MAC operations achieved significant energy reduction vs. conventional digital datapath</li>
-                <li><strong>Robustness Analysis</strong> — Monte Carlo simulations quantified BER sensitivity to Vt mismatch and supply noise</li>
-                <li><strong>Application Mapping</strong> — demonstrated viability for lightweight healthcare classifiers (ECG arrhythmia detection) at the edge</li>
+                <li><strong>Hardware-aware inference</strong> — 4-bit quantization and differential-crossbar mapping.</li>
+                <li><strong>Robustness</strong> — limited Macro-F1 degradation to below 3% in the evaluated nonideality study.</li>
+                <li><strong>Technology comparison</strong> — evaluated device-level nonidealities alongside energy–delay tradeoffs.</li>
             </ul>
-
-            <h2>Report</h2>
-            <p>
-                <a href="../reports/ESE5760-Report.pdf" class="detail-report-link"
-                    data-report="../reports/ESE5760-Report.pdf">
-                    📄 View Final Report (PDF)
-                </a>
-            </p>
-
-            <h2>Poster</h2>
-            <p>
-                <a href="../reports/ESE5760_Poster.pdf" class="detail-report-link"
-                    data-report="../reports/ESE5760_Poster.pdf">
-                    🖼️ View Poster (PDF)
-                </a>
-            </p>
         </div>
     </main>
 
     <footer class="footer">
-        <p>&copy; 2026 Krishna Madhur Akella</p>
+        <p>&copy; 2026 Krishna <a class="madhure-link" href="https://www.srushtimadhure.com/" target="_blank" rel="noopener noreferrer" aria-label="Visit Srushti Madhure’s portfolio (opens in a new tab)">Madhur<span class="madhure-e" aria-hidden="true">e</span></a> Akella</p>
     </footer>
 
-    <div id="pdf-modal" class="pdf-modal" style="display:none;">
-        <div class="pdf-modal-overlay"></div>
-        <div class="pdf-modal-content">
-            <button class="pdf-modal-close" aria-label="Close">&times;</button>
-            <iframe id="pdf-viewer" src="" title="Report Preview"></iframe>
-        </div>
-    </div>
 
-    <script>
-        const hamburger = document.querySelector('.nav-hamburger');
-        const navTabs = document.querySelector('.nav-tabs');
-        if (hamburger) { hamburger.addEventListener('click', () => { hamburger.classList.toggle('open'); navTabs.classList.toggle('open'); }); }
-        const pdfModal = document.getElementById('pdf-modal');
-        const pdfViewer = document.getElementById('pdf-viewer');
-        document.querySelectorAll('[data-report]').forEach(link => {
-            link.addEventListener('click', e => { e.preventDefault(); pdfViewer.src = link.getAttribute('data-report') + '#toolbar=0&navpanes=0'; pdfModal.style.display = 'flex'; document.body.style.overflow = 'hidden'; });
-        });
-        document.querySelector('.pdf-modal-close').addEventListener('click', () => { pdfModal.style.display = 'none'; pdfViewer.src = ''; document.body.style.overflow = ''; });
-        document.querySelector('.pdf-modal-overlay').addEventListener('click', () => { pdfModal.style.display = 'none'; pdfViewer.src = ''; document.body.style.overflow = ''; });
-    
-        // Lab Bench cursor glow
-        document.addEventListener('mousemove', (e) => {
-            document.documentElement.style.setProperty('--mouse-x', e.clientX + 'px');
-            document.documentElement.style.setProperty('--mouse-y', e.clientY + 'px');
-        });
-        document.addEventListener('mouseleave', () => {
-            document.documentElement.style.setProperty('--mouse-x', '-9999px');
-            document.documentElement.style.setProperty('--mouse-y', '-9999px');
-        });
-    </script>
+<script src="../js/main.js?v=20261025-2"></script>
 </body>
 
 </html>

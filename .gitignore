@@ -1,0 +1,7 @@
+.DS_Store
+_reference/
+*.pdf
+node_modules/
+.env
+.env.*
+.site-preview/
