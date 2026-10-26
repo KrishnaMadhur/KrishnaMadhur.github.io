@@ -78,12 +78,13 @@ Edit index.html:
   status-text                Single source of truth for professional status
   selected-work              Public project cards; preserve valid links
 
-The desktop home grid places current-work alongside the greeting, name and bio.
-Email, project navigation, LinkedIn and GitHub share one action row. On desktop,
-Home fills the space above the sine-wave signature/footer, which sits at the
-viewport bottom when the content fits. The grid distributes spare height between
-the greeting, name, tagline, intro and selected-work group; do not add a blank
-spacer below the cards. Keep the Selected Work heading with its cards. Short
+The desktop home grid has two columns: .home-primary groups the greeting, name,
+tagline, bio and contact actions; current-work occupies the right column. Selected
+Work spans the next row. Keep the Selected Work heading with its cards.
+Never use space-between, viewport-driven grid rows or flexible gaps between the
+individual lines of the introduction. The content is centered vertically as one
+cohesive block above the bottom footer; taller desktops use modest, bounded type
+and spacing adjustments. Do not add filler copy to occupy blank space. Short
 windows and mobile may scroll rather than clip content. The greeting arrow was
 removed; its theme button remains.
 
