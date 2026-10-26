@@ -4,6 +4,8 @@
 .navbar { max-width: 1096px; width: calc(100% - 64px); }
 .nav-tab { font-size: .875rem; color: #bdc1c8; min-height: 40px; }
 .view { padding-top: 122px; }
+/* Section headings receive focus after navigation for screen-reader orientation. */
+.view h1[tabindex="-1"]:focus { outline: none; }
 .home-content { max-width: none; padding-top: 1.25rem; }
 .home-greeting { border: 0; background: none; font-family: var(--font-sans); padding: 8px 0; font-size: .8rem; margin-bottom: .9rem; }
 .home-name { font-size: clamp(2.25rem, 4.7vw, 3.8rem); max-width: 100%; }
@@ -25,7 +27,7 @@
 .current-work h3 { font-family: var(--font-sans); font-size: .97rem; font-weight: 500; color: #f2f3f5; line-height: 1.5; }
 .current-work p { font-size: .875rem; color: #aeb5c0; line-height: 1.65; }
 .current-work .role-label { color: #c0a96e; font-size: .78rem; margin-bottom: .3rem; }
-.home-section-label { color: #b7bdc6; font-size: .8rem; margin: 1.5rem 0 1rem; }
+.home-section-label { color: #b7bdc6; font-family: var(--font-sans); font-size: .8rem; margin: 1.5rem 0 1rem; }
 .selected-work { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin-bottom: 2rem; }
 .selected-work-item, .selected-work-item:first-child { position: relative; display: flex; flex-direction: column; padding: 1.35rem; border: 1px solid #ffffff20; border-radius: 4px; background: #0f1114bf; gap: .75rem; align-items: flex-start; }
 .selected-work-item:hover { padding-left: 1.35rem; border-color: #c9ac60; background: #16181be8; }
@@ -78,7 +80,7 @@ body.theme-casual .current-work { border-top-color: #8de6d4; transform: rotate(.
 body.theme-casual .home-name { color: #ffdf8c; }
 body.theme-casual .selected-work-item { border-color: #8de6d440; }
 
-/* Compact home: avoid a full-viewport section pushing the signature below it. */
+/* Keep the signature in the viewport; taller screens expand the content spacing. */
 body[data-view="home"] { min-height: 100svh; display: flex; flex-direction: column; }
 #home.view { min-height: 0; padding-top: 92px; padding-bottom: 0; flex: 0 0 auto; }
 body[data-view="home"] .footer { margin-top: 0; }
@@ -105,19 +107,18 @@ body[data-view="home"] .footer { margin-top: 0; }
 body[data-view="home"] .footer { padding: .25rem 1rem .85rem; }
 body[data-view="home"] .footer::before { height: 32px; margin-bottom: .35rem; }
 @media (min-width: 901px) {
-  .home-content { display: grid; grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr); column-gap: clamp(2rem, 5vw, 5rem); }
+  #home.view { flex: 1 0 auto; padding-bottom: 1rem; }
+  #home.view.active { display: flex; flex-direction: column; }
+  #home > .container { width: 100%; flex: 1; display: flex; flex-direction: column; }
+  .home-content { flex: 1; display: grid; grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr); column-gap: clamp(2rem, 5vw, 5rem); row-gap: .25rem; align-content: space-between; }
   .home-greeting, .home-name, .home-tagline, .home-intro { grid-column: 1; }
   .home-greeting { justify-self: start; }
   .home-overview { display: contents; }
   .current-work { grid-column: 2; grid-row: 1 / 5; align-self: start; }
-  .home-content > .home-section-label, .selected-work, .home-links, .off-duty-note { grid-column: 1 / -1; }
+  .home-selected, .home-links, .off-duty-note { grid-column: 1 / -1; }
+  .home-greeting, .home-name, .home-tagline, .selected-work { margin-bottom: 0; }
   .home-name { font-size: clamp(2.1rem, 3.8vw, 3rem); }
-  .home-tagline { margin-bottom: .85rem; }
-}
-/* Use a taller window's spare space above/within the content, not below the cards. */
-@media (min-width: 901px) and (min-height: 760px) {
-  #home.view { padding-top: clamp(100px, calc(92px + (100svh - 760px) * .3), 164px); }
-  .home-content { row-gap: clamp(2px, calc((100svh - 760px) * .035), 12px); }
+  .home-section-label { margin: 0 0 .65rem; }
 }
 body[data-view="home"]:not(.theme-casual) #xray-grid { display: none; }
 body[data-view="home"]:not(.theme-casual) .float-up { transition: none; transform: none; }

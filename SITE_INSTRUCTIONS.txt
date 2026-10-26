@@ -1,5 +1,5 @@
 WEBSITE MAINTENANCE GUIDE — krishnamadhur.github.io
-Updated October 25, 2026
+Updated October 26, 2026
 
 LOCATION AND PUBLICATION
 Checkout: /Users/krishnamadhurakella/Developer/KrishnaMadhur.github.io
@@ -79,10 +79,17 @@ Edit index.html:
   selected-work              Public project cards; preserve valid links
 
 The desktop home grid places current-work alongside the greeting, name and bio.
-Email, project navigation, LinkedIn and GitHub share one action row. Home overrides
-the old full-viewport section minimum and large footer padding so the sine-wave
-signature/footer sit higher. Keep mobile content readable rather than forcing it
-to fit one screen. The greeting arrow was removed; its theme button remains.
+Email, project navigation, LinkedIn and GitHub share one action row. On desktop,
+Home fills the space above the sine-wave signature/footer, which sits at the
+viewport bottom when the content fits. The grid distributes spare height between
+the greeting, name, tagline, intro and selected-work group; do not add a blank
+spacer below the cards. Keep the Selected Work heading with its cards. Short
+windows and mobile may scroll rather than clip content. The greeting arrow was
+removed; its theme button remains.
+
+Navigation focuses the destination heading for screen-reader orientation, but
+those programmatically focusable headings have no outline. Keep visible keyboard
+focus indicators on actual interactive controls and the Skip to content link.
 
 The professional bio/status are captured from the HTML on page load. Returning
 from casual mode restores those originals; do not maintain duplicate strings in JS.
