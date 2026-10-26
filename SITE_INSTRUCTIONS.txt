@@ -90,20 +90,25 @@ Keep the current roles/CV accurate: LBNL internship ended August 2026; current w
 includes Singh GSF, research with Deep Jariwala, and the master's thesis with Radway.
 
 THEMES AND EFFECTS
-Default: professional obsidian/champagne, schematic X-ray cursor reveal.
+Default: professional obsidian/champagne, calm background without cursor tracking.
 Greeting button: toggles off-duty botanical blue, warm firefly glow, F1 status,
-alternate selected-work cards and the upbeat off-duty line. It supports Enter/Space.
+and personal copy. Professional roles and selected projects remain consistent.
+It supports Enter/Space.
 Project pages: gold/cyan/red domain glows controlled by body[data-glow].
 CV: Smith chart. Brainwaves: existing blue interference background.
 Krishna logo: original canvas wave, cyan → champagne, duration 3000 ms.
 No floating orb is present.
-Reduced-motion preference removes the wave, tilt, tracking and CSS animation.
-Touch devices omit cursor tracking. Keep work pages professional in both modes.
+Owner preference: the professional homepage stays calm. Other desktop tabs retain
+their glows and card tilt, and the explicitly activated Krishna ripple runs even
+when the browser reports reduced motion. Project-page logo clicks replay the wave
+on arrival at Home. Touch devices omit cursor tracking. Do not silently disable
+all effects based on the OS preference again. Keep work pages professional.
 
 FOOTER LINK
 Only the word Madhur links to https://www.srushtimadhure.com/ in a new tab.
-.madhure-e reveals an e on hover or keyboard focus, producing Madhure.
-Touch devices show the e permanently because hover does not exist there.
+.madhure-e reveals an e only on a fine-pointer mouse hover, producing Madhure.
+No reveal on touch or keyboard focus. The owner explicitly requested removing
+this secret link from the normal keyboard tab order (tabindex=-1).
 The explicit accessible label identifies Srushti and the new-tab behavior.
 Keep the full Krishna Madhur Akella name unchanged elsewhere.
 
@@ -116,8 +121,9 @@ scripts. Keep canonical URLs and the sitemap synchronized when adding pages.
 
 BRAINWAVES
 The five existing reading-board items remain. Captions are always visible.
-Add original notes from the owner's drafts: what changed their thinking, a concrete
-connection to their work, and a useful takeaway. Do not fabricate personal opinions.
+Keep the tone light: experiences, places, cultural discoveries, reading, interests,
+and observations. No engineering-note emphasis, poems, or literary prose. Draft
+from the owner's supplied experiences; do not fabricate personal opinions.
 No fake article links or unfinished placeholders on the public site.
 
 PHOTOGRAPHY AND MEDIA
@@ -129,7 +135,8 @@ Run with Python + Pillow:
 This preserves private originals, corrects orientation, resizes to <=1600 px,
 removes metadata, compresses the JPEG, and verifies EXIF is empty. It does not
 watermark photographs. A watermark placement requires a separately reviewed sample.
-The lightbox is keyboard-operable, restores focus, and supports Escape.
+The gallery is display-only: figures, no clickable images or lightbox, and no
+image dragging. This is a deterrent, not a guarantee against saving/screenshots.
 Do not block right-click as a substitute for actual privacy protection.
 
 LOCAL PREVIEW AND VALIDATION
@@ -144,7 +151,7 @@ Do not use python -m http.server at the repository root: it can serve private fi
 Manual review: desktop and narrow mobile layouts; menu open/close and Escape;
 keyboard focus; Back/Forward twice; direct #projects/#cv refresh; project return
 links; both greeting themes and status restoration; grounding wave; reduced motion;
-gallery dialog open/close/focus; Madhur link focus/hover and actual destination.
+display-only gallery and no dragging; mouse-only Madhur reveal and destination.
 
 CACHE VERSIONS
 After stylesheet or JS changes, use one version across every public page:

@@ -1,7 +1,6 @@
 /* Shared navigation, gallery, and homepage interactions. */
 document.addEventListener('DOMContentLoaded', () => {
   const body = document.body;
-  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
   const views = [...document.querySelectorAll('.view')];
   const tabs = [...document.querySelectorAll('.nav-tab')];
@@ -80,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.querySelectorAll('.project-row').forEach(card => {
     card.addEventListener('mousemove', event => {
-      if (reducedMotion.matches || !finePointer.matches) return;
+      if (!finePointer.matches) return;
       const rect = card.getBoundingClientRect();
       const x = (event.clientX - rect.left) / rect.width - .5;
       const y = (event.clientY - rect.top) / rect.height - .5;
@@ -90,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   let cursorFrame;
   document.addEventListener('mousemove', event => {
-    if (reducedMotion.matches || !finePointer.matches) return;
+    if (!finePointer.matches || (body.dataset.view === 'home' && !body.classList.contains('theme-casual'))) return;
     cancelAnimationFrame(cursorFrame);
     cursorFrame = requestAnimationFrame(() => {
       document.documentElement.style.setProperty('--mouse-x', `${event.clientX}px`);
@@ -101,6 +100,9 @@ document.addEventListener('DOMContentLoaded', () => {
     document.documentElement.style.setProperty('--mouse-x', '-9999px');
     document.documentElement.style.setProperty('--mouse-y', '-9999px');
   });
+
+  // Owner preference: the footer secret is discoverable by mouse only.
+  document.querySelectorAll('.madhure-link').forEach(link => link.tabIndex = -1);
 
   const greeting = document.querySelector('.home-greeting');
   const bio = document.getElementById('bio-third');
@@ -115,75 +117,48 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('status-led')?.classList.toggle('casual-red', casual);
     const note = document.querySelector('.off-duty-note');
     if (note) note.hidden = !casual;
-    document.querySelectorAll('[data-sw-pro], [data-sw-casual]').forEach(item => {
-      item.style.display = item.hasAttribute(casual ? 'data-sw-casual' : 'data-sw-pro') ? '' : 'none';
-    });
   });
 
   const gallery = document.getElementById('gallery-grid');
-  const lightbox = document.getElementById('lightbox');
-  const lightboxImg = lightbox?.querySelector('img');
-  const lightboxClose = lightbox?.querySelector('button');
-  let previousFocus;
-  function closeLightbox() {
-    if (!lightbox) return;
-    lightbox.classList.remove('open');
-    body.style.overflow = '';
-    lightboxImg?.removeAttribute('src');
-    previousFocus?.focus();
-  }
   if (gallery) fetch('assets/gallery/photos.json')
     .then(response => { if (!response.ok) throw new Error('Gallery unavailable'); return response.json(); })
     .then(photos => {
       if (!photos.length) throw new Error('Empty gallery');
       photos.forEach(photo => {
-        const item = document.createElement('button');
-        item.type = 'button';
+        const item = document.createElement('figure');
         item.className = 'gallery-item';
-        item.setAttribute('aria-label', `View photograph: ${photo.caption || 'Untitled'}`);
         const img = document.createElement('img');
         img.src = `assets/gallery/${photo.file}`;
         img.alt = photo.caption || '';
         img.loading = 'lazy';
         img.decoding = 'async';
-        const caption = document.createElement('span');
+        img.draggable = false;
+        const caption = document.createElement('figcaption');
         caption.className = 'gallery-item-caption';
         caption.textContent = photo.caption || '';
         item.append(img, caption);
-        item.addEventListener('click', () => {
-          if (!lightbox || !lightboxImg) return;
-          previousFocus = item;
-          lightboxImg.src = img.src;
-          lightboxImg.alt = img.alt;
-          lightbox.classList.add('open');
-          body.style.overflow = 'hidden';
-          lightboxClose?.focus();
-        });
         gallery.append(item);
       });
     }).catch(() => {
       const empty = document.getElementById('gallery-empty');
       if (empty) {empty.textContent = 'Photographs are temporarily unavailable. Please try again later.'; empty.style.display = 'block';}
     });
-  lightbox?.addEventListener('click', event => {
-    if (event.target === lightbox || event.target === lightboxClose) closeLightbox();
-  });
   document.addEventListener('keydown', event => {
     if (event.key === 'Escape') {
-      if (lightbox?.classList.contains('open')) closeLightbox();
       if (hamburger?.getAttribute('aria-expanded') === 'true') {closeMenu(); hamburger.focus();}
     }
-    if (event.key === 'Tab' && lightbox?.classList.contains('open')) {event.preventDefault(); lightboxClose?.focus();}
   });
 
   /* Krishna grounding pulse: original cyan → champagne canvas wave. */
-  const logo = document.getElementById('nav-logo');
+  const logo = document.querySelector('.nav-logo');
   logo?.addEventListener('click', event => {
-    if (!views.length) return;
+    if (!views.length) {
+      try {sessionStorage.setItem('ground-on-arrival', '1');} catch (_) { /* Storage is optional. */ }
+      return;
+    }
     event.preventDefault();
     const rect = logo.getBoundingClientRect();
     switchView('home', {push: true, focus: true});
-    if (reducedMotion.matches) return;
     const ground = logo.querySelector('.logo-ground');
     ground?.classList.add('spark');
     ground?.addEventListener('animationend', () => ground.classList.remove('spark'), {once:true});
@@ -218,4 +193,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     requestAnimationFrame(draw);
   });
+  try {
+    if (views.length && sessionStorage.getItem('ground-on-arrival') === '1') {
+      sessionStorage.removeItem('ground-on-arrival');
+      logo?.click();
+    }
+  } catch (_) { /* Normal logo navigation still works when storage is blocked. */ }
 });
