@@ -8,8 +8,8 @@
   <meta name="description"
     content="Electrical engineer at Penn working across semiconductor devices, compact modeling, mixed-signal circuits, and hardware. Previously at LBNL, Silicon Laboratories, and Cadence." />
   <meta name="author" content="Krishna Madhur Akella" />
-  <link rel="stylesheet" href="css/style.css?v=20261026-2" />
-  <link rel="stylesheet" href="css/refresh.css?v=20261026-2" />
+  <link rel="stylesheet" href="css/style.css?v=20261029-1" />
+  <link rel="stylesheet" href="css/refresh.css?v=20261029-1" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Noto+Sans+Devanagari:wght@400;700&amp;family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" />
@@ -60,15 +60,15 @@
         <div class="home-primary">
         <button type="button" class="home-greeting float-up" aria-label="Toggle the off-duty homepage" aria-pressed="false">Hello, I am</button>
         <h1 id="home-name" tabindex="-1" class="home-name float-up">Krishna Madhur Akella</h1>
-        <p class="home-tagline float-up">
+        <p class="home-tagline float-up" data-tagline-casual="A few things beyond the lab.">
           The Bridge Between Atoms and Systems.
         </p>
 
         <div class="home-intro">
-        <p class="home-bio float-up">I’m an <strong>electrical engineer</strong> connecting semiconductor device physics with <strong>compact modeling, mixed-signal circuits, and hardware</strong>. I’m pursuing my MSE in Electrical Engineering at the <strong>University of Pennsylvania</strong>, expected May 2027.</p>
+        <p class="home-bio float-up" data-bio-casual="You’ve found the less formal introduction. Pull up a chair; we can start with something sensible and see how long that lasts.">I’m an <strong>electrical engineer</strong> connecting semiconductor device physics with <strong>compact modeling, mixed-signal circuits, and hardware</strong>. I’m pursuing my MSE in Electrical Engineering at the <strong>University of Pennsylvania</strong>, expected May 2027.</p>
 
         <p class="home-bio float-up" id="bio-third"
-          data-bio-casual="Off duty, the engineering brain stays on: &lt;strong&gt;F1 aerodynamics&lt;/strong&gt;, photography, books, and the occasional deep dive into a new piece of tech. Different rabbit holes. Same curiosity.">
+          data-bio-casual="There’s usually a song involved, occasionally a long walk, and a decent chance the conversation will wander. I’m happy to see where it goes.">
           Previously at <strong>LBNL</strong>, <strong>Silicon Laboratories</strong>, and <strong>Cadence</strong>. My work spans CNT-FET transport, 21 mixed-signal evaluation boards, and device-level simulation.
         </p>
 
@@ -77,18 +77,29 @@
           <span class="status-led" id="status-led"></span>
           <span class="status-text" id="status-text">Currently: device research, fellowship, and master’s thesis <strong>@ Penn</strong></span>
         </div>
-        <div class="intro-actions float-up"><a class="contact-action" href="mailto:krishna8@seas.upenn.edu">Email me <span aria-hidden="true">↗</span></a><a class="text-action" href="#projects" data-view-link="projects">Explore my work <span aria-hidden="true">↓</span></a><a class="text-action" href="https://linkedin.com/in/akrishnamadhur" target="_blank" rel="noopener">LinkedIn</a><a class="text-action" href="https://github.com/KrishnaMadhur" target="_blank" rel="noopener">GitHub</a></div>
+        <div class="intro-actions float-up" data-home-professional>
+          <a class="contact-action" href="mailto:krishna8@seas.upenn.edu">Email me <span aria-hidden="true">↗</span></a>
+          <a class="text-action" href="#projects" data-view-link="projects">Explore my work <span aria-hidden="true">↓</span></a>
+          <a class="social-link social-link-linkedin" href="https://linkedin.com/in/akrishnamadhur" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true" focusable="false"><path d="M19 3a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14m-.5 15.5v-5.3a3.26 3.26 0 00-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 011.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 001.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 00-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg><span>LinkedIn</span></a>
+          <a class="social-link social-link-github" href="https://github.com/KrishnaMadhur" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 2A10 10 0 002 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0012 2z"/></svg><span>GitHub</span></a>
+        </div>
+        <div class="intro-actions casual-actions" data-home-casual hidden><a class="contact-action" href="#writing" data-view-link="writing">Into Brainwaves <span aria-hidden="true">↗</span></a><button class="text-action casual-return" type="button" data-theme-toggle>Back to the day job</button></div>
         </div>
         </div>
-        <aside class="current-work float-up" aria-labelledby="current-work-title">
+        <aside class="current-work float-up" aria-labelledby="current-work-title" data-home-professional>
           <h2 id="current-work-title">Currently at Penn</h2>
           <div><p class="role-label">Graduate Student Fellow</p><h3>Singh Center for Nanotechnology</h3><p>SOT-MRAM device modeling and design–technology co-optimization.</p></div>
           <div><p class="role-label">Research Assistant · Deep Jariwala</p><h3>AlScN ferroelectric devices</h3><p>Sentaurus TCAD and electrical characterization.</p></div>
           <div><p class="role-label">Master’s thesis · Robert Radway</p><h3>ITO/IZO thin-film transistors</h3><p>Device reliability, characterization, and compact modeling.</p></div>
         </aside>
-        <div class="off-duty-note" hidden><span>OFF THE CLOCK</span><p>F1. Photography. Books. Curiosity.</p><a href="#writing" data-view-link="writing">Follow the tangents ↗</a></div>
+        <aside class="current-work casual-panel float-up" aria-labelledby="casual-panel-title" data-home-casual hidden>
+          <h2 id="casual-panel-title">Small constants</h2>
+          <div><h3>A good song</h3><p>An ordinary day, improved.</p></div>
+          <div><h3>A walk</h3><p>Some thoughts apparently need to be taken outside.</p></div>
+          <div><h3><a href="#writing" data-view-link="writing" data-view-anchor="reading-shelf">A book ↗</a></h3><p>A good reason to leave the phone somewhere else.</p></div>
+        </aside>
 
-        <section class="home-selected" aria-labelledby="selected-work-title">
+        <section class="home-selected" aria-labelledby="selected-work-title" data-home-professional>
         <h2 id="selected-work-title" class="home-section-label float-up">Selected Work</h2>
         <div class="selected-work stagger-children" id="selected-work">
           <a href="projects/alscn-ferroelectrics.html" class="selected-work-item float-up" data-sw-pro>
@@ -107,6 +118,14 @@
             <span class="sw-arrow">→</span>
           </a>
         </div>
+        </section>
+        <section class="casual-interests" aria-labelledby="casual-interests-title" data-home-casual hidden>
+          <h2 id="casual-interests-title" class="home-section-label">Things worth keeping</h2>
+          <div class="personal-cards">
+            <a href="#writing" data-view-link="writing" data-view-anchor="shanghai-reunion"><span class="personal-card-label">01 · Formula 1</span><h3>Beyond the lap times</h3><p>A little Mercedes reunion in Shanghai.</p><span aria-hidden="true">↗</span></a>
+            <a href="#photography" data-view-link="photography"><span class="personal-card-label">02 · Photography</span><h3>A different view</h3><p>A pause, a frame, something worth noticing.</p><span aria-hidden="true">↗</span></a>
+            <a href="#writing" data-view-link="writing" data-view-anchor="first-time-on-ice"><span class="personal-card-label">03 · First experiences</span><h3>Finding my feet</h3><p>From roller skates to Penn Ice Rink.</p><span aria-hidden="true">↗</span></a>
+          </div>
         </section>
 
       </div>
@@ -298,9 +317,38 @@
     <div class="container brainwaves-container">
       <div class="view-header float-up">
         <h1 class="view-title">Brainwaves</h1>
-        <p class="view-subtitle">Thoughts, tangents, and telemetry.</p>
+        <p class="view-subtitle">Experiences, little discoveries, and things worth keeping.</p>
       </div>
 
+      <section class="brainwaves-notes" aria-label="Personal notes">
+        <article class="brainwave-note float-up" id="shanghai-reunion">
+          <p class="bw-note-meta">F1 · Personal note · <time datetime="2026-10-29">October 29, 2026</time> · 1 min read</p>
+          <h2>A little Mercedes reunion in Shanghai</h2>
+          <p>The 2026 Chinese GP podium felt like a Mercedes family photograph: Kimi, George, Lewis, and Bono. Different overalls now, but plenty of shared history.</p>
+          <p>The moment that stayed with me was George stepping aside so Kimi, Bono, and Lewis could have their picture together. Lewis’s former engineer, the driver who took his seat, and Lewis himself—there was something lovely about seeing them celebrate together.</p>
+          <p>As a Mercedes and Lewis fan, this season has given me plenty to enjoy. Ferrari finding more pace, Lewis collecting podiums, and Kimi growing into that Mercedes seat so confidently. Watching his progress makes that Shanghai moment even better in hindsight.</p>
+          <p>I’ll happily spend a weekend following lap times and strategy calls. Sometimes, though, it’s a small moment after the race that sticks.</p>
+        </article>
+        <article class="brainwave-note float-up" id="first-time-on-ice">
+          <p class="bw-note-meta">First experiences · Personal note · <time datetime="2026-10-29">October 29, 2026</time> · 1 min read</p>
+          <h2>From wheels to blades</h2>
+          <p>The first time I went ice skating was at Penn Ice Rink. I already knew how to roller skate, but ice skating in winter sounded like a fun way to find out how much of that would carry over.</p>
+          <p>First, I managed to walk through the corridors in the skates without falling. Once I actually stepped onto the ice, it felt surprisingly comfortable. Getting moving was much easier than I’d expected.</p>
+          <p>Going fast and taking turns were another story. I did fall when I picked up too much speed and couldn’t turn properly, but I enjoyed it enough to go back a bunch of times.</p>
+          <p>I’m getting better at it. For a first experience, a few falls were a pretty small price for finding something I wanted to keep doing.</p>
+        </article>
+        <article class="brainwave-note brainwave-note-wide float-up" id="how-things-come-together">
+          <div class="brainwave-note-body">
+          <p class="bw-note-meta">A thought · <time datetime="2026-10-29">October 29, 2026</time> · 1 min read</p>
+          <h2>How things come together</h2>
+          <p>There’s something beautiful about familiar ingredients becoming something unexpected. A handful of notes becomes a melody. Simple rules produce intricate patterns. Ordinary words, arranged carefully, say something you’ve never quite managed to express.</p>
+          <p>The nerdy part of me likes the idea of emergence: interactions giving rise to qualities that the individual pieces don’t have on their own. You can understand the ingredients and still be surprised by what they become together.</p>
+          <p>Creation feels beautiful for much the same reason. There’s so much possibility in the way things meet, combine, and change one another. Even something small can make the world feel richer than it did before.</p>
+          <p>And sometimes, that idea becomes quietly personal. You find yourself grateful that something exists, that your paths crossed, and that the world happened to come together in precisely that way.</p>
+          </div>
+        </article>
+      </section>
+      <h2 id="reading-shelf" class="brainwaves-shelf-title">On my shelf</h2>
       <!-- Mood Board -->
       <div class="brainwaves-grid float-up">
         <div class="bw-card bw-card-tall">
@@ -520,14 +568,14 @@
   </div>
 
   <!-- ====== FOOTER ====== -->
+  <!-- Original site collaboration credit: Sasank, https://gssasank.com. Footer presentation modified October 27, 2026. -->
   <footer class="footer">
-    <p>&copy; 2026 Krishna <a class="madhure-link" tabindex="-1" href="https://www.srushtimadhure.com/" target="_blank" rel="noopener noreferrer" aria-label="Visit Srushti Madhure’s portfolio (opens in a new tab)">Madhur<span class="madhure-e" aria-hidden="true">e</span></a> Akella · <a href="https://www.philadelphiaeagles.com/" target="_blank" rel="noopener" class="footer-philly">Philadelphia, PA</a> · Built with <a href="https://gssasank.com" target="_blank"
-        rel="noopener" class="footer-credit">Sasank</a> · <a
+    <p>&copy; 2026 Krishna <a class="madhure-link" tabindex="-1" href="https://www.srushtimadhure.com/" target="_blank" rel="noopener noreferrer" aria-label="Visit Srushti Madhure’s portfolio (opens in a new tab)">Madhur<span class="madhure-e" aria-hidden="true">e</span></a> Akella · <a href="https://www.philadelphiaeagles.com/" target="_blank" rel="noopener" class="footer-philly">Philadelphia, PA</a> · <a
         href="https://open.spotify.com/playlist/37i9dQZF1DWZeKCadgRdKQ" target="_blank" rel="noopener"
         class="footer-spotify" title="Deep Focus">♫</a></p>
   </footer>
 
-  <script src="js/main.js?v=20261026-2"></script>
+  <script src="js/main.js?v=20261029-1"></script>
 </body>
 
 </html>

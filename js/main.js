@@ -67,8 +67,16 @@ document.addEventListener('DOMContentLoaded', () => {
     else tab.addEventListener('click', closeMenu);
   });
   document.querySelectorAll('[data-view-link]').forEach(link => link.addEventListener('click', event => {
+    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
     event.preventDefault();
     switchView(link.dataset.viewLink, {push: true, focus: true});
+    const anchor = link.dataset.viewAnchor && document.getElementById(link.dataset.viewAnchor);
+    if (anchor && anchor.closest('.view')?.id === link.dataset.viewLink) {
+      anchor.scrollIntoView({behavior:'instant', block:'start'});
+      const heading = anchor.matches('h2') ? anchor : anchor.querySelector('h2');
+      heading?.setAttribute('tabindex', '-1');
+      heading?.focus({preventScroll:true});
+    }
   }));
   if (views.length) {
     switchView(window.location.hash.slice(1));
@@ -105,19 +113,61 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.madhure-link').forEach(link => link.tabIndex = -1);
 
   const greeting = document.querySelector('.home-greeting');
-  const bio = document.getElementById('bio-third');
+  const biographies = [...document.querySelectorAll('[data-bio-casual]')].map(element => ({element, professional: element.innerHTML}));
+  const tagline = document.querySelector('[data-tagline-casual]');
+  const professionalTagline = tagline?.textContent;
   const status = document.getElementById('status-text');
-  const professionalBio = bio?.innerHTML;
   const professionalStatus = status?.innerHTML;
-  greeting?.addEventListener('click', () => {
+  function toggleHomepageTheme() {
     const casual = body.classList.toggle('theme-casual');
-    greeting.setAttribute('aria-pressed', String(casual));
-    if (bio) bio.innerHTML = casual ? bio.dataset.bioCasual : professionalBio;
-    if (status) status.innerHTML = casual ? 'Currently: waiting for lights out at the next <strong>F1 Grand Prix</strong>.' : professionalStatus;
+    greeting?.setAttribute('aria-pressed', String(casual));
+    biographies.forEach(({element, professional}) => {element.innerHTML = casual ? element.dataset.bioCasual : professional;});
+    if (tagline) tagline.textContent = casual ? tagline.dataset.taglineCasual : professionalTagline;
+    if (status) status.innerHTML = casual ? 'Currently: considering a counterpoint to my own point.' : professionalStatus;
     document.getElementById('status-led')?.classList.toggle('casual-red', casual);
-    const note = document.querySelector('.off-duty-note');
-    if (note) note.hidden = !casual;
-  });
+    document.querySelectorAll('[data-home-professional]').forEach(element => {element.hidden = casual;});
+    document.querySelectorAll('[data-home-casual]').forEach(element => {element.hidden = !casual;});
+    // The return button is hidden when professional mode comes back.
+    if (!casual && document.activeElement?.matches('[data-theme-toggle]')) greeting?.focus({preventScroll:true});
+  }
+  greeting?.addEventListener('click', toggleHomepageTheme);
+  document.querySelectorAll('[data-theme-toggle]').forEach(button => button.addEventListener('click', toggleHomepageTheme));
+
+  /* Draw the footer signal directly; animated CSS background images can freeze. */
+  const footer = document.querySelector('.footer');
+  if (footer) {
+    const holder = document.createElement('div');
+    holder.innerHTML = '<svg class="footer-signal" viewBox="0 0 800 60" fill="none" aria-hidden="true" focusable="false"><defs><linearGradient id="footer-signal-gradient" x1="0" y1="0" x2="800" y2="0" gradientUnits="userSpaceOnUse"><stop stop-color="#E2E8F0"/><stop offset=".5" stop-color="#22D3EE"/><stop offset="1" stop-color="#E2E8F0"/></linearGradient></defs><path stroke="url(#footer-signal-gradient)" stroke-width="1.5" stroke-linecap="round"/></svg>';
+    const signal = holder.firstElementChild;
+    const path = signal.querySelector('path');
+    footer.prepend(signal);
+    footer.classList.add('has-live-signal');
+    let frame = null;
+    let visible = false;
+    let lastPaint = -Infinity;
+    function paintSignal(time) {
+      const phase = time / 1000 * Math.PI / 2;
+      const points = [];
+      for (let x = 0; x <= 800; x += 2) {
+        const envelope = 2 + 22 * Math.abs(x - 400) / 400;
+        const y = 30 + envelope * Math.sin(x * Math.PI / 10 - phase);
+        points.push(`${x ? 'L' : 'M'}${x},${y.toFixed(2)}`);
+      }
+      path.setAttribute('d', points.join(' '));
+    }
+    function tick(time) {
+      if (!visible || document.hidden) {frame = null; return;}
+      if (time - lastPaint >= 30) {paintSignal(time); lastPaint = time;}
+      frame = requestAnimationFrame(tick);
+    }
+    function syncSignal() {
+      if (visible && !document.hidden && frame === null) frame = requestAnimationFrame(tick);
+      else if ((!visible || document.hidden) && frame !== null) {cancelAnimationFrame(frame); frame = null;}
+    }
+    paintSignal(0);
+    new IntersectionObserver(entries => {visible = entries[0].isIntersecting; syncSignal();}).observe(signal);
+    document.addEventListener('visibilitychange', syncSignal);
+  }
 
   const gallery = document.getElementById('gallery-grid');
   if (gallery) fetch('assets/gallery/photos.json')

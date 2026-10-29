@@ -1,5 +1,5 @@
 WEBSITE MAINTENANCE GUIDE — krishnamadhur.github.io
-Updated October 26, 2026
+Updated October 29, 2026
 
 LOCATION AND PUBLICATION
 Checkout: /Users/krishnamadhurakella/Developer/KrishnaMadhur.github.io
@@ -73,7 +73,8 @@ HOME AND CURRENT ROLES
 Edit index.html:
   home-name / home-tagline    Name and tagline
   home-intro                 Concise professional introduction and email action
-  bio-third                  Professional default; data-bio-casual is off-duty copy
+  [data-bio-casual]           Both bio paragraphs have distinct off-duty copy
+  [data-tagline-casual]       Alternate personal tagline
   current-work               Three current Penn roles in the right column
   status-text                Single source of truth for professional status
   selected-work              Public project cards; preserve valid links
@@ -92,16 +93,21 @@ Navigation focuses the destination heading for screen-reader orientation, but
 those programmatically focusable headings have no outline. Keep visible keyboard
 focus indicators on actual interactive controls and the Skip to content link.
 
-The professional bio/status are captured from the HTML on page load. Returning
-from casual mode restores those originals; do not maintain duplicate strings in JS.
+The professional bio paragraphs, tagline and status are captured from the HTML on
+page load. Returning from casual mode restores those originals; do not maintain
+duplicate strings in JS. data-home-professional and data-home-casual groups swap
+the panel, contact actions and bottom cards with hidden attributes. Casual mode
+shows a personal panel and F1/Photography/first-experience cards, with no research
+panel or project cards. The return button restores professional mode and focus.
 Keep the current roles/CV accurate: LBNL internship ended August 2026; current work
 includes Singh GSF, research with Deep Jariwala, and the master's thesis with Radway.
 
 THEMES AND EFFECTS
 Default: professional obsidian/champagne, calm background without cursor tracking.
-Greeting button: toggles off-duty botanical blue, warm firefly glow, F1 status,
-and personal copy. Professional roles and selected projects remain consistent.
-It supports Enter/Space.
+Greeting button: toggles off-duty botanical blue, warm firefly glow, the approved
+conversational bio, counterpoint LED line, Small constants panel (song/walk/book),
+and personal navigation cards. It supports
+Enter/Space. Keep professional research claims out of this personal presentation.
 Project pages: gold/cyan/red domain glows controlled by body[data-glow].
 CV: Smith chart. Brainwaves: existing blue interference background.
 Krishna logo: original canvas wave, cyan → champagne, duration 3000 ms.
@@ -111,6 +117,13 @@ their glows and card tilt, and the explicitly activated Krishna ripple runs even
 when the browser reports reduced motion. Project-page logo clicks replay the wave
 on arrival at Home. Touch devices omit cursor tracking. Do not silently disable
 all effects based on the OS preference again. Keep work pages professional.
+The owner explicitly wants the small green/red LED pulse and continuous footer
+wave on the quiet homepage. Do not disable these with the calm-background rule.
+The footer wave is an inline decorative SVG created by main.js, using the original
+silver/cyan amplitude envelope. Drawing pauses offscreen or in hidden tabs; it
+resumes automatically. The animated background asset remains only as a fallback.
+Social links include inline logo marks and names. Hover/focus: LinkedIn blue
+background with white text/mark; GitHub white background with dark text/mark.
 
 FOOTER LINK
 Only the word Madhur links to https://www.srushtimadhure.com/ in a new tab.
@@ -119,6 +132,8 @@ No reveal on touch or keyboard focus. The owner explicitly requested removing
 this secret link from the normal keyboard tab order (tabindex=-1).
 The explicit accessible label identifies Srushti and the new-tab behavior.
 Keep the full Krishna Madhur Akella name unchanged elsewhere.
+The visible Sasank collaboration credit was removed at the owner's request.
+Retain its source comment and the existing LICENSE file.
 
 PROJECT PAGE STRUCTURE
 Use a public title, short role/date/status line, problem, constraints, personal
@@ -133,6 +148,13 @@ Keep the tone light: experiences, places, cultural discoveries, reading, interes
 and observations. No engineering-note emphasis, poems, or literary prose. Draft
 from the owner's supplied experiences; do not fabricate personal opinions.
 No fake article links or unfinished placeholders on the public site.
+Personal notes appear as complete, text-led articles above the On my shelf board.
+Use two columns on desktop and one on mobile; the third note spans both columns
+with a bounded reading width. Owner approved publication October 29, 2026:
+A little Mercedes reunion in Shanghai; From wheels to blades; How things come
+together. Keep approved wording intact and do not add personal attribution.
+The displayed dates are publication dates, not
+dates of the experiences. Future copy changes still require owner approval.
 
 PHOTOGRAPHY AND MEDIA
 Add a JPEG display copy under assets/gallery/ and an entry in photos.json:
